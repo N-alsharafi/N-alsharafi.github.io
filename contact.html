@@ -13,7 +13,24 @@
         <a href="/contact.html" class="navigationBar">Contact</a>
     </header>
     <main>
-
+        <div class="contact-card">
+            <h1>Contact Me</h1>
+            <br>
+            <p>I'm based in Istanbul, Turkey.</p>
+            <p>Let's connect on <a target="_blank" href="https://www.linkedin.com/in/nuh-al-sharafi-9762ab222/">Linked-In</a>.</p>
+            <p>Or if you'd like to directly reach me,</p>
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                const user = "nuh.najeeb.alsharafi";
+                const domain = "gmail.com";
+                const emailLink = document.getElementById("email");
+                emailLink.href = "mailto:" + user + "@" + domain;
+                emailLink.textContent = user + "@" + domain;
+                });
+            </script>
+            <!--This method of embedding in javascript is used to avoid spam bots-->
+            <p>Email: <a href="#" id="email">[email protected]</a></p>
+        </div>
     </main>
     <footer>
         

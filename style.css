@@ -18,6 +18,8 @@ header{
     position: sticky;
     top:0;
     z-index: 999;
+    background-color: white;
+    padding: 1rem;
   
 }
 p {
@@ -66,4 +68,10 @@ h1 {
     text-align: center;
     background-color: lightgrey;
     margin-left: 0.5rem;
+}
+
+.contact-card{
+    /* no need to override anything for now */
+    padding-right: 1rem;
+    /* This option does not need to be here, remove it later */
 }
