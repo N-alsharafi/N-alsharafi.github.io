@@ -1,3 +1,4 @@
 [submodule "suchedule"]
 	path = suchedule
 	url = https://github.com/N-alsharafi/suchedule
+	branch = tweaks
