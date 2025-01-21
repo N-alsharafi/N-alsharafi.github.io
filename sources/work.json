@@ -1,0 +1,22 @@
+{
+    "work": [
+        {
+            "name": "Math 102 Learning Assistant",
+            "dateRange": "October 2023 - January 2024",
+            "organization": {
+                "name": "Sabanci University",
+                "location": "Istanbul, Turkey"
+            },
+            "description": "Served as a Learning Assistant for Math 102.\n\n- Responsible for preparing and teaching recitation material assigned by the instructors.\n- Assisted students in solving recitation worksheets.\n- Taught approximately 50 students across two classes."
+        },
+        {
+            "name": "Math 101 Learning Assistant",
+            "dateRange": "February 2023 - May 2023",
+            "organization": {
+                "name": "Sabanci University",
+                "location": "Istanbul, Turkey"
+            },
+            "description": "Served as a Learning Assistant for Math 101.\n\n- Responsible for preparing and teaching recitation material assigned by the instructors.\n- Taught approximately 50 students across two classes."
+        }
+    ]
+}

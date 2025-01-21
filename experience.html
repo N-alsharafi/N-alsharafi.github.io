@@ -35,11 +35,13 @@
                     data.projects.forEach(project => {
                         const projectCard = document.createElement('div');
                         projectCard.className = 'project-card';
+                        const description = project.description.replace(/\n/g, '<br>');
+                        const links = project.links.map(link => `<a class="project-link" href="${link.url}" target="_blank">${link.title}</a>`).join(' | ');
                         projectCard.innerHTML = `
                             <h2 class="project-title">${project.name}</h2>
                             <p class="project-date">${project.dateRange}</p>
-                            <p class="project-description">${project.description}</p>
-                            <a class="project-link" href="${project.link}" target="_blank">View Project</a>
+                            <p class="project-description">${description}</p>
+                            ${links}
                         `;
                         projectsContainer.appendChild(projectCard);
                     });
@@ -56,11 +58,12 @@
                     data.work.forEach(work => {
                         const workCard = document.createElement('div');
                         workCard.className = 'project-card';
+                        const description = work.description.replace(/\n/g, '<br>');
                         workCard.innerHTML = `
-                            <h2 class="project-title">${work.position} at ${work.company}</h2>
-                            <p class="project-date">${work.startDate} - ${work.endDate}</p>
-                            <p class="project-description">${work.summary}</p>
-                            <a class="project-link" href="${work.website}" target="_blank">Company Website</a>
+                            <h2 class="project-title">${work.name}</h2>
+                            <p class="project-date">${work.dateRange}</p>
+                            <p class="project-organization">${work.organization.name}<br>${work.organization.location}</p>
+                            <p class="project-description">${description}</p>
                         `;
                         projectsContainer.appendChild(workCard);
                     });
@@ -77,9 +80,10 @@
                     data["side-missions"].forEach(mission => {
                         const missionCard = document.createElement('div');
                         missionCard.className = 'project-card';
+                        const description = mission.description.replace(/\n/g, '<br>');
                         missionCard.innerHTML = `
                             <h2 class="project-title">${mission.title}</h2>
-                            <p class="project-description">${mission.description}</p>
+                            <p class="project-description">${description}</p>
                             <p class="project-date">Location: ${mission.location}</p>
                             <p class="project-date">Reward: ${mission.reward}</p>
                             <p class="project-date">Difficulty: ${mission.difficulty}</p>
