@@ -13,10 +13,90 @@
         <a href="/contact.html" class="navigationBar">Contact</a>
     </header>
     <main>
-        <p>Coming Soon...</p>
+        <p class="experience-nav">
+            <a href="#" id="projects-link" class="navigationBar"> Projects </a> |
+            <a href="#" id="work-link" class="navigationBar"> Work </a> |
+            <a href="#" id="side-missions-link" class="navigationBar"> Side Missions </a>
+        </p>
+        <div id="projects-container">
+            <!-- Project cards will be inserted here by JavaScript -->
+        </div>
     </main>
     <footer>
 
     </footer>
+    <script>
+        function loadProjects() {
+            fetch('/sources/projects.json')
+                .then(response => response.json())
+                .then(data => {
+                    const projectsContainer = document.getElementById('projects-container');
+                    projectsContainer.innerHTML = ''; // Clear existing content
+                    data.projects.forEach(project => {
+                        const projectCard = document.createElement('div');
+                        projectCard.className = 'project-card';
+                        projectCard.innerHTML = `
+                            <h2 class="project-title">${project.name}</h2>
+                            <p class="project-date">${project.dateRange}</p>
+                            <p class="project-description">${project.description}</p>
+                            <a class="project-link" href="${project.link}" target="_blank">View Project</a>
+                        `;
+                        projectsContainer.appendChild(projectCard);
+                    });
+                })
+                .catch(error => console.error('Error fetching projects:', error));
+        }
+
+        function loadWorkExperience() {
+            fetch('/sources/work.json')
+                .then(response => response.json())
+                .then(data => {
+                    const projectsContainer = document.getElementById('projects-container');
+                    projectsContainer.innerHTML = ''; // Clear existing content
+                    data.work.forEach(work => {
+                        const workCard = document.createElement('div');
+                        workCard.className = 'project-card';
+                        workCard.innerHTML = `
+                            <h2 class="project-title">${work.position} at ${work.company}</h2>
+                            <p class="project-date">${work.startDate} - ${work.endDate}</p>
+                            <p class="project-description">${work.summary}</p>
+                            <a class="project-link" href="${work.website}" target="_blank">Company Website</a>
+                        `;
+                        projectsContainer.appendChild(workCard);
+                    });
+                })
+                .catch(error => console.error('Error fetching work experience:', error));
+        }
+
+        function loadSideMissions() {
+            fetch('/sources/side-missions.json')
+                .then(response => response.json())
+                .then(data => {
+                    const projectsContainer = document.getElementById('projects-container');
+                    projectsContainer.innerHTML = ''; // Clear existing content
+                    data["side-missions"].forEach(mission => {
+                        const missionCard = document.createElement('div');
+                        missionCard.className = 'project-card';
+                        missionCard.innerHTML = `
+                            <h2 class="project-title">${mission.title}</h2>
+                            <p class="project-description">${mission.description}</p>
+                            <p class="project-date">Location: ${mission.location}</p>
+                            <p class="project-date">Reward: ${mission.reward}</p>
+                            <p class="project-date">Difficulty: ${mission.difficulty}</p>
+                            <p class="project-date">Duration: ${mission.duration}</p>
+                        `;
+                        projectsContainer.appendChild(missionCard);
+                    });
+                })
+                .catch(error => console.error('Error fetching side missions:', error));
+        }
+
+        document.getElementById('projects-link').addEventListener('click', loadProjects);
+        document.getElementById('work-link').addEventListener('click', loadWorkExperience);
+        document.getElementById('side-missions-link').addEventListener('click', loadSideMissions);
+
+        // Load projects by default
+        loadProjects();
+    </script>
 </body>
 </html>

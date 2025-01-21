@@ -20,7 +20,7 @@ header{
     z-index: 999;
     background-color: white;
     padding: 1rem;
-  
+    border-bottom: 1px solid #ddd;
 }
 p {
     font-size: 1.5rem;
@@ -50,28 +50,69 @@ h1 {
     font-weight: bold;
     font-style: italic;
 }
-.left-pane {
-    width: 47%;
-    float: left;
-    padding: 1rem;
-    box-sizing: border-box;
-    text-align: center;
-    background-color: lightgrey;
-    margin-right: 0.5rem;
-}
-
-.right-pane {
-    width: 47%;
-    float: right;
-    padding: 1rem;
-    box-sizing: border-box;
-    text-align: center;
-    background-color: lightgrey;
-    margin-left: 0.5rem;
-}
 
 .contact-card{
     /* no need to override anything for now */
     padding-right: 1rem;
     /* This option does not need to be here, remove it later */
+}
+
+.project-card {
+    /* border: 1px solid #ddd; */
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    width: 100%;
+    background-color: #ffffff;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+}
+
+.project-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.project-date {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.project-description {
+    font-size: 1.5rem;
+    margin-bottom: 1rem 0;
+}
+
+.project-link {
+    font-size: 1.2rem;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.project-link:hover {
+    text-decoration: underline;
+}
+
+.projects-container {
+    margin: 2vh 10vw;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: white;
+    padding: 1rem;
+}
+
+.experience-nav {
+    text-align: center;
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 4rem; /* Adjust this value based on the height of your header */
+    z-index: 998; /* Ensure it's below the main nav */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    padding: 2rem;
 }
