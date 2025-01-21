@@ -1,0 +1,12 @@
+{
+    "side-missions": [
+        {
+            "title": "Life",
+            "description": "There's more to life than CS and doing projects. I touch grass sometimes.",
+            "location": "Many Places",
+            "reward": "invaluable friendships and life experiences",
+            "link": [
+            ]
+        }
+    ]
+}

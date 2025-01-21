@@ -81,13 +81,13 @@
                         const missionCard = document.createElement('div');
                         missionCard.className = 'project-card';
                         const description = mission.description.replace(/\n/g, '<br>');
+                        const links = mission.link.map(link => `<a class="project-link" href="${link.url}" target="_blank">${link.title}</a>`).join(' | ');
                         missionCard.innerHTML = `
                             <h2 class="project-title">${mission.title}</h2>
                             <p class="project-description">${description}</p>
                             <p class="project-date">Location: ${mission.location}</p>
                             <p class="project-date">Reward: ${mission.reward}</p>
-                            <p class="project-date">Difficulty: ${mission.difficulty}</p>
-                            <p class="project-date">Duration: ${mission.duration}</p>
+                            ${links}
                         `;
                         projectsContainer.appendChild(missionCard);
                     });
