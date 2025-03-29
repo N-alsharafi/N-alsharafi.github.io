@@ -26,7 +26,7 @@ const Index = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <Avatar className="h-32 w-32 mb-6">
-              <AvatarImage src="/sources/PFP.jpeg" alt="Nuh Al-Sharafi" />
+              <AvatarImage src="./images/PFP.jpeg" alt="Nuh Al-Sharafi" />
               <AvatarFallback>NA</AvatarFallback>
             </Avatar>
             <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-4">
@@ -69,7 +69,7 @@ const Index = () => {
                 </a>
               </Button>
               <Button variant="outline" asChild>
-                <a href="/sources/CV-Feb22-f.pdf" target="_blank" rel="noopener noreferrer">
+                <a href="./CV-Feb22-f.pdf" target="_blank" rel="noopener noreferrer">
                   Resume
                 </a>
               </Button>

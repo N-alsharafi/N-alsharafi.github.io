@@ -3,7 +3,7 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
-    "homepage": "https://n-alsharafi.github.io/",
+    "homepage": "https://n-alsharafi.github.io",
     "scripts": {
         "dev": "vite",
         "prebuild": "node scripts/prepare-build.js",
