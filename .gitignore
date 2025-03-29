@@ -23,5 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 
-./test-deploy.sh
-./debug-build.sh
+test-deploy.sh
+debug-build.sh

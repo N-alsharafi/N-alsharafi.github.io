@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "./",
+  base: "", // Empty string for root path
   server: {
     host: "::",
     port: 8080,
@@ -18,6 +18,9 @@ export default defineConfig(({ mode }) => ({
           vendor: ['react', 'react-dom', 'react-router-dom'],
         },
       },
+      input: {
+        main: path.resolve(__dirname, 'index.html')
+      }
     },
     // Exclude suchedule directory from processing
     emptyOutDir: true,
@@ -31,5 +34,6 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
 }));
