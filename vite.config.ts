@@ -25,6 +25,9 @@ export default defineConfig(({ mode }) => ({
     // Exclude suchedule directory from processing
     emptyOutDir: true,
   },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom'],
+  },
   plugins: [
     react(),
     mode === 'development' &&
