@@ -1,0 +1,112 @@
+[
+    {
+        "id": 1,
+        "title": "CS310: Real-time Chat Application",
+        "description": "Developed a real-time chat mobile app (2-person team).\n\n- Developed the backend using Java and SpringBoot.\n- Developed the frontend using React Native.\n- Implemented JWT tokens for authentication.\n- Ability to sign up, add friends, make groups, and send real-time chat messages.",
+        "tags": ["Java", "SpringBoot", "React Native", "JWT", "Real-time"],
+        "image": "/assets/chat-app.svg",
+        "github": "https://github.com/Team7-2401/HowudoinB",
+        "demo": "",
+        "featured": true,
+        "date": "2024-09-01"
+    },
+    {
+        "id": 2,
+        "title": "CS308: E-commerce Site",
+        "description": "Developed an e-commerce site that sells bags for men (6-person team).\n\n- Used Scrum and Jira to manage the project (played the role of Scrum Master).\n- Used GitHub and Git to facilitate collaboration.\n- Followed a client-server architectural model.\n- Used NodeJS, ExpressJS, and ReactJS.",
+        "tags": ["NodeJS", "ExpressJS", "ReactJS", "Scrum", "Jira"],
+        "image": "/assets/ecommerce.svg",
+        "github": "https://github.com/pishmish/laback",
+        "demo": "",
+        "featured": true,
+        "date": "2024-09-01"
+    },
+    {
+        "id": 3,
+        "title": "CS306: Database System Using SQL and Firebase",
+        "description": "Implemented MySQL and Firebase into CRUD apps (4-person team).\n\n- Designed a relational database system for a computer parts shop.\n- Drew an ER-diagram and converted it to SQL.\n- Developed triggers and stored procedures.\n- Made a simple web interface to interact with the database.\n- Developed a real-time support portal for customer requests with Firebase.",
+        "tags": ["MySQL", "Firebase", "SQL", "CRUD", "Database Design"],
+        "image": "/assets/database.svg",
+        "github": "",
+        "demo": "",
+        "featured": false,
+        "date": "2024-09-01"
+    },
+    {
+        "id": 4,
+        "title": "CS301: Analyzed and Solved the MIS Problem",
+        "description": "Studied the Maximum Independent Set problem (2-person team).\n\n- Developed, implemented, and benchmarked a brute force exponential solution.\n- Researched, implemented, and benchmarked a heuristic polynomial solution.\n- Used statistical methods to ensure robust results.\n- Developed a random sample generator and a graph visualizer for testing.",
+        "tags": ["Algorithms", "Graph Theory", "Benchmarking", "Statistical Methods"],
+        "image": "/assets/graph-theory.svg",
+        "github": "https://github.com/Team7-2401/MIS-Progress",
+        "demo": "",
+        "featured": false,
+        "date": "2024-09-01"
+    },
+    {
+        "id": 5,
+        "title": "Personal Website",
+        "description": "Created a personal website using HTML, CSS, and JavaScript.\n\n- Designed and developed the website to showcase my projects, skills, and achievements.\n- Regularly update the site to reflect new projects and skills.",
+        "tags": ["HTML", "CSS", "JavaScript"],
+        "image": "/assets/portfolio.svg",
+        "github": "",
+        "demo": "https://n-alsharafi.github.io",
+        "featured": false,
+        "date": "2024-09-01"
+    },
+    {
+        "id": 6,
+        "title": "PURE: Extracting Merger Deal Initiation with LLMs",
+        "description": "As part of the Program for Undergraduate Research, we aimed to produce a database to distill private phase deal metrics using generative AI.\n\n- Collected data via web scraping from the SEC's website.\n- Developed methods to filter data and extract relevant sections within documents.\n- Tuned Gemini's parameters and engineered prompts.\n- Passed documents to the LLM along with the prompts, then collected and validated results.\n- Assessed the performance of different prompts and configurations.",
+        "tags": ["AI", "LLM", "Web Scraping", "Data Analysis", "Prompt Engineering"],
+        "image": "/assets/ai-llm.svg",
+        "github": "",
+        "demo": "",
+        "featured": true,
+        "date": "2024-07-01"
+    },
+    {
+        "id": 7,
+        "title": "CS210: Predicting Inflation Using Stock Market Fluctuations in the US",
+        "description": "Aimed to study the relation between stocks in a provided stock market database and an inflation database.\n\n- Applied data science principles such as data collection, wrangling, analysis, etc.\n- Conducted hypothesis testing and regressive machine learning.\n- Analyzed the performance of different machine learning algorithms.",
+        "tags": ["Data Science", "Machine Learning", "Hypothesis Testing", "Financial Analysis"],
+        "image": "/assets/data-science.svg",
+        "github": "https://github.com/N-alsharafi/CS-210",
+        "demo": "",
+        "featured": false,
+        "date": "2024-02-01"
+    },
+    {
+        "id": 8,
+        "title": "CS303: Calculator in Digital",
+        "description": "Aimed to design and implement an addition calculator circuit in digital using basic logic components like encoders, decoders, multiplexers, flip flops, etc.",
+        "tags": ["Digital Logic", "Circuit Design", "Hardware"],
+        "image": "/assets/digital-logic.svg",
+        "github": "https://github.com/N-alsharafi/CS-303",
+        "demo": "",
+        "featured": false,
+        "date": "2024-02-01"
+    },
+    {
+        "id": 9,
+        "title": "SUDuyuru: Sabanci University Announcements via Mail Service",
+        "description": "Aimed to make keeping up with general university announcements easier by sending the announcements via email.\n\n- Uses Docker Compose for ease of deployment.\n- Uses MongoDB to store the announcements.\n- Open source on GitHub.",
+        "tags": ["Docker", "MongoDB", "Email Service", "Web Scraping"],
+        "image": "/assets/email-service.svg",
+        "github": "https://github.com/N-alsharafi/SUDuyuru",
+        "demo": "",
+        "featured": false,
+        "date": "2024-01-01"
+    },
+    {
+        "id": 10,
+        "title": "Proj201: Measuring Excitement in Sports",
+        "description": "Started with the aim of coming up with a quantitative measure of excitement for UFC fights.\n\n- Engineered a solution plan.\n- Conducted data collection and wrangling.\n- Created a descriptive report of the data to help develop an equation.\n- Developed an equation to calculate excitement and made several reasonable conclusions.",
+        "tags": ["Data Analysis", "Sports Analytics", "Statistical Modeling"],
+        "image": "/assets/sports-analytics.svg",
+        "github": "https://github.com/N-alsharafi/PROJ-201",
+        "demo": "",
+        "featured": false,
+        "date": "2023-10-01"
+    }
+] 

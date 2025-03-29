@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found - Redirecting</title>
+  <script>
+    // Single Page Apps for GitHub Pages
+    // MIT License
+    // Modified from https://github.com/rafgraph/spa-github-pages
+    (function() {
+      var pathname = window.location.pathname;
+      var searchParams = window.location.search;
+      var redirectUrl = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '') + '/' + 
+        '?redirect=' + encodeURIComponent(pathname + searchParams);
+      window.location.replace(redirectUrl);
+    })();
+  </script>
+</head>
+<body>
+  <h1>Redirecting...</h1>
+  <p>If you are not redirected automatically, <a href="/">click here</a> to return to the home page.</p>
+</body>
+</html> 

@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "company": "Sabanci University",
+        "position": "Math 102 Learning Assistant",
+        "location": "Istanbul, Turkey",
+        "startDate": "2023-10-01",
+        "endDate": "2024-01-31",
+        "description": "Served as a Learning Assistant for Math 102.\n\n- Responsible for preparing and teaching recitation material assigned by the instructors.\n- Assisted students in solving recitation worksheets.\n- Taught approximately 50 students across two classes.",
+        "technologies": ["Mathematics", "Teaching", "Problem Solving"]
+    },
+    {
+        "id": 2,
+        "company": "Sabanci University",
+        "position": "Math 101 Learning Assistant",
+        "location": "Istanbul, Turkey",
+        "startDate": "2023-02-01",
+        "endDate": "2023-05-31",
+        "description": "Served as a Learning Assistant for Math 101.\n\n- Responsible for preparing and teaching recitation material assigned by the instructors.\n- Taught approximately 50 students across two classes.",
+        "technologies": ["Mathematics", "Teaching", "Problem Solving"]
+    }
+]

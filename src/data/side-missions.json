@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "Life",
+    "description": "There's more to life than CS and doing projects. I touch grass sometimes.",
+    "link": "",
+    "date": "Present"
+  },
+  {
+    "id": 2,
+    "title": "ProjLab42",
+    "description": "I started a \"lab\" where I aim to collect passionate and dedicated people to put their ideas into reality.",
+    "link": "https://projlab42.github.io",
+    "date": "Present"
+  }
+]
