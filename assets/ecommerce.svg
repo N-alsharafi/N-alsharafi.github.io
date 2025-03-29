@@ -1,0 +1,248 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definitions -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111" />
+      <stop offset="100%" stop-color="#222" />
+      <animate attributeName="x1" values="0%;100%;0%" dur="20s" repeatCount="indefinite" />
+      <animate attributeName="y1" values="0%;100%;0%" dur="20s" repeatCount="indefinite" />
+    </linearGradient>
+    
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    
+    <pattern id="gridPattern" width="50" height="50" patternUnits="userSpaceOnUse">
+      <rect width="50" height="50" fill="none" stroke="#0f0" stroke-width="0.5" opacity="0.1" />
+      <line x1="0" y1="0" x2="50" y2="50" stroke="#0f0" stroke-width="0.2" opacity="0.1" />
+      <line x1="50" y1="0" x2="0" y2="50" stroke="#0f0" stroke-width="0.2" opacity="0.1" />
+    </pattern>
+    
+    <pattern id="circuitPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="none" />
+      <circle cx="10" cy="10" r="1" fill="#0f0" opacity="0.1" />
+      <circle cx="0" cy="0" r="1" fill="#0f0" opacity="0.1" />
+      <circle cx="0" cy="20" r="1" fill="#0f0" opacity="0.1" />
+      <circle cx="20" cy="0" r="1" fill="#0f0" opacity="0.1" />
+      <circle cx="20" cy="20" r="1" fill="#0f0" opacity="0.1" />
+    </pattern>
+  </defs>
+
+  <!-- Background with grid -->
+  <rect width="400" height="400" fill="url(#bgGradient)" />
+  <rect width="400" height="400" fill="url(#gridPattern)" opacity="0.4">
+    <animate attributeName="opacity" values="0.3;0.5;0.3" dur="10s" repeatCount="indefinite" />
+  </rect>
+  <rect width="400" height="400" fill="url(#circuitPattern)" opacity="0.5">
+    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="15s" repeatCount="indefinite" />
+  </rect>
+  
+  <!-- Store Front -->
+  <g transform="translate(200, 180)">
+    <!-- Store building -->
+    <rect x="-120" y="-80" width="240" height="160" rx="5" fill="#333" stroke="#0f0" stroke-width="2" filter="url(#glow)">
+      <animate attributeName="stroke" values="#0f0;#0ff;#0f0" dur="4s" repeatCount="indefinite" />
+    </rect>
+    
+    <!-- Store sign -->
+    <rect x="-100" y="-70" width="200" height="30" rx="3" fill="#222" stroke="#0f0" stroke-width="1" filter="url(#glow)">
+      <animate attributeName="stroke" values="#0f0;#0ff;#0f0" dur="4s" repeatCount="indefinite" />
+    </rect>
+    <text x="0" y="-50" font-family="monospace" font-size="14" fill="#0f0" text-anchor="middle" filter="url(#glow)">
+      <animate attributeName="fill" values="#0f0;#0ff;#0f0" dur="4s" repeatCount="indefinite" />
+      TECH STORE
+    </text>
+    
+    <!-- Door -->
+    <rect x="-20" y="30" width="40" height="50" rx="2" fill="#222" stroke="#0f0" stroke-width="1" filter="url(#glow)">
+      <animate attributeName="stroke" values="#0f0;#0ff;#0f0" dur="4s" repeatCount="indefinite" />
+    </rect>
+    
+    <!-- Windows -->
+    <rect x="-90" y="-20" width="50" height="30" rx="2" fill="#222" stroke="#0f0" stroke-width="1" filter="url(#glow)">
+      <animate attributeName="stroke" values="#0f0;#0ff;#0f0" dur="4s" repeatCount="indefinite" />
+    </rect>
+    <rect x="40" y="-20" width="50" height="30" rx="2" fill="#222" stroke="#0f0" stroke-width="1" filter="url(#glow)">
+      <animate attributeName="stroke" values="#0f0;#0ff;#0f0" dur="4s" repeatCount="indefinite" />
+    </rect>
+    
+    <!-- Products in windows -->
+    <rect x="-80" y="-15" width="10" height="20" fill="#0f0" opacity="0.5" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.5;0.8;0.5" dur="3s" repeatCount="indefinite" />
+    </rect>
+    <rect x="-65" y="-15" width="10" height="20" fill="#0f0" opacity="0.5" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.5;0.8;0.5" dur="3.5s" repeatCount="indefinite" />
+    </rect>
+    <rect x="50" y="-15" width="10" height="20" fill="#0f0" opacity="0.5" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.5;0.8;0.5" dur="4s" repeatCount="indefinite" />
+    </rect>
+    <rect x="65" y="-15" width="10" height="20" fill="#0f0" opacity="0.5" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.5;0.8;0.5" dur="4.5s" repeatCount="indefinite" />
+    </rect>
+  </g>
+  
+  <!-- Shopping cart -->
+  <g transform="translate(320, 320)">
+    <circle cx="-15" cy="5" r="5" fill="none" stroke="#0f0" stroke-width="1" filter="url(#glow)" />
+    <circle cx="15" cy="5" r="5" fill="none" stroke="#0f0" stroke-width="1" filter="url(#glow)" />
+    <rect x="-25" y="-15" width="50" height="20" rx="5" fill="none" stroke="#0f0" stroke-width="1" filter="url(#glow)">
+      <animate attributeName="stroke" values="#0f0;#0ff;#0f0" dur="4s" repeatCount="indefinite" />
+    </rect>
+    <path d="M-25,-5 L-30,-25 L0,-25 L10,-5" fill="none" stroke="#0f0" stroke-width="1" filter="url(#glow)">
+      <animate attributeName="stroke" values="#0f0;#0ff;#0f0" dur="4s" repeatCount="indefinite" />
+    </path>
+    
+    <!-- Items in cart -->
+    <rect x="-15" y="-20" width="8" height="8" fill="#0f0" opacity="0.7" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite" />
+    </rect>
+    <rect x="-5" y="-18" width="8" height="6" fill="#0f0" opacity="0.7" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="2.5s" repeatCount="indefinite" />
+    </rect>
+  </g>
+  
+  <!-- Customer with mobile shopping -->
+  <g transform="translate(80, 320)">
+    <!-- Phone -->
+    <rect x="-15" y="-25" width="30" height="50" rx="3" fill="#333" stroke="#0f0" stroke-width="1" filter="url(#glow)">
+      <animate attributeName="stroke" values="#0f0;#0ff;#0f0" dur="3s" repeatCount="indefinite" />
+    </rect>
+    
+    <!-- Screen -->
+    <rect x="-10" y="-20" width="20" height="35" fill="#111" stroke="#0f0" stroke-width="0.5" filter="url(#glow)" />
+    
+    <!-- App interface -->
+    <rect x="-8" y="-18" width="16" height="4" fill="#0f0" opacity="0.7" filter="url(#glow)" />
+    <rect x="-8" y="-12" width="16" height="2" fill="#0f0" opacity="0.5" filter="url(#glow)" />
+    <rect x="-8" y="-8" width="16" height="2" fill="#0f0" opacity="0.5" filter="url(#glow)" />
+    <rect x="-8" y="-4" width="16" height="2" fill="#0f0" opacity="0.5" filter="url(#glow)" />
+    <rect x="-8" y="0" width="16" height="2" fill="#0f0" opacity="0.5" filter="url(#glow)" />
+    <rect x="-8" y="4" width="16" height="2" fill="#0f0" opacity="0.5" filter="url(#glow)" />
+    <rect x="-8" y="10" width="16" height="4" fill="#0f0" opacity="0.7" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite" />
+    </rect>
+    
+    <!-- Person stick figure -->
+    <circle cx="0" cy="-40" r="10" fill="#333" stroke="#0f0" stroke-width="1" filter="url(#glow)" />
+    <line x1="0" y1="-30" x2="0" y2="0" stroke="#0f0" stroke-width="1" filter="url(#glow)" />
+    <line x1="0" y1="0" x2="-15" y2="20" stroke="#0f0" stroke-width="1" filter="url(#glow)" />
+    <line x1="0" y1="0" x2="15" y2="20" stroke="#0f0" stroke-width="1" filter="url(#glow)" />
+    <line x1="0" y1="-15" x2="-20" y2="-10" stroke="#0f0" stroke-width="1" filter="url(#glow)" />
+  </g>
+  
+  <!-- Shopping data -->
+  <g transform="translate(60, 80)">
+    <rect x="-50" y="-30" width="100" height="60" rx="5" fill="#333" stroke="#0f0" stroke-width="2" filter="url(#glow)">
+      <animate attributeName="stroke" values="#0f0;#0ff;#0f0" dur="4s" repeatCount="indefinite" />
+    </rect>
+    
+    <text x="0" y="-15" font-family="monospace" font-size="8" fill="#0f0" text-anchor="middle">SHOPPING DATA</text>
+    <text x="0" y="0" font-family="monospace" font-size="6" fill="#0f0" text-anchor="middle">
+      <animate attributeName="textContent" values="ITEMS: 134;VIEWS: 856;CART: 23;CHECKOUT: 12" dur="4s" repeatCount="indefinite" />
+    </text>
+    
+    <!-- Simple bar chart -->
+    <line x1="-30" y1="20" x2="30" y2="20" stroke="#0f0" stroke-width="1" />
+    <rect x="-25" y="10" width="10" height="10" fill="#0f0" opacity="0.5" />
+    <rect x="-10" y="5" width="10" height="15" fill="#0f0" opacity="0.5" />
+    <rect x="5" y="12" width="10" height="8" fill="#0f0" opacity="0.5" />
+    <rect x="20" y="15" width="10" height="5" fill="#0f0" opacity="0.5" />
+  </g>
+  
+  <!-- Payment system -->
+  <g transform="translate(340, 80)">
+    <rect x="-50" y="-30" width="100" height="60" rx="5" fill="#333" stroke="#0f0" stroke-width="2" filter="url(#glow)">
+      <animate attributeName="stroke" values="#0f0;#0ff;#0f0" dur="4s" repeatCount="indefinite" />
+    </rect>
+    
+    <text x="0" y="-15" font-family="monospace" font-size="8" fill="#0f0" text-anchor="middle">PAYMENT GATEWAY</text>
+    
+    <!-- Credit card icons -->
+    <rect x="-30" y="-5" width="20" height="15" rx="2" fill="#222" stroke="#0f0" stroke-width="1" />
+    <rect x="-25" y="0" width="10" height="3" fill="#0f0" opacity="0.5" />
+    
+    <rect x="10" y="-5" width="20" height="15" rx="2" fill="#222" stroke="#0f0" stroke-width="1" />
+    <rect x="15" y="0" width="10" height="3" fill="#0f0" opacity="0.5" />
+    
+    <!-- Secure connection symbols -->
+    <circle cx="0" cy="20" r="8" fill="#333" stroke="#0f0" stroke-width="1" filter="url(#glow)" />
+    <rect x="-3" y="15" width="6" height="7" fill="#333" stroke="#0f0" stroke-width="1" />
+    <circle cx="-15" cy="20" r="2" fill="#0f0" opacity="0.7">
+      <animate attributeName="cx" values="-15;15;-15" dur="3s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite" />
+    </circle>
+  </g>
+  
+  <!-- Animated data flow -->
+  <g>
+    <!-- Store to Customer -->
+    <circle cx="200" cy="200" r="3" fill="#0ff" filter="url(#glow)">
+      <animate attributeName="cx" values="200;120;80" dur="2s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="200;240;300" dur="2s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="1;0.7;1" dur="2s" repeatCount="indefinite" />
+    </circle>
+    
+    <!-- Customer to Payment -->
+    <circle cx="80" cy="300" r="3" fill="#f0f" filter="url(#glow)">
+      <animate attributeName="cx" values="80;200;340" dur="3s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="300;200;100" dur="3s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite" />
+    </circle>
+    
+    <!-- Payment to Store -->
+    <circle cx="340" cy="100" r="3" fill="#ff0" filter="url(#glow)">
+      <animate attributeName="cx" values="340;240;200" dur="2.5s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="100;150;180" dur="2.5s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="1;0.7;1" dur="2.5s" repeatCount="indefinite" />
+    </circle>
+    
+    <!-- Store to Cart -->
+    <circle cx="200" cy="180" r="3" fill="#0f0" filter="url(#glow)">
+      <animate attributeName="cx" values="200;260;320" dur="2.2s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="180;250;320" dur="2.2s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="1;0.7;1" dur="2.2s" repeatCount="indefinite" />
+    </circle>
+  </g>
+  
+  <!-- Database connection -->
+  <g transform="translate(200, 80)">
+    <!-- Database cylinder -->
+    <ellipse cx="0" cy="-20" rx="30" ry="10" fill="#333" stroke="#0f0" stroke-width="1" filter="url(#glow)" />
+    <rect x="-30" y="-20" width="60" height="30" fill="#333" stroke="#0f0" stroke-width="1" filter="url(#glow)" />
+    <ellipse cx="0" cy="10" rx="30" ry="10" fill="#333" stroke="#0f0" stroke-width="1" filter="url(#glow)" />
+    
+    <text x="0" y="0" font-family="monospace" font-size="8" fill="#0f0" text-anchor="middle">PRODUCT DB</text>
+    
+    <!-- Connection lines to store -->
+    <line x1="0" y1="10" x2="0" y2="100" stroke="#0f0" stroke-width="1" stroke-dasharray="5,2" filter="url(#glow)">
+      <animate attributeName="stroke-dashoffset" values="7;0;7" dur="1s" repeatCount="indefinite" />
+    </line>
+    
+    <!-- Data packets -->
+    <circle cx="0" cy="30" r="2" fill="#0f0" filter="url(#glow)">
+      <animate attributeName="cy" values="20;90;20" dur="2s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="0" cy="70" r="2" fill="#0f0" filter="url(#glow)">
+      <animate attributeName="cy" values="90;20;90" dur="2s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite" />
+    </circle>
+  </g>
+  
+  <!-- Title -->
+  <text x="200" y="35" font-family="monospace" font-size="16" fill="#0f0" text-anchor="middle" font-weight="bold" filter="url(#glow)">
+    <animate attributeName="fill" values="#0f0;#0ff;#f0f;#0f0" dur="8s" repeatCount="indefinite" />
+    E-COMMERCE PLATFORM
+  </text>
+  
+  <!-- Retro computer frame -->
+  <rect x="10" y="10" width="380" height="380" stroke="#0f0" stroke-width="3" fill="none" rx="5">
+    <animate attributeName="stroke" values="#0f0;#00f;#f00;#0f0" dur="8s" repeatCount="indefinite" />
+  </rect>
+  
+  <!-- Scanline effect -->
+  <rect width="400" height="2" fill="#fff" opacity="0.1">
+    <animate attributeName="y" values="0;400;0" dur="10s" repeatCount="indefinite" />
+  </rect>
+</svg> 
