@@ -5,13 +5,15 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "./", // Use root path with leading slash for GitHub Pages
+  base: "./", // GitHub Pages compatible // Relative path for GitHub Pages
   server: {
     host: "::",
     port: 8080,
   },
   build: {
+    assetsInlineLimit: 0, // Prevent asset inlining
     outDir: 'dist',
+    emptyOutDir: true,
     rollupOptions: {
       output: {
         manualChunks: {
@@ -22,8 +24,6 @@ export default defineConfig(({ mode }) => ({
         main: path.resolve(__dirname, 'index.html')
       }
     },
-    // Exclude suchedule directory from processing
-    emptyOutDir: true,
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom'],

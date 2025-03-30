@@ -15,8 +15,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          submodules: true  # Fetch the suchedule submodule
-          fetch-depth: 0    # Fetch all history for proper submodule checkout
+          submodules: true  # Fetch submodules
+          fetch-depth: 0    # Fetch all history
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -27,79 +27,147 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Debug - Update Vite Config
+      - name: Create GitHub Pages Entry Point
         run: |
-          # Update vite.config.ts to use relative paths
-          if grep -q "base: \"\"" vite.config.ts || grep -q "base: \"/\"" vite.config.ts; then
-            sed -i 's/base: \"\"/base: \"\.\/\"/g' vite.config.ts
-            sed -i 's/base: \"\/\"/base: \"\.\/\"/g' vite.config.ts
-            echo "✅ Updated vite.config.ts to use base: './' for GitHub Pages"
-            grep -n "base:" vite.config.ts
-          fi
+          echo "// GitHub Pages special entry point" > src/github-pages-entry.js
+          echo "import './main.tsx';" >> src/github-pages-entry.js
+          echo "✅ Created GitHub Pages entry point"
+      
+      - name: Modify index.html
+        run: |
+          sed -i 's|<script type="module" src="./src/main.tsx"></script>|<script type="module" src="./src/github-pages-entry.js"></script>|g' index.html
+          echo "✅ Updated index.html to use the GitHub Pages entry point"
 
-      - name: Fix index.html
+      - name: Configure Vite for GitHub Pages
         run: |
-          if grep -q "src=\"/src/main.tsx\"" index.html; then
-            sed -i 's|<script type="module" src="/src/main.tsx"></script>|<script type="module" src="./src/main.tsx"></script>|g' index.html
-            echo "✅ Updated index.html to use relative paths"
-          fi
+          cat > vite.config.ts << EOF
+          import { defineConfig } from "vite";
+          import react from "@vitejs/plugin-react-swc";
+          import path from "path";
+          import { componentTagger } from "lovable-tagger";
+
+          // https://vitejs.dev/config/
+          export default defineConfig(({ mode }) => ({
+            base: "./", // Relative path for GitHub Pages
+            server: {
+              host: "::",
+              port: 8080,
+            },
+            build: {
+              outDir: 'dist',
+              emptyOutDir: true,
+              assetsInlineLimit: 0, // Prevent inlining assets
+              rollupOptions: {
+                output: {
+                  manualChunks: {
+                    vendor: ['react', 'react-dom', 'react-router-dom'],
+                  },
+                },
+                input: {
+                  main: path.resolve(__dirname, 'index.html')
+                }
+              },
+            },
+            optimizeDeps: {
+              include: ['react', 'react-dom', 'react-router-dom'],
+            },
+            plugins: [
+              react(),
+              mode === 'development' &&
+              componentTagger(),
+            ].filter(Boolean),
+            resolve: {
+              alias: {
+                "@": path.resolve(__dirname, "./src"),
+              },
+              extensions: ['.js', '.jsx', '.ts', '.tsx'],
+            },
+          }));
+          EOF
+          echo "✅ Created optimized vite.config.ts for GitHub Pages"
 
       - name: Build
-        run: VITE_DEBUG=true npm run build
+        run: npm run build
 
-      - name: Debug - List Dist Contents
-        run: |
-          echo "Root dist directory:"
-          ls -la dist/
-          echo "JavaScript files:"
-          find dist/assets -name "*.js" | head -10
-          echo "First few lines of index.html:"
-          cat dist/index.html | head -20
-
-      - name: Fix Asset Paths in dist/index.html
+      - name: Fix Asset References
         run: |
           if [ -f "dist/index.html" ]; then
-            # Fix any absolute paths in script and link tags
-            sed -i 's|src="/assets/|src="./assets/|g' dist/index.html
-            sed -i 's|href="/assets/|href="./assets/|g' dist/index.html
+            # Fix any absolute paths
+            sed -i 's|src="/|src="./|g' dist/index.html
+            sed -i 's|href="/|href="./|g' dist/index.html
             
-            # Create a test file to verify serving
-            cat > dist/test.html << EOF
-          <!DOCTYPE html>
-          <html>
-          <head>
-            <title>Test Page</title>
-          </head>
-          <body>
-            <h1>Test Page - If you can see this, basic serving is working</h1>
-            <p>This is a test page to verify that static files are being served correctly.</p>
-            <p><a href="./index.html">Go to main application</a></p>
-          </body>
-          </html>
-          EOF
-            echo "✅ Fixed paths and created test.html"
+            # Add SPA redirect script
+            sed -i '/<\/head>/i \
+            <script>\
+              (function() {\
+                var redirect = sessionStorage.redirect;\
+                delete sessionStorage.redirect;\
+                if (redirect && redirect != location.href) {\
+                  history.replaceState(null, null, redirect);\
+                }\
+              })();\
+            </script>' dist/index.html
+            
+            echo "✅ Fixed asset references in dist/index.html"
           else
             echo "❌ dist/index.html not found"
             exit 1
           fi
 
+      - name: Create 404.html for SPA Routing
+        run: |
+          cat > dist/404.html << EOF
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <meta charset="utf-8">
+            <title>Redirecting...</title>
+            <script>
+              // GitHub Pages SPA redirect
+              sessionStorage.redirect = location.href;
+              window.location.href = "./";
+            </script>
+          </head>
+          <body>
+            <h1>Redirecting...</h1>
+            <p>If you are not redirected automatically, <a href="./">click here</a>.</p>
+          </body>
+          </html>
+          EOF
+          echo "✅ Created 404.html for SPA routing"
+
+      - name: Create .nojekyll file
+        run: touch dist/.nojekyll
+
+      - name: Create Test Page
+        run: |
+          cat > dist/test.html << EOF
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <meta charset="utf-8">
+            <title>Static Test</title>
+            <style>
+              body { font-family: -apple-system, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; }
+              h1 { color: #0366d6; }
+              .success { color: green; }
+            </style>
+          </head>
+          <body>
+            <h1>Static File Test</h1>
+            <p class="success">✅ If you can see this, static file serving is working correctly!</p>
+            <p>This confirms that GitHub Pages can serve basic HTML files from your repository.</p>
+            <p>Try the main app: <a href="./">Go to main application</a></p>
+            <p>Build timestamp: $(date)</p>
+          </body>
+          </html>
+          EOF
+          echo "✅ Created test.html"
+
       - name: Copy Suchedule to Dist
         run: |
           cp -r suchedule dist/
           echo "✅ Copied suchedule directory to dist/"
-          find dist/suchedule -maxdepth 2 -type f | head -10
-
-      - name: Create .nojekyll
-        run: touch dist/.nojekyll
-
-      - name: Copy 404 page
-        run: |
-          if [ -f "dist/404.html" ]; then
-            echo "✅ 404.html already exists in dist"
-          else
-            echo "Copying 404.html to dist"
-            cp public/404.html dist/ || echo "Failed to copy 404.html"
-          fi
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4

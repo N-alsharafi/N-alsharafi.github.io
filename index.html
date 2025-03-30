@@ -17,26 +17,14 @@
     <meta name="twitter:site" content="" />
     <meta name="twitter:image" content="" />
     
-    <!-- SPA redirect script for HashRouter -->
-    <script>
+    <!-- SPA redirect script for GitHub Pages -->
+    <script type="text/javascript">
+      // Single-page application routing for GitHub Pages
       (function() {
-        // Single Page App handling for GitHub Pages
-        // https://github.com/rafgraph/spa-github-pages
-        var pathSegmentsToKeep = 0;
-        var l = window.location;
-        if (l.search) {
-          var q = {};
-          l.search.slice(1).split('&').forEach(function(v) {
-            var a = v.split('=');
-            q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
-          });
-          if (q.p !== undefined) {
-            window.history.replaceState(null, null,
-              (q.p || '') +
-              (q.q ? ('?' + q.q) : '') +
-              l.hash
-            );
-          }
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect != location.href) {
+          history.replaceState(null, null, redirect);
         }
       })();
     </script>
@@ -44,6 +32,6 @@
 
   <body>
     <div id="root"></div>
-    <script type="module" src="./src/main.tsx"></script>
+    <script type="module" src="./src/github-pages-entry.js"></script>
   </body>
 </html>
