@@ -1,2 +1,3 @@
-// This file is a bridge to allow Vite to process the TypeScript entry point
-import './src/main.tsx'; 
+// This file is a bridge to allow bundling
+// Do not directly reference source files in production builds
+console.log('Loading application...'); 

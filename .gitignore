@@ -25,3 +25,4 @@ dist-ssr
 
 test-deploy.sh
 debug-build.sh
+*.sh

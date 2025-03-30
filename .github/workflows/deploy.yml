@@ -27,17 +27,21 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Debug - List Files
-        run: find . -maxdepth 2 -type f | sort
-
-      - name: Verify Entry File
+      - name: Debug - Update Vite Config
         run: |
-          if [ -f "index.html" ]; then
-            echo "✅ index.html found in root directory"
-            cat index.html | head -20
-          else
-            echo "❌ index.html NOT found in root directory"
-            exit 1
+          # Update vite.config.ts to use relative paths
+          if grep -q "base: \"\"" vite.config.ts || grep -q "base: \"/\"" vite.config.ts; then
+            sed -i 's/base: \"\"/base: \"\.\/\"/g' vite.config.ts
+            sed -i 's/base: \"\/\"/base: \"\.\/\"/g' vite.config.ts
+            echo "✅ Updated vite.config.ts to use base: './' for GitHub Pages"
+            grep -n "base:" vite.config.ts
+          fi
+
+      - name: Fix index.html
+        run: |
+          if grep -q "src=\"/src/main.tsx\"" index.html; then
+            sed -i 's|<script type="module" src="/src/main.tsx"></script>|<script type="module" src="./src/main.tsx"></script>|g' index.html
+            echo "✅ Updated index.html to use relative paths"
           fi
 
       - name: Build
@@ -51,6 +55,33 @@ jobs:
           find dist/assets -name "*.js" | head -10
           echo "First few lines of index.html:"
           cat dist/index.html | head -20
+
+      - name: Fix Asset Paths in dist/index.html
+        run: |
+          if [ -f "dist/index.html" ]; then
+            # Fix any absolute paths in script and link tags
+            sed -i 's|src="/assets/|src="./assets/|g' dist/index.html
+            sed -i 's|href="/assets/|href="./assets/|g' dist/index.html
+            
+            # Create a test file to verify serving
+            cat > dist/test.html << EOF
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>Test Page</title>
+          </head>
+          <body>
+            <h1>Test Page - If you can see this, basic serving is working</h1>
+            <p>This is a test page to verify that static files are being served correctly.</p>
+            <p><a href="./index.html">Go to main application</a></p>
+          </body>
+          </html>
+          EOF
+            echo "✅ Fixed paths and created test.html"
+          else
+            echo "❌ dist/index.html not found"
+            exit 1
+          fi
 
       - name: Copy Suchedule to Dist
         run: |
