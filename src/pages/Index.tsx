@@ -69,7 +69,7 @@ const Index = () => {
                 </a>
               </Button>
               <Button variant="outline" asChild>
-                <a href="./CV-Feb22-f.pdf" target="_blank" rel="noopener noreferrer">
+                <a href="./CV-Oct14-25.pdf" target="_blank" rel="noopener noreferrer">
                   Resume
                 </a>
               </Button>

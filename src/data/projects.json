@@ -1,5 +1,60 @@
 [
     {
+        "id": 14,
+        "title": "ENS491/2: Systematic Mapping Studies with LLMs",
+        "description": "Created a Web App that guides users through creating a Systematic Mapping Study using AI (4-person team).\n\n- Developed a multi-agent MCP system enabling iterative query improvement, paper retrieval and filtering, topic analysis and graphing, then report generation.\n- Implemented comprehensive state management for complex workflows.\n- User is able to jump in at every step and guide the Agent's behavior.",
+        "tags": ["AI", "LLM", "Multi-agent Systems", "Web Development", "Research Tools", "MCP"],
+        "image": "/assets/research-llm.svg",
+        "github": "",
+        "demo": "",
+        "featured": true,
+        "date": "2026-01-01"
+    },
+    {
+        "id": 11,
+        "title": "CS408: Drone Data Collection System",
+        "description": "Built a sensor-drone-server simulation to exercise network programming (3-person team).\n\n- Implemented GUI dashboards, multi-threading, and socket programming.\n- Features statistical anomaly detection and real-time alerts.\n- Developed a comprehensive system simulating IoT data collection and processing.",
+        "tags": ["Network Programming", "Multi-threading", "Socket Programming", "Real-time", "Anomaly Detection"],
+        "image": "/assets/drone-network.svg",
+        "github": "",
+        "demo": "",
+        "featured": false,
+        "date": "2025-06-01"
+    },
+    {
+        "id": 13,
+        "title": "CS414: GitHub Developer Centrality and Language Diversity",
+        "description": "Analyzed a 50GB graph containing 10 million GitHub users and their repositories (3-person team).\n\n- Carried out community detection powered with cuGraph, Nvidia RAPIDs on Saturn Cloud.\n- Discovered that central users in programming language communities usually only know that language.\n- Handled large-scale graph data processing and analysis.",
+        "tags": ["Big Data", "Graph Analysis", "cuGraph", "Community Detection", "Data Science"],
+        "image": "/assets/github-network.svg",
+        "github": "",
+        "demo": "",
+        "featured": true,
+        "date": "2025-06-01"
+    },
+    {
+        "id": 12,
+        "title": "CS412: IMDB Review Sentiment Prediction",
+        "description": "Implemented and compared three sentiment classification models on 50,000 movie reviews (5-person team).\n\n- Compared Logistic Regression with TF-IDF, LSTM, and fine-tuned BERT models.\n- Achieved 90% test accuracy and 0.90 macro F1-score using BERT.\n- Demonstrated transformer superiority over traditional ML approaches.",
+        "tags": ["Machine Learning", "NLP", "BERT", "LSTM", "Sentiment Analysis"],
+        "image": "/assets/sentiment-analysis.svg",
+        "github": "",
+        "demo": "",
+        "featured": false,
+        "date": "2025-05-01"
+    },
+    {
+        "id": 15,
+        "title": "WitchCraft: Quick CV Tool with AI Enhancement",
+        "description": "Quick, drag-and-drop CV creation tool (3-person team, 8-day hackathon project).\n\n- Users only write their info once in the profile.\n- Implemented AI to generate CVs tailored to specific job descriptions.\n- Designed user-friendly Profile and Home pages with a CV parsing tool.",
+        "tags": ["Web Development", "AI", "UI/UX", "Hackathon"],
+        "image": "/assets/cv-builder.svg",
+        "github": "",
+        "demo": "",
+        "featured": false,
+        "date": "2025-03-01"
+    },
+    {
         "id": 1,
         "title": "CS310: Real-time Chat Application",
         "description": "Developed a real-time chat mobile app (2-person team).\n\n- Developed the backend using Java and SpringBoot.\n- Developed the frontend using React Native.\n- Implemented JWT tokens for authentication.\n- Ability to sign up, add friends, make groups, and send real-time chat messages.",
@@ -7,7 +62,7 @@
         "image": "/assets/chat-app.svg",
         "github": "https://github.com/Team7-2401/HowudoinB",
         "demo": "",
-        "featured": true,
+        "featured": false,
         "date": "2024-09-01"
     },
     {
@@ -62,7 +117,7 @@
         "image": "/assets/ai-llm.svg",
         "github": "",
         "demo": "",
-        "featured": true,
+        "featured": false,
         "date": "2024-07-01"
     },
     {
@@ -109,4 +164,4 @@
         "featured": false,
         "date": "2023-10-01"
     }
-] 
+]

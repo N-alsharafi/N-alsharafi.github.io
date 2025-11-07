@@ -1,5 +1,15 @@
 [
     {
+        "id": 3,
+        "company": "Eastern Al-Maha Company",
+        "position": "Backend Developer / DevOps Engineer",
+        "location": "Kuwait, Kuwait (Online)",
+        "startDate": "2025-06-01",
+        "endDate": "2025-08-31",
+        "description": "Responsible for coordinating backend development within itself and with client-side teams.\n\n- Responsible for Kubernetes infrastructure, GCP deployment, and DevOps setup.\n- Developed some of the backend services and coordinated merging all services into the system.",
+        "technologies": ["Backend Development", "Kubernetes", "GCP", "DevOps", "Microservices"]
+    },
+    {
         "id": 1,
         "company": "Sabanci University",
         "position": "Math 102 Learning Assistant",

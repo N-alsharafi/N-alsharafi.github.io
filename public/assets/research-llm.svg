@@ -1,0 +1,233 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definitions -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111" />
+      <stop offset="100%" stop-color="#222" />
+      <animate attributeName="x1" values="0%;100%;0%" dur="20s" repeatCount="indefinite" />
+      <animate attributeName="y1" values="0%;100%;0%" dur="20s" repeatCount="indefinite" />
+    </linearGradient>
+
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <pattern id="gridPattern" width="50" height="50" patternUnits="userSpaceOnUse">
+      <rect width="50" height="50" fill="none" stroke="#0f0" stroke-width="0.5" opacity="0.1" />
+      <line x1="0" y1="0" x2="50" y2="50" stroke="#0f0" stroke-width="0.2" opacity="0.1" />
+      <line x1="50" y1="0" x2="0" y2="50" stroke="#0f0" stroke-width="0.2" opacity="0.1" />
+    </pattern>
+
+    <pattern id="circuitPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="none" />
+      <circle cx="10" cy="10" r="1" fill="#0f0" opacity="0.1" />
+      <circle cx="0" cy="0" r="1" fill="#0f0" opacity="0.1" />
+      <circle cx="0" cy="20" r="1" fill="#0f0" opacity="0.1" />
+      <circle cx="20" cy="0" r="1" fill="#0f0" opacity="0.1" />
+      <circle cx="20" cy="20" r="1" fill="#0f0" opacity="0.1" />
+    </pattern>
+  </defs>
+
+  <!-- Background with grid -->
+  <rect width="400" height="400" fill="url(#bgGradient)" />
+  <rect width="400" height="400" fill="url(#gridPattern)" opacity="0.4">
+    <animate attributeName="opacity" values="0.3;0.5;0.3" dur="10s" repeatCount="indefinite" />
+  </rect>
+  <rect width="400" height="400" fill="url(#circuitPattern)" opacity="0.5">
+    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="15s" repeatCount="indefinite" />
+  </rect>
+
+  <!-- Circular workflow -->
+  <g transform="translate(200, 200)">
+    <!-- Workflow circle -->
+    <circle cx="0" cy="0" r="100" fill="none" stroke="#0f0" stroke-width="2" opacity="0.3" stroke-dasharray="10,5" filter="url(#glow)">
+      <animate attributeName="stroke-dashoffset" values="0;-15" dur="3s" repeatCount="indefinite" />
+      <animate attributeName="stroke" values="#0f0;#0ff;#0f0" dur="5s" repeatCount="indefinite" />
+    </circle>
+
+    <!-- Agent 1: Query Improvement -->
+    <g transform="translate(0, -100)">
+      <circle cx="0" cy="0" r="25" fill="#333" stroke="#0f0" stroke-width="2" filter="url(#glow)">
+        <animate attributeName="stroke" values="#0f0;#0ff;#0f0" dur="3s" repeatCount="indefinite" />
+      </circle>
+      <text x="0" y="-30" font-family="monospace" font-size="7" fill="#0f0" text-anchor="middle">QUERY</text>
+      <text x="0" y="5" font-family="monospace" font-size="8" fill="#0f0" text-anchor="middle">AI-1</text>
+      <!-- AI brain symbol -->
+      <path d="M -10,-5 Q -10,-10 -5,-10 L 5,-10 Q 10,-10 10,-5 L 10,5 Q 10,10 5,10 L -5,10 Q -10,10 -10,5 Z" fill="none" stroke="#0f0" stroke-width="1" opacity="0.6" />
+    </g>
+
+    <!-- Agent 2: Paper Retrieval -->
+    <g transform="rotate(90)" transform-origin="0 0">
+      <g transform="translate(0, -100)">
+        <circle cx="0" cy="0" r="25" fill="#333" stroke="#0ff" stroke-width="2" filter="url(#glow)">
+          <animate attributeName="stroke" values="#0ff;#f0f;#0ff" dur="3.2s" repeatCount="indefinite" />
+        </circle>
+        <text x="0" y="-30" font-family="monospace" font-size="7" fill="#0ff" text-anchor="middle" transform="rotate(-90)">RETRIEVAL</text>
+        <text x="0" y="5" font-family="monospace" font-size="8" fill="#0ff" text-anchor="middle" transform="rotate(-90)">AI-2</text>
+        <rect x="-8" y="-8" width="16" height="16" fill="none" stroke="#0ff" stroke-width="1" opacity="0.6" />
+        <line x1="-6" y1="-4" x2="6" y2="-4" stroke="#0ff" stroke-width="1" opacity="0.6" />
+        <line x1="-6" y1="0" x2="6" y2="0" stroke="#0ff" stroke-width="1" opacity="0.6" />
+        <line x1="-6" y1="4" x2="6" y2="4" stroke="#0ff" stroke-width="1" opacity="0.6" />
+      </g>
+    </g>
+
+    <!-- Agent 3: Filtering -->
+    <g transform="rotate(180)" transform-origin="0 0">
+      <g transform="translate(0, -100)">
+        <circle cx="0" cy="0" r="25" fill="#333" stroke="#f0f" stroke-width="2" filter="url(#glow)">
+          <animate attributeName="stroke" values="#f0f;#ff0;#f0f" dur="3.4s" repeatCount="indefinite" />
+        </circle>
+        <text x="0" y="-30" font-family="monospace" font-size="7" fill="#f0f" text-anchor="middle" transform="rotate(-180)">FILTER</text>
+        <text x="0" y="5" font-family="monospace" font-size="8" fill="#f0f" text-anchor="middle" transform="rotate(-180)">AI-3</text>
+        <path d="M -10,-8 L 0,8 L 10,-8 Z" fill="none" stroke="#f0f" stroke-width="1" opacity="0.6" />
+        <line x1="-6" y1="0" x2="6" y2="0" stroke="#f0f" stroke-width="1" opacity="0.6" />
+      </g>
+    </g>
+
+    <!-- Agent 4: Topic Analysis -->
+    <g transform="rotate(270)" transform-origin="0 0">
+      <g transform="translate(0, -100)">
+        <circle cx="0" cy="0" r="25" fill="#333" stroke="#ff0" stroke-width="2" filter="url(#glow)">
+          <animate attributeName="stroke" values="#ff0;#0f0;#ff0" dur="3.6s" repeatCount="indefinite" />
+        </circle>
+        <text x="0" y="-30" font-family="monospace" font-size="7" fill="#ff0" text-anchor="middle" transform="rotate(-270)">ANALYSIS</text>
+        <text x="0" y="5" font-family="monospace" font-size="8" fill="#ff0" text-anchor="middle" transform="rotate(-270)">AI-4</text>
+        <!-- Chart symbol -->
+        <rect x="-8" y="2" width="4" height="6" fill="none" stroke="#ff0" stroke-width="1" opacity="0.6" />
+        <rect x="-2" y="-2" width="4" height="10" fill="none" stroke="#ff0" stroke-width="1" opacity="0.6" />
+        <rect x="4" y="-6" width="4" height="14" fill="none" stroke="#ff0" stroke-width="1" opacity="0.6" />
+      </g>
+    </g>
+
+    <!-- Center - User Control -->
+    <g>
+      <circle cx="0" cy="0" r="35" fill="#333" stroke="#fff" stroke-width="3" filter="url(#glow)">
+        <animate attributeName="stroke" values="#fff;#0ff;#fff" dur="4s" repeatCount="indefinite" />
+      </circle>
+      <circle cx="0" cy="0" r="20" fill="none" stroke="#fff" stroke-width="1" opacity="0.5" />
+      <!-- User icon -->
+      <circle cx="0" cy="-10" r="8" fill="#333" stroke="#fff" stroke-width="2" />
+      <path d="M -12,12 C -12,2 12,2 12,12" fill="none" stroke="#fff" stroke-width="2" />
+      <text x="0" y="25" font-family="monospace" font-size="6" fill="#fff" text-anchor="middle">USER</text>
+    </g>
+
+    <!-- Animated data flow around circle -->
+    <circle cx="0" cy="-100" r="3" fill="#0ff" filter="url(#glow)">
+      <animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" dur="6s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="1;0.5;1" dur="3s" repeatCount="indefinite" />
+    </circle>
+
+    <circle cx="0" cy="-100" r="3" fill="#f0f" filter="url(#glow)">
+      <animateTransform attributeName="transform" type="rotate" values="90 0 0;450 0 0" dur="6s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="1;0.5;1" dur="3s" repeatCount="indefinite" />
+    </circle>
+
+    <!-- Connection lines to center -->
+    <line x1="0" y1="-65" x2="0" y2="-35" stroke="#0f0" stroke-width="1" stroke-dasharray="3,2" opacity="0.5" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.5;0.8;0.5" dur="2s" repeatCount="indefinite" />
+    </line>
+    <line x1="65" y1="0" x2="35" y2="0" stroke="#0ff" stroke-width="1" stroke-dasharray="3,2" opacity="0.5" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.5;0.8;0.5" dur="2.2s" repeatCount="indefinite" />
+    </line>
+    <line x1="0" y1="65" x2="0" y2="35" stroke="#f0f" stroke-width="1" stroke-dasharray="3,2" opacity="0.5" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.5;0.8;0.5" dur="2.4s" repeatCount="indefinite" />
+    </line>
+    <line x1="-65" y1="0" x2="-35" y2="0" stroke="#ff0" stroke-width="1" stroke-dasharray="3,2" opacity="0.5" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.5;0.8;0.5" dur="2.6s" repeatCount="indefinite" />
+    </line>
+  </g>
+
+  <!-- Papers database -->
+  <g transform="translate(70, 70)" filter="url(#glow)">
+    <rect x="-50" y="-30" width="100" height="60" rx="5" fill="#333" stroke="#0f0" stroke-width="2">
+      <animate attributeName="stroke" values="#0f0;#0ff;#0f0" dur="4s" repeatCount="indefinite" />
+    </rect>
+    <text x="0" y="-15" font-family="monospace" font-size="8" fill="#0f0" text-anchor="middle">PAPER DB</text>
+    <!-- Document icons -->
+    <rect x="-30" y="-5" width="15" height="20" fill="#222" stroke="#0f0" stroke-width="1" />
+    <line x1="-28" y1="0" x2="-17" y2="0" stroke="#0f0" stroke-width="0.5" />
+    <line x1="-28" y1="3" x2="-17" y2="3" stroke="#0f0" stroke-width="0.5" />
+    <line x1="-28" y1="6" x2="-17" y2="6" stroke="#0f0" stroke-width="0.5" />
+
+    <rect x="-10" y="-5" width="15" height="20" fill="#222" stroke="#0f0" stroke-width="1" />
+    <line x1="-8" y1="0" x2="3" y2="0" stroke="#0f0" stroke-width="0.5" />
+    <line x1="-8" y1="3" x2="3" y2="3" stroke="#0f0" stroke-width="0.5" />
+    <line x1="-8" y1="6" x2="3" y2="6" stroke="#0f0" stroke-width="0.5" />
+
+    <rect x="10" y="-5" width="15" height="20" fill="#222" stroke="#0f0" stroke-width="1" />
+    <line x1="12" y1="0" x2="23" y2="0" stroke="#0f0" stroke-width="0.5" />
+    <line x1="12" y1="3" x2="23" y2="3" stroke="#0f0" stroke-width="0.5" />
+    <line x1="12" y1="6" x2="23" y2="6" stroke="#0f0" stroke-width="0.5" />
+  </g>
+
+  <!-- Report Output -->
+  <g transform="translate(330, 330)" filter="url(#glow)">
+    <rect x="-50" y="-30" width="100" height="60" rx="5" fill="#333" stroke="#0ff" stroke-width="2">
+      <animate attributeName="stroke" values="#0ff;#f0f;#0ff" dur="4s" repeatCount="indefinite" />
+    </rect>
+    <text x="0" y="-15" font-family="monospace" font-size="8" fill="#0ff" text-anchor="middle">REPORT</text>
+    <!-- Document with graph -->
+    <rect x="-25" y="-5" width="50" height="30" fill="#222" stroke="#0ff" stroke-width="1" />
+    <line x1="-20" y1="0" x2="20" y2="0" stroke="#0ff" stroke-width="0.5" />
+    <line x1="-20" y1="3" x2="20" y2="3" stroke="#0ff" stroke-width="0.5" />
+    <!-- Mini bar chart -->
+    <rect x="-15" y="10" width="5" height="8" fill="#0ff" opacity="0.6" />
+    <rect x="-8" y="7" width="5" height="11" fill="#0ff" opacity="0.6" />
+    <rect x="-1" y="12" width="5" height="6" fill="#0ff" opacity="0.6" />
+    <rect x="6" y="9" width="5" height="9" fill="#0ff" opacity="0.6" />
+  </g>
+
+  <!-- Multi-agent system label -->
+  <g transform="translate(70, 330)" filter="url(#glow)">
+    <rect x="-55" y="-25" width="110" height="50" rx="5" fill="#333" stroke="#0f0" stroke-width="2">
+      <animate attributeName="stroke" values="#0f0;#0ff;#0f0" dur="4s" repeatCount="indefinite" />
+    </rect>
+    <text x="0" y="-10" font-family="monospace" font-size="7" fill="#0f0" text-anchor="middle">MULTI-AGENT</text>
+    <text x="0" y="2" font-family="monospace" font-size="7" fill="#0f0" text-anchor="middle">MCP SYSTEM</text>
+    <text x="0" y="14" font-family="monospace" font-size="6" fill="#0f0" text-anchor="middle">4 AI Agents</text>
+  </g>
+
+  <!-- State management indicator -->
+  <g transform="translate(330, 70)" filter="url(#glow)">
+    <rect x="-55" y="-25" width="110" height="50" rx="5" fill="#333" stroke="#f0f" stroke-width="2">
+      <animate attributeName="stroke" values="#f0f;#ff0;#f0f" dur="4s" repeatCount="indefinite" />
+    </rect>
+    <text x="0" y="-10" font-family="monospace" font-size="7" fill="#f0f" text-anchor="middle">WORKFLOW</text>
+    <text x="0" y="2" font-family="monospace" font-size="7" fill="#f0f" text-anchor="middle">MANAGEMENT</text>
+    <text x="0" y="14" font-family="monospace" font-size="6" fill="#f0f" text-anchor="middle">State Tracking</text>
+  </g>
+
+  <!-- Data flow indicators -->
+  <circle cx="70" cy="100" r="2" fill="#0ff" filter="url(#glow)">
+    <animate attributeName="cx" values="70;150;200" dur="2s" repeatCount="indefinite" />
+    <animate attributeName="cy" values="100;120;150" dur="2s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite" />
+  </circle>
+
+  <circle cx="200" cy="250" r="2" fill="#f0f" filter="url(#glow)">
+    <animate attributeName="cx" values="200;280;330" dur="2.5s" repeatCount="indefinite" />
+    <animate attributeName="cy" values="250;290;300" dur="2.5s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="1;0" dur="2.5s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Title -->
+  <text x="200" y="30" font-family="monospace" font-size="14" fill="#0f0" text-anchor="middle" font-weight="bold" filter="url(#glow)">
+    <animate attributeName="fill" values="#0f0;#0ff;#f0f;#0f0" dur="8s" repeatCount="indefinite" />
+    SYSTEMATIC MAPPING STUDY
+  </text>
+  <text x="200" y="45" font-family="monospace" font-size="10" fill="#0f0" text-anchor="middle" filter="url(#glow)">
+    <animate attributeName="fill" values="#0f0;#0ff;#f0f;#0f0" dur="8s" repeatCount="indefinite" />
+    WITH AI AGENTS
+  </text>
+
+  <!-- Retro computer frame -->
+  <rect x="10" y="10" width="380" height="380" stroke="#0f0" stroke-width="3" fill="none" rx="5">
+    <animate attributeName="stroke" values="#0f0;#00f;#f00;#0f0" dur="8s" repeatCount="indefinite" />
+  </rect>
+
+  <!-- Scanline effect -->
+  <rect width="400" height="2" fill="#fff" opacity="0.1">
+    <animate attributeName="y" values="0;400;0" dur="10s" repeatCount="indefinite" />
+  </rect>
+</svg>
