@@ -1,0 +1,235 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definitions -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111" />
+      <stop offset="100%" stop-color="#222" />
+      <animate attributeName="x1" values="0%;100%;0%" dur="20s" repeatCount="indefinite" />
+      <animate attributeName="y1" values="0%;100%;0%" dur="20s" repeatCount="indefinite" />
+    </linearGradient>
+
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <pattern id="gridPattern" width="50" height="50" patternUnits="userSpaceOnUse">
+      <rect width="50" height="50" fill="none" stroke="#0f0" stroke-width="0.5" opacity="0.1" />
+      <line x1="0" y1="0" x2="50" y2="50" stroke="#0f0" stroke-width="0.2" opacity="0.1" />
+      <line x1="50" y1="0" x2="0" y2="50" stroke="#0f0" stroke-width="0.2" opacity="0.1" />
+    </pattern>
+
+    <pattern id="circuitPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="none" />
+      <circle cx="10" cy="10" r="1" fill="#0f0" opacity="0.1" />
+      <circle cx="0" cy="0" r="1" fill="#0f0" opacity="0.1" />
+      <circle cx="0" cy="20" r="1" fill="#0f0" opacity="0.1" />
+      <circle cx="20" cy="0" r="1" fill="#0f0" opacity="0.1" />
+      <circle cx="20" cy="20" r="1" fill="#0f0" opacity="0.1" />
+    </pattern>
+  </defs>
+
+  <!-- Background with grid -->
+  <rect width="400" height="400" fill="url(#bgGradient)" />
+  <rect width="400" height="400" fill="url(#gridPattern)" opacity="0.4">
+    <animate attributeName="opacity" values="0.3;0.5;0.3" dur="10s" repeatCount="indefinite" />
+  </rect>
+  <rect width="400" height="400" fill="url(#circuitPattern)" opacity="0.5">
+    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="15s" repeatCount="indefinite" />
+  </rect>
+
+  <!-- Central network graph -->
+  <g transform="translate(200, 200)">
+    <!-- Community clusters -->
+    <!-- Python community (green) -->
+    <ellipse cx="-70" cy="-70" rx="60" ry="50" fill="#0f0" opacity="0.1" stroke="#0f0" stroke-width="1" stroke-dasharray="3,3" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.1;0.2;0.1" dur="4s" repeatCount="indefinite" />
+    </ellipse>
+
+    <!-- JavaScript community (cyan) -->
+    <ellipse cx="70" cy="-60" rx="55" ry="48" fill="#0ff" opacity="0.1" stroke="#0ff" stroke-width="1" stroke-dasharray="3,3" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.1;0.2;0.1" dur="4.5s" repeatCount="indefinite" />
+    </ellipse>
+
+    <!-- Java community (yellow) -->
+    <ellipse cx="-60" cy="70" rx="50" ry="45" fill="#ff0" opacity="0.1" stroke="#ff0" stroke-width="1" stroke-dasharray="3,3" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.1;0.2;0.1" dur="5s" repeatCount="indefinite" />
+    </ellipse>
+
+    <!-- Rust community (magenta) -->
+    <ellipse cx="65" cy="65" rx="48" ry="43" fill="#f0f" opacity="0.1" stroke="#f0f" stroke-width="1" stroke-dasharray="3,3" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.1;0.2;0.1" dur="5.5s" repeatCount="indefinite" />
+    </ellipse>
+
+    <!-- Connection edges -->
+    <g stroke="#0f0" stroke-width="1" opacity="0.3">
+      <!-- Python cluster connections -->
+      <line x1="-70" y1="-90" x2="-50" y2="-70" />
+      <line x1="-70" y1="-90" x2="-85" y2="-65" />
+      <line x1="-50" y1="-70" x2="-85" y2="-65" />
+      <line x1="-50" y1="-70" x2="-70" y2="-50" />
+      <line x1="-85" y1="-65" x2="-70" y2="-50" />
+
+      <!-- JavaScript cluster connections -->
+      <line x1="70" y1="-80" x2="55" y2="-60" />
+      <line x1="70" y1="-80" x2="85" y2="-55" />
+      <line x1="55" y1="-60" x2="85" y2="-55" />
+      <line x1="55" y1="-60" x2="70" y2="-40" />
+      <line x1="85" y1="-55" x2="70" y2="-40" />
+
+      <!-- Java cluster connections -->
+      <line x1="-60" y1="50" x2="-40" y2="70" />
+      <line x1="-60" y1="50" x2="-75" y2="75" />
+      <line x1="-40" y1="70" x2="-75" y2="75" />
+      <line x1="-40" y1="70" x2="-60" y2="90" />
+      <line x1="-75" y1="75" x2="-60" y2="90" />
+
+      <!-- Rust cluster connections -->
+      <line x1="65" y1="45" x2="50" y2="65" />
+      <line x1="65" y1="45" x2="80" y2="70" />
+      <line x1="50" y1="65" x2="80" y2="70" />
+      <line x1="50" y1="65" x2="65" y2="85" />
+      <line x1="80" y1="70" x2="65" y2="85" />
+    </g>
+
+    <!-- Developer nodes - Python community -->
+    <circle cx="-70" cy="-90" r="8" fill="#333" stroke="#0f0" stroke-width="2" filter="url(#glow)">
+      <animate attributeName="stroke" values="#0f0;#0ff;#0f0" dur="3s" repeatCount="indefinite" />
+      <animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="-50" cy="-70" r="6" fill="#333" stroke="#0f0" stroke-width="1.5" filter="url(#glow)" />
+    <circle cx="-85" cy="-65" r="6" fill="#333" stroke="#0f0" stroke-width="1.5" filter="url(#glow)" />
+    <circle cx="-70" cy="-50" r="6" fill="#333" stroke="#0f0" stroke-width="1.5" filter="url(#glow)" />
+
+    <!-- Developer nodes - JavaScript community -->
+    <circle cx="70" cy="-80" r="8" fill="#333" stroke="#0ff" stroke-width="2" filter="url(#glow)">
+      <animate attributeName="stroke" values="#0ff;#0f0;#0ff" dur="3.2s" repeatCount="indefinite" />
+      <animate attributeName="r" values="8;10;8" dur="2.2s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="55" cy="-60" r="6" fill="#333" stroke="#0ff" stroke-width="1.5" filter="url(#glow)" />
+    <circle cx="85" cy="-55" r="6" fill="#333" stroke="#0ff" stroke-width="1.5" filter="url(#glow)" />
+    <circle cx="70" cy="-40" r="6" fill="#333" stroke="#0ff" stroke-width="1.5" filter="url(#glow)" />
+
+    <!-- Developer nodes - Java community -->
+    <circle cx="-60" cy="50" r="8" fill="#333" stroke="#ff0" stroke-width="2" filter="url(#glow)">
+      <animate attributeName="stroke" values="#ff0;#f00;#ff0" dur="3.4s" repeatCount="indefinite" />
+      <animate attributeName="r" values="8;10;8" dur="2.4s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="-40" cy="70" r="6" fill="#333" stroke="#ff0" stroke-width="1.5" filter="url(#glow)" />
+    <circle cx="-75" cy="75" r="6" fill="#333" stroke="#ff0" stroke-width="1.5" filter="url(#glow)" />
+    <circle cx="-60" cy="90" r="6" fill="#333" stroke="#ff0" stroke-width="1.5" filter="url(#glow)" />
+
+    <!-- Developer nodes - Rust community -->
+    <circle cx="65" cy="45" r="8" fill="#333" stroke="#f0f" stroke-width="2" filter="url(#glow)">
+      <animate attributeName="stroke" values="#f0f;#00f;#f0f" dur="3.6s" repeatCount="indefinite" />
+      <animate attributeName="r" values="8;10;8" dur="2.6s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="50" cy="65" r="6" fill="#333" stroke="#f0f" stroke-width="1.5" filter="url(#glow)" />
+    <circle cx="80" cy="70" r="6" fill="#333" stroke="#f0f" stroke-width="1.5" filter="url(#glow)" />
+    <circle cx="65" cy="85" r="6" fill="#333" stroke="#f0f" stroke-width="1.5" filter="url(#glow)" />
+
+    <!-- Central hub node (multi-language developer - rare) -->
+    <circle cx="0" cy="0" r="12" fill="#333" stroke="#fff" stroke-width="3" filter="url(#glow)">
+      <animate attributeName="stroke" values="#fff;#0ff;#f0f;#ff0;#fff" dur="6s" repeatCount="indefinite" />
+      <animate attributeName="r" values="12;15;12" dur="3s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="0" cy="0" r="20" fill="none" stroke="#fff" stroke-width="1" opacity="0">
+      <animate attributeName="r" values="15;30;15" dur="3s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite" />
+    </circle>
+
+    <!-- Weak connections between communities (rare) -->
+    <line x1="-70" y1="-90" x2="0" y2="0" stroke="#fff" stroke-width="0.5" opacity="0.3" stroke-dasharray="2,2" />
+    <line x1="70" y1="-80" x2="0" y2="0" stroke="#fff" stroke-width="0.5" opacity="0.3" stroke-dasharray="2,2" />
+    <line x1="-60" y1="50" x2="0" y2="0" stroke="#fff" stroke-width="0.5" opacity="0.3" stroke-dasharray="2,2" />
+    <line x1="65" y1="45" x2="0" y2="0" stroke="#fff" stroke-width="0.5" opacity="0.3" stroke-dasharray="2,2" />
+  </g>
+
+  <!-- Language labels -->
+  <g transform="translate(80, 80)" filter="url(#glow)">
+    <rect x="-35" y="-12" width="70" height="24" rx="12" fill="#333" stroke="#0f0" stroke-width="2">
+      <animate attributeName="stroke" values="#0f0;#0ff;#0f0" dur="4s" repeatCount="indefinite" />
+    </rect>
+    <text x="0" y="5" font-family="monospace" font-size="10" fill="#0f0" text-anchor="middle">PYTHON</text>
+  </g>
+
+  <g transform="translate(320, 90)" filter="url(#glow)">
+    <rect x="-35" y="-12" width="70" height="24" rx="12" fill="#333" stroke="#0ff" stroke-width="2">
+      <animate attributeName="stroke" values="#0ff;#0f0;#0ff" dur="4.2s" repeatCount="indefinite" />
+    </rect>
+    <text x="0" y="5" font-family="monospace" font-size="10" fill="#0ff" text-anchor="middle">JAVASCRIPT</text>
+  </g>
+
+  <g transform="translate(90, 320)" filter="url(#glow)">
+    <rect x="-30" y="-12" width="60" height="24" rx="12" fill="#333" stroke="#ff0" stroke-width="2">
+      <animate attributeName="stroke" values="#ff0;#f00;#ff0" dur="4.4s" repeatCount="indefinite" />
+    </rect>
+    <text x="0" y="5" font-family="monospace" font-size="10" fill="#ff0" text-anchor="middle">JAVA</text>
+  </g>
+
+  <g transform="translate(315, 315)" filter="url(#glow)">
+    <rect x="-30" y="-12" width="60" height="24" rx="12" fill="#333" stroke="#f0f" stroke-width="2">
+      <animate attributeName="stroke" values="#f0f;#00f;#f0f" dur="4.6s" repeatCount="indefinite" />
+    </rect>
+    <text x="0" y="5" font-family="monospace" font-size="10" fill="#f0f" text-anchor="middle">RUST</text>
+  </g>
+
+  <!-- Data stats -->
+  <g transform="translate(70, 50)" filter="url(#glow)">
+    <rect x="-60" y="-25" width="120" height="50" rx="5" fill="#333" stroke="#0f0" stroke-width="2">
+      <animate attributeName="stroke" values="#0f0;#0ff;#0f0" dur="4s" repeatCount="indefinite" />
+    </rect>
+    <text x="0" y="-10" font-family="monospace" font-size="7" fill="#0f0" text-anchor="middle">DATA SCALE</text>
+    <text x="0" y="3" font-family="monospace" font-size="6" fill="#0f0" text-anchor="middle">10M Users</text>
+    <text x="0" y="14" font-family="monospace" font-size="6" fill="#0f0" text-anchor="middle">50GB Graph</text>
+  </g>
+
+  <!-- Analysis tools -->
+  <g transform="translate(330, 50)" filter="url(#glow)">
+    <rect x="-60" y="-25" width="120" height="50" rx="5" fill="#333" stroke="#0f0" stroke-width="2">
+      <animate attributeName="stroke" values="#0f0;#0ff;#0f0" dur="4s" repeatCount="indefinite" />
+    </rect>
+    <text x="0" y="-10" font-family="monospace" font-size="7" fill="#0f0" text-anchor="middle">POWERED BY</text>
+    <text x="0" y="3" font-family="monospace" font-size="6" fill="#0f0" text-anchor="middle">cuGraph</text>
+    <text x="0" y="14" font-family="monospace" font-size="6" fill="#0f0" text-anchor="middle">NVIDIA RAPIDs</text>
+  </g>
+
+  <!-- Findings box -->
+  <g transform="translate(200, 370)" filter="url(#glow)">
+    <rect x="-100" y="-25" width="200" height="50" rx="5" fill="#333" stroke="#0ff" stroke-width="2">
+      <animate attributeName="stroke" values="#0ff;#f0f;#0ff" dur="4s" repeatCount="indefinite" />
+    </rect>
+    <text x="0" y="-10" font-family="monospace" font-size="7" fill="#0ff" text-anchor="middle">KEY FINDING</text>
+    <text x="0" y="3" font-family="monospace" font-size="5" fill="#0ff" text-anchor="middle">Central developers typically</text>
+    <text x="0" y="12" font-family="monospace" font-size="5" fill="#0ff" text-anchor="middle">specialize in one language only</text>
+  </g>
+
+  <!-- Data flow animation -->
+  <circle cx="130" cy="130" r="2" fill="#0ff" filter="url(#glow)">
+    <animate attributeName="cx" values="130;200;270" dur="3s" repeatCount="indefinite" />
+    <animate attributeName="cy" values="130;200;140" dur="3s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="1;0.5;1" dur="3s" repeatCount="indefinite" />
+  </circle>
+
+  <circle cx="270" cy="140" r="2" fill="#f0f" filter="url(#glow)">
+    <animate attributeName="cx" values="270;200;130" dur="3.5s" repeatCount="indefinite" />
+    <animate attributeName="cy" values="140;200;270" dur="3.5s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="1;0.5;1" dur="3.5s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Title -->
+  <text x="200" y="28" font-family="monospace" font-size="16" fill="#0f0" text-anchor="middle" font-weight="bold" filter="url(#glow)">
+    <animate attributeName="fill" values="#0f0;#0ff;#f0f;#0f0" dur="8s" repeatCount="indefinite" />
+    GITHUB NETWORK ANALYSIS
+  </text>
+
+  <!-- Retro computer frame -->
+  <rect x="10" y="10" width="380" height="380" stroke="#0f0" stroke-width="3" fill="none" rx="5">
+    <animate attributeName="stroke" values="#0f0;#00f;#f00;#0f0" dur="8s" repeatCount="indefinite" />
+  </rect>
+
+  <!-- Scanline effect -->
+  <rect width="400" height="2" fill="#fff" opacity="0.1">
+    <animate attributeName="y" values="0;400;0" dur="10s" repeatCount="indefinite" />
+  </rect>
+</svg>
