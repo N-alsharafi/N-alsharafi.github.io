@@ -1,0 +1,208 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definitions -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111" />
+      <stop offset="100%" stop-color="#222" />
+      <animate attributeName="x1" values="0%;100%;0%" dur="20s" repeatCount="indefinite" />
+      <animate attributeName="y1" values="0%;100%;0%" dur="20s" repeatCount="indefinite" />
+    </linearGradient>
+    
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    
+    <pattern id="gridPattern" width="50" height="50" patternUnits="userSpaceOnUse">
+      <rect width="50" height="50" fill="none" stroke="#f00" stroke-width="0.5" opacity="0.1" />
+      <line x1="0" y1="0" x2="50" y2="50" stroke="#f00" stroke-width="0.2" opacity="0.1" />
+      <line x1="50" y1="0" x2="0" y2="50" stroke="#f00" stroke-width="0.2" opacity="0.1" />
+    </pattern>
+    
+    <pattern id="warningPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="none" />
+      <circle cx="10" cy="10" r="1" fill="#f00" opacity="0.2" />
+    </pattern>
+  </defs>
+
+  <!-- Background with grid -->
+  <rect width="400" height="400" fill="url(#bgGradient)" />
+  <rect width="400" height="400" fill="url(#gridPattern)" opacity="0.4">
+    <animate attributeName="opacity" values="0.3;0.5;0.3" dur="10s" repeatCount="indefinite" />
+  </rect>
+  <rect width="400" height="400" fill="url(#warningPattern)" opacity="0.5">
+    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="15s" repeatCount="indefinite" />
+  </rect>
+
+  <!-- Central Shield/Detection system -->
+  <g transform="translate(200, 200)" filter="url(#glow)">
+    <!-- Shield shape -->
+    <path d="M 0,-80 L 60,-60 L 60,40 Q 60,80 0,100 Q -60,80 -60,40 L -60,-60 Z" fill="#333" stroke="#f00" stroke-width="2">
+      <animate attributeName="stroke" values="#f00;#ff0;#f00" dur="5s" repeatCount="indefinite" />
+    </path>
+    
+    <!-- Warning symbol inside shield -->
+    <path d="M 0,-40 L 25,30 L -25,30 Z" fill="none" stroke="#f00" stroke-width="2.5">
+      <animate attributeName="stroke" values="#f00;#ff0;#f00" dur="3s" repeatCount="indefinite" />
+    </path>
+    
+    <!-- Exclamation mark -->
+    <line x1="0" y1="-20" x2="0" y2="5" stroke="#f00" stroke-width="3">
+      <animate attributeName="stroke" values="#f00;#ff0;#f00" dur="3s" repeatCount="indefinite" />
+    </line>
+    <circle cx="0" cy="15" r="3" fill="#f00">
+      <animate attributeName="fill" values="#f00;#ff0;#f00" dur="3s" repeatCount="indefinite" />
+    </circle>
+    
+    <!-- Scanner lines -->
+    <line x1="-50" y1="-60" x2="50" y2="-60" stroke="#f00" stroke-width="1" opacity="0.8">
+      <animate attributeName="y1" values="-60;80;-60" dur="4s" repeatCount="indefinite" />
+      <animate attributeName="y2" values="-60;80;-60" dur="4s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0.3;0.9;0.3" dur="4s" repeatCount="indefinite" />
+    </line>
+  </g>
+
+  <!-- Toxicity Categories around the shield -->
+  <!-- Category 1: Toxic -->
+  <g transform="translate(70, 80)" filter="url(#glow)">
+    <rect x="-35" y="-12" width="70" height="24" rx="6" fill="#333" stroke="#f00" stroke-width="1.5">
+      <animate attributeName="stroke" values="#f00;#ff0;#f00" dur="4s" repeatCount="indefinite" />
+      <animate attributeName="fill" values="#333;#442222;#333" dur="4s" repeatCount="indefinite" />
+    </rect>
+    <text x="0" y="4" font-family="monospace" font-size="9" text-anchor="middle" fill="#f00" font-weight="bold">
+      <animate attributeName="fill" values="#f00;#ff0;#f00" dur="4s" repeatCount="indefinite" />
+      TOXIC
+    </text>
+  </g>
+
+  <!-- Category 2: Severe Toxic -->
+  <g transform="translate(330, 80)" filter="url(#glow)">
+    <rect x="-42" y="-12" width="84" height="24" rx="6" fill="#333" stroke="#f00" stroke-width="1.5">
+      <animate attributeName="stroke" values="#f00;#ff6600;#f00" dur="4.2s" repeatCount="indefinite" />
+      <animate attributeName="fill" values="#333;#443322;#333" dur="4.2s" repeatCount="indefinite" />
+    </rect>
+    <text x="0" y="4" font-family="monospace" font-size="8" text-anchor="middle" fill="#f00" font-weight="bold">
+      <animate attributeName="fill" values="#f00;#ff6600;#f00" dur="4.2s" repeatCount="indefinite" />
+      SEVERE TOXIC
+    </text>
+  </g>
+
+  <!-- Category 3: Obscene -->
+  <g transform="translate(70, 200)" filter="url(#glow)">
+    <rect x="-38" y="-12" width="76" height="24" rx="6" fill="#333" stroke="#f0f" stroke-width="1.5">
+      <animate attributeName="stroke" values="#f0f;#ff0;#f0f" dur="4.4s" repeatCount="indefinite" />
+      <animate attributeName="fill" values="#333;#442244;#333" dur="4.4s" repeatCount="indefinite" />
+    </rect>
+    <text x="0" y="4" font-family="monospace" font-size="9" text-anchor="middle" fill="#f0f" font-weight="bold">
+      <animate attributeName="fill" values="#f0f;#ff0;#f0f" dur="4.4s" repeatCount="indefinite" />
+      OBSCENE
+    </text>
+  </g>
+
+  <!-- Category 4: Threat -->
+  <g transform="translate(330, 200)" filter="url(#glow)">
+    <rect x="-35" y="-12" width="70" height="24" rx="6" fill="#333" stroke="#ff0" stroke-width="1.5">
+      <animate attributeName="stroke" values="#ff0;#f00;#ff0" dur="4.6s" repeatCount="indefinite" />
+      <animate attributeName="fill" values="#333;#444422;#333" dur="4.6s" repeatCount="indefinite" />
+    </rect>
+    <text x="0" y="4" font-family="monospace" font-size="9" text-anchor="middle" fill="#ff0" font-weight="bold">
+      <animate attributeName="fill" values="#ff0;#f00;#ff0" dur="4.6s" repeatCount="indefinite" />
+      THREAT
+    </text>
+  </g>
+
+  <!-- Category 5: Insult -->
+  <g transform="translate(70, 320)" filter="url(#glow)">
+    <rect x="-32" y="-12" width="64" height="24" rx="6" fill="#333" stroke="#f60" stroke-width="1.5">
+      <animate attributeName="stroke" values="#f60;#ff0;#f60" dur="4.8s" repeatCount="indefinite" />
+      <animate attributeName="fill" values="#333;#443322;#333" dur="4.8s" repeatCount="indefinite" />
+    </rect>
+    <text x="0" y="4" font-family="monospace" font-size="9" text-anchor="middle" fill="#f60" font-weight="bold">
+      <animate attributeName="fill" values="#f60;#ff0;#f60" dur="4.8s" repeatCount="indefinite" />
+      INSULT
+    </text>
+  </g>
+
+  <!-- Category 6: Identity Hate -->
+  <g transform="translate(330, 320)" filter="url(#glow)">
+    <rect x="-48" y="-12" width="96" height="24" rx="6" fill="#333" stroke="#f00" stroke-width="1.5">
+      <animate attributeName="stroke" values="#f00;#ff00ff;#f00" dur="5s" repeatCount="indefinite" />
+      <animate attributeName="fill" values="#333;#442233;#333" dur="5s" repeatCount="indefinite" />
+    </rect>
+    <text x="0" y="4" font-family="monospace" font-size="8" text-anchor="middle" fill="#f00" font-weight="bold">
+      <animate attributeName="fill" values="#f00;#ff00ff;#f00" dur="5s" repeatCount="indefinite" />
+      IDENTITY HATE
+    </text>
+  </g>
+
+  <!-- Detection beams from shield to categories -->
+  <g opacity="0.6">
+    <line x1="160" y1="150" x2="70" y2="80" stroke="#f00" stroke-width="1.5" stroke-dasharray="5,5">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite" />
+      <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite" />
+    </line>
+    <line x1="240" y1="150" x2="330" y2="80" stroke="#f00" stroke-width="1.5" stroke-dasharray="5,5">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3.2s" repeatCount="indefinite" />
+      <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite" />
+    </line>
+    <line x1="160" y1="200" x2="70" y2="200" stroke="#f0f" stroke-width="1.5" stroke-dasharray="5,5">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3.4s" repeatCount="indefinite" />
+      <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite" />
+    </line>
+    <line x1="240" y1="200" x2="330" y2="200" stroke="#ff0" stroke-width="1.5" stroke-dasharray="5,5">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3.6s" repeatCount="indefinite" />
+      <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite" />
+    </line>
+    <line x1="160" y1="250" x2="70" y2="320" stroke="#f60" stroke-width="1.5" stroke-dasharray="5,5">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3.8s" repeatCount="indefinite" />
+      <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite" />
+    </line>
+    <line x1="240" y1="250" x2="330" y2="320" stroke="#f00" stroke-width="1.5" stroke-dasharray="5,5">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="4s" repeatCount="indefinite" />
+      <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite" />
+    </line>
+  </g>
+
+  <!-- Alert particles -->
+  <g>
+    <circle cx="200" cy="200" r="3" fill="#f00" filter="url(#glow)">
+      <animate attributeName="r" values="3;8;3" dur="2s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0.8;0;0.8" dur="2s" repeatCount="indefinite" />
+    </circle>
+    
+    <circle cx="200" cy="200" r="3" fill="#ff0" filter="url(#glow)">
+      <animate attributeName="r" values="3;8;3" dur="2s" repeatCount="indefinite" begin="0.5s" />
+      <animate attributeName="opacity" values="0.8;0;0.8" dur="2s" repeatCount="indefinite" begin="0.5s" />
+    </circle>
+  </g>
+
+  <!-- Model indicator -->
+  <g transform="translate(200, 60)" filter="url(#glow)">
+    <text x="0" y="0" font-family="monospace" font-size="11" text-anchor="middle" fill="#0ff" font-weight="bold">
+      <animate attributeName="fill" values="#0ff;#f00;#0ff" dur="4s" repeatCount="indefinite" />
+      BERT | DeBERTa | xLSTM
+    </text>
+  </g>
+
+  <!-- Top Title -->
+  <text x="200" y="35" font-family="monospace" font-size="14" fill="#f00" text-anchor="middle" font-weight="bold" filter="url(#glow)">
+    <animate attributeName="fill" values="#f00;#ff0;#f0f;#f00" dur="8s" repeatCount="indefinite" />
+    TOXIC COMMENT DETECTION
+  </text>
+
+  <!-- Bottom Title -->
+  <text x="200" y="370" font-family="monospace" font-size="12" fill="#f00" text-anchor="middle" font-weight="bold" filter="url(#glow)">
+    <animate attributeName="fill" values="#f00;#ff0;#f0f;#f00" dur="8s" repeatCount="indefinite" />
+    MULTI-LABEL | AUC: 0.9815
+  </text>
+
+  <!-- Retro computer frame -->
+  <rect x="10" y="10" width="380" height="380" stroke="#f00" stroke-width="3" fill="none" rx="5">
+    <animate attributeName="stroke" values="#f00;#ff0;#f60;#f00" dur="8s" repeatCount="indefinite" />
+  </rect>
+
+  <!-- Scanline effect -->
+  <rect width="400" height="2" fill="#fff" opacity="0.1">
+    <animate attributeName="y" values="0;400;0" dur="10s" repeatCount="indefinite" />
+  </rect>
+</svg>
