@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import ProjectCard, { Project } from '@/components/ProjectCard';
@@ -15,7 +16,17 @@ const workExperiences = workData as WorkExperience[];
 const sideMissions = missionsData as SideMission[];
 
 const Experience = () => {
+  const location = useLocation();
   const [filter, setFilter] = useState<string>("all");
+  const [activeTab, setActiveTab] = useState<string>("projects");
+  
+  useEffect(() => {
+    // Check for hash in URL to determine initial tab
+    const hash = location.hash.replace('#', '');
+    if (hash === 'work' || hash === 'missions') {
+      setActiveTab(hash);
+    }
+  }, [location]);
   
   // Get unique tags from all projects
   const allTags = Array.from(
@@ -33,7 +44,7 @@ const Experience = () => {
     <div className="container mx-auto px-4 py-12 animate-fade-in">
       <h1 className="text-4xl font-bold mb-8 gradient-text">My Experience</h1>
       
-      <Tabs defaultValue="projects" className="w-full">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-3 mb-8">
           <TabsTrigger value="projects">Projects</TabsTrigger>
           <TabsTrigger value="work">Work Experience</TabsTrigger>

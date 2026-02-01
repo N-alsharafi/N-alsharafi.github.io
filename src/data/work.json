@@ -1,12 +1,22 @@
 [
     {
+        "id": 4,
+        "company": "Eastern Al-Maha Company",
+        "position": "Contract Fullstack Developer / DevOps Engineer",
+        "location": "Kuwait, Kuwait (Online)",
+        "startDate": "2025-11-01",
+        "endDate": "2026-01-31",
+        "description": "Contract position responsible for refining and improving the existing system.\n\n- Refined scope to reduce feature bloat and realign the project with core requirements.\n- Responsible for Backend and Frontend patches and updates informed by a pilot program.\n- Optimized and hardened GCP deployment and migrated to cloud buckets.",
+        "technologies": ["Fullstack Development", "Backend Development", "Frontend Development", "GCP", "DevOps", "Cloud Storage"]
+    },
+    {
         "id": 3,
         "company": "Eastern Al-Maha Company",
-        "position": "Backend Developer / DevOps Engineer",
+        "position": "Backend Developer / DevOps Engineer Intern",
         "location": "Kuwait, Kuwait (Online)",
         "startDate": "2025-06-01",
         "endDate": "2025-08-31",
-        "description": "Responsible for coordinating backend development within itself and with client-side teams.\n\n- Responsible for Kubernetes infrastructure, GCP deployment, and DevOps setup.\n- Developed some of the backend services and coordinated merging all services into the system.",
+        "description": "Internship focused on backend development and DevOps infrastructure.\n\n- Responsible for coordinating backend development within itself and with client-side teams.\n- Responsible for Kubernetes infrastructure, GCP deployment, and DevOps setup.\n- Developed some of the backend services and coordinated merging all services into the system.",
         "technologies": ["Backend Development", "Kubernetes", "GCP", "DevOps", "Microservices"]
     },
     {

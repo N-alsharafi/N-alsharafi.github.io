@@ -2,13 +2,35 @@
     {
         "id": 14,
         "title": "ENS491/2: Systematic Mapping Studies with LLMs",
-        "description": "Created a Web App that guides users through creating a Systematic Mapping Study using AI (4-person team).\n\n- Developed a multi-agent MCP system enabling iterative query improvement, paper retrieval and filtering, topic analysis and graphing, then report generation.\n- Implemented comprehensive state management for complex workflows.\n- User is able to jump in at every step and guide the Agent's behavior.",
+        "description": "Created a Web App that guides users through creating a Systematic Mapping Study using AI (4-person team, February 2025 - January 2026).\n\n- Development of the tool was guided by how actual Systematic mapping studies are done.\n- Created a Web App that takes the user along the process of creating a Systematic Mapping Study using AI with comprehensive state management.\n- Developed a multi-agent MCP system enabling iterative query improvement, paper retrieval and filtering, topic analysis and graphing then report generation.\n- User is able to jump in at any step and guide the Agent's behavior or manually edit the carry out the step.",
         "tags": ["AI", "LLM", "Multi-agent Systems", "Web Development", "Research Tools", "MCP"],
         "image": "/assets/research-llm.svg",
         "github": "",
         "demo": "",
         "featured": true,
         "date": "2026-01-01"
+    },
+    {
+        "id": 16,
+        "title": "CS445: SemEval 2026 - Multilingual Text Classification",
+        "description": "Participated in SemEval 2026 Arabic text classification: Polarization Detection (4-person team, November 2025 - January 2026).\n\n- Achieved P4 (Dev set) on binary classification using k-fold ensemble (10 models) with empirically tested preprocessing and MARBERT_v2.\n- Attained P5 (Dev set) on multiclass classification through MARBERT_v2 fine-tuning with snapshot ensembling and asymmetric loss optimization.\n- Evaluated morphological features and Arabic-native LLMs against our chosen approaches.",
+        "tags": ["NLP", "Machine Learning", "Arabic", "Text Classification", "BERT", "Deep Learning"],
+        "image": "/assets/text-classification.svg",
+        "github": "",
+        "demo": "",
+        "featured": true,
+        "date": "2026-01-01"
+    },
+    {
+        "id": 17,
+        "title": "CS415: Toxic Comment Identification",
+        "description": "Led multi-label toxic comment classification project (4-person team, October 2025 - December 2025).\n\n- Compared 5 deep learning architectures (BERT, DeBERTa, Mamba SSM, xLSTM, custom Transformer) across 6 toxicity categories on 159k samples.\n- Fine-tuned BERT-base and DeBERTa-v3 achieving 0.9815 AUC.\n- Trained a custom transformer achieving 0.8813 AUC.",
+        "tags": ["NLP", "Deep Learning", "BERT", "Transformers", "Multi-label Classification", "PyTorch"],
+        "image": "/assets/toxic-detection.svg",
+        "github": "",
+        "demo": "",
+        "featured": false,
+        "date": "2025-12-01"
     },
     {
         "id": 11,

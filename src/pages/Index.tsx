@@ -1,22 +1,29 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Code, Laptop, Briefcase } from 'lucide-react';
+import { ArrowRight, Code, Brain, Briefcase } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import ProjectCard from '@/components/ProjectCard';
+import ExperienceCard, { WorkExperience } from '@/components/ExperienceCard';
 
 import projectsData from '@/data/projects.json';
+import workData from '@/data/work.json';
 
 const Index = () => {
   const [featuredProjects, setFeaturedProjects] = useState([]);
+  const [recentWork, setRecentWork] = useState<WorkExperience[]>([]);
 
   useEffect(() => {
     // Filter featured projects
     const featured = projectsData.filter(project => project.featured).slice(0, 3);
     setFeaturedProjects(featured);
+    
+    // Get recent work experiences (top 2)
+    const recent = (workData as WorkExperience[]).slice(0, 2);
+    setRecentWork(recent);
   }, []);
 
   return (
@@ -37,13 +44,25 @@ const Index = () => {
                 CS Student
               </Badge>
               <Badge variant="outline" className="text-sm bg-primary/5">
-                Data Analyst
+                NLP/ML Engineer
               </Badge>
               <Badge variant="outline" className="text-sm bg-primary/5">
-                Developer
+                Deep Learning
               </Badge>
               <Badge variant="outline" className="text-sm bg-primary/5">
-                AI/ML Engineer
+                Fullstack Developer
+              </Badge>
+              <Badge variant="outline" className="text-sm bg-primary/5">
+                Backend Developer
+              </Badge>
+              <Badge variant="outline" className="text-sm bg-primary/5">
+                DevOps Engineer
+              </Badge>
+              <Badge variant="outline" className="text-sm bg-primary/5">
+                Data Scientist
+              </Badge>
+              <Badge variant="outline" className="text-sm bg-primary/5">
+                AI Researcher
               </Badge>
             </div>
           </div>
@@ -69,7 +88,7 @@ const Index = () => {
                 </a>
               </Button>
               <Button variant="outline" asChild>
-                <a href="./CV-Oct14-25.pdf" target="_blank" rel="noopener noreferrer">
+                <a href="./CV-Jan-29-26 Professional.pdf" target="_blank" rel="noopener noreferrer">
                   Resume
                 </a>
               </Button>
@@ -104,14 +123,14 @@ const Index = () => {
             <CardHeader>
               <div className="flex justify-center mb-2">
                 <div className="p-3 rounded-full bg-orange-500/10 text-orange-500">
-                  <Laptop size={24} />
+                  <Brain size={24} />
                 </div>
               </div>
-              <CardTitle>Web Development</CardTitle>
+              <CardTitle>Machine Learning & NLP</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription>
-                Creating responsive and interactive web applications with modern frameworks and libraries.
+                Developing machine learning solutions with emphasis on natural language processing, transformers, and deep learning models.
               </CardDescription>
             </CardContent>
           </Card>
@@ -131,6 +150,27 @@ const Index = () => {
               </CardDescription>
             </CardContent>
           </Card>
+        </div>
+      </section>
+
+      <Separator className="my-12" />
+
+      {/* Professional Experience Section */}
+      <section className="py-12">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-3xl font-bold">Professional Experience</h2>
+          <Button variant="outline" asChild>
+            <Link to="/experience#work" className="flex items-center gap-2">
+              View All
+              <ArrowRight size={16} />
+            </Link>
+          </Button>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {recentWork.map((work) => (
+            <ExperienceCard key={work.id} experience={work} />
+          ))}
         </div>
       </section>
 
