@@ -45,12 +45,14 @@ yarn build
 
 The build output will be in the `dist` folder.
 
-## Technologies Used
+## Tech Stack
 
-- React
-- TypeScript
-- Tailwind CSS
-- Vite
-- React Router
-- shadcn/ui components
-- React Query
+- **Frontend**: React 18 + TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS + shadcn/ui (Radix UI)
+- **Routing**: React Router
+- **Data Fetching**: TanStack React Query
+- **Forms**: React Hook Form + Zod
+- **Icons**: Lucide React
+- **Charts**: Recharts
+- **Deployment**: GitHub Pages
