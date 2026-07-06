@@ -41,7 +41,7 @@ const Index = () => {
             </h1>
             <div className="flex flex-wrap gap-2 mb-6 justify-center md:justify-start">
               <Badge variant="outline" className="text-sm bg-primary/5">
-                CS Student
+                Forward Deployed Engineer
               </Badge>
               <Badge variant="outline" className="text-sm bg-primary/5">
                 NLP/ML Engineer
@@ -53,10 +53,7 @@ const Index = () => {
                 Fullstack Developer
               </Badge>
               <Badge variant="outline" className="text-sm bg-primary/5">
-                Backend Developer
-              </Badge>
-              <Badge variant="outline" className="text-sm bg-primary/5">
-                DevOps Engineer
+                DevOps Specialist
               </Badge>
               <Badge variant="outline" className="text-sm bg-primary/5">
                 Data Scientist
@@ -70,7 +67,7 @@ const Index = () => {
           <div className="bg-muted/30 p-6 rounded-lg border">
             <h2 className="text-2xl font-semibold mb-4">Hello World! 👋</h2>
             <p className="text-muted-foreground mb-4">
-              I'm a Computer Science student at Sabanci University.
+              I'm a Computer Science graduate from Sabanci University.
             </p>
             <p className="text-muted-foreground mb-6">
               Feel free to visit my LinkedIn profile or view my resume. You can also check out my GitHub profile to see what I've been working on.
@@ -88,7 +85,7 @@ const Index = () => {
                 </a>
               </Button>
               <Button variant="outline" asChild>
-                <a href="./CV-Jan-29-26 Professional.pdf" target="_blank" rel="noopener noreferrer">
+                <a href="./Nuh-Al-Sharafi-CV-Jun-23-26-Professional.pdf" target="_blank" rel="noopener noreferrer">
                   Resume
                 </a>
               </Button>

@@ -1,5 +1,27 @@
 [
     {
+        "id": 19,
+        "title": "Turkish Adaptive Learning Platform",
+        "description": "An adaptive NLP-driven platform for Turkish language learning (2-person team, April 2026 - June 2026).\n\n- Engineered an adaptive NLP recommendation pipeline utilizing multilingual Bi-Encoders and a FAISS vector database to perform high-dimensional semantic search over Turkish language databases.\n- Designed a custom multi-objective ranking algorithm using Maximum Marginal Relevance (MMR) and weighted features to solve complex data constraints.\n- Developed an LLM-powered tutor interface utilizing the OpenRouter API for generative language coaching, backed by a simulated benchmarking framework evaluating 720 pipeline configurations to systematically optimize retrieval accuracy.",
+        "tags": ["NLP", "FAISS", "Bi-Encoders", "MMR", "LLM", "OpenRouter", "Python"],
+        "image": "/assets/adaptive-learning.svg",
+        "github": "",
+        "demo": "",
+        "featured": true,
+        "date": "2026-04-01"
+    },
+    {
+        "id": 20,
+        "title": "CS460: AI vs. Human Code Analysis",
+        "description": "Empirical study comparing defect profiles of LLM-generated and human-written code (2-person team, May 2026 - June 2026).\n\n- Developed and tested a central software reliability hypothesis addressing a critical academic gap: whether traditional, human-oriented test suites are sufficient for evaluating the distinct behavioral defect profiles of LLM-generated code.\n- Designed a taxonomy-guided dynamic testing pipeline to empirically evaluate execution characteristics, orchestrating custom automation frameworks to isolate and analyze runtime errors across 100 paired human-AI code samples.\n- Synthesized key empirical findings to prove that legacy test suites require strategic adaptation for AI-generated code, proposing methodologies to expand test case generation to capture functional edge cases, or dynamically prioritize specific tests to reduce execution computational overhead in large-scale test suites.",
+        "tags": ["Software Testing", "LLM", "Code Analysis", "Empirical Research", "Automation"],
+        "image": "/assets/ai-code-analysis.svg",
+        "github": "",
+        "demo": "",
+        "featured": true,
+        "date": "2026-05-01"
+    },
+    {
         "id": 14,
         "title": "ENS491/2: Systematic Mapping Studies with LLMs",
         "description": "Created a Web App that guides users through creating a Systematic Mapping Study using AI (4-person team, February 2025 - January 2026).\n\n- Development of the tool was guided by how actual Systematic mapping studies are done.\n- Created a Web App that takes the user along the process of creating a Systematic Mapping Study using AI with comprehensive state management.\n- Developed a multi-agent MCP system enabling iterative query improvement, paper retrieval and filtering, topic analysis and graphing then report generation.\n- User is able to jump in at any step and guide the Agent's behavior or manually edit the carry out the step.",
@@ -53,6 +75,28 @@
         "demo": "",
         "featured": true,
         "date": "2025-06-01"
+    },
+    {
+        "id": 18,
+        "title": "Nuqat: Spaced Repetition App",
+        "description": "A local-first Progressive Web App for spaced repetition memorization (March 2026 - Present).\n\n- Engineered a local-first Progressive Web App (PWA) leveraging Dexie.js (IndexedDB) for secure, schema-driven, offline-capable data persistence and client-side state management.\n- Integrated the FSRS (Free Spaced Repetition Scheduler) algorithm, designing a custom mathematical grading rubric that converts real-time qualitative inputs into quantitative data points to dynamically project optimal memory stability.\n- Architected structured data schemas to map hierarchical metadata into atomic, trackable flashcard nodes, while ensuring great user experience through user-feedback.",
+        "tags": ["PWA", "Dexie.js", "IndexedDB", "FSRS", "Spaced Repetition", "TypeScript"],
+        "image": "/assets/spaced-repetition.svg",
+        "github": "",
+        "demo": "",
+        "featured": true,
+        "date": "2026-03-01"
+    },
+    {
+        "id": 21,
+        "title": "DSA440: Ethical AI in Medical Resource Allocation",
+        "description": "A study on the ethical implications of AI-driven decision-making in healthcare resource allocation (April 2026 - May 2026).\n\n- Conducted a literature review to understand the current state of AI deployment in medical resource allocation and identify key ethical concerns.\n- Designed and evaluated a prototype ethical framework addressing accountability and responsibility principles, balancing conflicting stakeholder interests in resource-constrained medical environments.\n- Synthesized findings to propose governance mechanisms that ensure transparency and human oversight in AI-assisted clinical decision-making.",
+        "tags": ["AI Ethics", "Healthcare", "Literature Review", "Responsible AI"],
+        "image": "/assets/ai-ethics.svg",
+        "github": "",
+        "demo": "",
+        "featured": false,
+        "date": "2026-04-01"
     },
     {
         "id": 12,

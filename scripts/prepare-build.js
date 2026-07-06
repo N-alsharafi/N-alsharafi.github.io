@@ -75,10 +75,10 @@ if (!fs.existsSync('public/images/PFP.jpeg')) {
 }
 
 // Check for resume file
-if (!fs.existsSync('public/CV-Jan-29-26 Professional.pdf') && fs.existsSync('sources/CV-Jan-29-26 Professional.pdf')) {
+if (!fs.existsSync('public/Nuh-Al-Sharafi-CV-Jun-23-26-Professional.pdf') && fs.existsSync('sources/Nuh-Al-Sharafi-CV-Jun-23-26-Professional.pdf')) {
   console.log('⚠️ Resume not found in public directory. Copying from sources...');
   try {
-    fs.copyFileSync('sources/CV-Jan-29-26 Professional.pdf', 'public/CV-Jan-29-26 Professional.pdf');
+    fs.copyFileSync('sources/Nuh-Al-Sharafi-CV-Jun-23-26-Professional.pdf', 'public/Nuh-Al-Sharafi-CV-Jun-23-26-Professional.pdf');
     console.log('✅ Copied resume to public directory');
   } catch (error) {
     console.error('❌ Failed to copy resume:', error.message);

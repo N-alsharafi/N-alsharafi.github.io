@@ -8,9 +8,9 @@
   },
   {
     "id": 2,
-    "title": "Freelance Fullstack Web Developer",
-    "description": "Developed a custom library website with GO and deployed it on an Alibaba VM. Managed client expectations around technical limitations while clarifying and validating requirements.",
+    "title": "Nuqat - Spaced Repetition App",
+    "description": "Built a local-first Progressive Web App (PWA) leveraging Dexie.js (IndexedDB) for secure, schema-driven, offline-capable data persistence and client-side state management.\n\nIntegrated the FSRS (Free Spaced Repetition Scheduler) algorithm, designing a custom mathematical grading rubric that converts real-time qualitative inputs into quantitative data points to dynamically project optimal memory stability.\n\nArchitected structured data schemas to map hierarchical metadata into atomic, trackable flashcard nodes, while ensuring great user experience through user-feedback.",
     "link": "",
-    "date": "November 2025 - Present"
+    "date": "March 2026 - Present"
   }
 ]

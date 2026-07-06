@@ -1,13 +1,33 @@
 [
     {
+        "id": 6,
+        "company": "Muslims In Academia",
+        "position": "Project Lead",
+        "location": "Ontario, Canada",
+        "startDate": "2026-06-01",
+        "endDate": "Present",
+        "description": "Led the end-to-end delivery of a key organizational project, managing a cross-functional team of interns from recruitment through project completion.\n\n- Translated stakeholder business needs into actionable technical plans and project roadmaps, ensuring alignment with organizational goals.\n- Curated instructional objectives and evaluated outcomes against benchmarks to verify successful competency acquisition.",
+        "technologies": ["Project Management", "Cross-Functional Leadership", "Strategic Planning", "Mentorship"]
+    },
+    {
+        "id": 5,
+        "company": "Self-Employed",
+        "position": "Freelance Forward Deployed Engineer",
+        "location": "Remote",
+        "startDate": "2025-11-01",
+        "endDate": "Present",
+        "description": "Designed and delivered multiple full-stack web applications for clients.\n\n- Engineered a high-traffic platform scaled to serve 10,000+ active global users using Next.js and Django.\n- Integrated advanced security mechanisms including data anonymity protocols and fine-grained role-based access control (RBAC).\n- Managed end-to-end production infrastructure by configuring secure cloud object storage, deployment pipelines, and automated database backups to ensure high availability and data integrity.",
+        "technologies": ["Next.js", "Django", "Fullstack Development", "Cloud Storage", "DevOps", "RBAC"]
+    },
+    {
         "id": 4,
         "company": "Eastern Al-Maha Company",
         "position": "Contract Fullstack Developer / DevOps Engineer",
         "location": "Kuwait, Kuwait (Online)",
         "startDate": "2025-11-01",
         "endDate": "2026-01-31",
-        "description": "Contract position responsible for refining and improving the existing system.\n\n- Refined scope to reduce feature bloat and realign the project with core requirements.\n- Responsible for Backend and Frontend patches and updates informed by a pilot program.\n- Optimized and hardened GCP deployment and migrated to cloud buckets.",
-        "technologies": ["Fullstack Development", "Backend Development", "Frontend Development", "GCP", "DevOps", "Cloud Storage"]
+        "description": "Contract position responsible for refining and improving the existing system.\n\n- Streamlined project scope by identifying and eliminating feature bloat, realigning the development roadmap with core business requirements and accelerating delivery.\n- Iterated on full-stack features, deploying critical frontend and backend updates driven by user feedback and telemetry data from a pilot program to improve application reliability.\n- Hardened and optimized GCP infrastructure, migrating legacy storage assets to secure Google Cloud Storage buckets while achieving 50% cost savings.",
+        "technologies": ["Fullstack Development", "GCP", "DevOps", "Cloud Storage", "Backend Development", "Frontend Development"]
     },
     {
         "id": 3,
@@ -16,8 +36,18 @@
         "location": "Kuwait, Kuwait (Online)",
         "startDate": "2025-06-01",
         "endDate": "2025-08-31",
-        "description": "Internship focused on backend development and DevOps infrastructure.\n\n- Responsible for coordinating backend development within itself and with client-side teams.\n- Responsible for Kubernetes infrastructure, GCP deployment, and DevOps setup.\n- Developed some of the backend services and coordinated merging all services into the system.",
-        "technologies": ["Backend Development", "Kubernetes", "GCP", "DevOps", "Microservices"]
+        "description": "Internship focused on backend development and DevOps infrastructure.\n\n- Orchestrated containerized applications using Kubernetes and streamlined cloud deployments on GCP, establishing foundational DevOps pipelines for the engineering environment.\n- Engineered modular backend services and APIs, coordinating the integration and merging of distributed services into a cohesive production system.\n- Collaborated across frontend and backend teams to align data models and API endpoints, significantly reducing integration bottlenecks and ensuring seamless client-server communication.",
+        "technologies": ["Backend Development", "Kubernetes", "GCP", "DevOps", "Microservices", "API Development"]
+    },
+    {
+        "id": 7,
+        "company": "Sabanci University",
+        "position": "CS 204 Learning Assistant",
+        "location": "Istanbul, Turkey",
+        "startDate": "2026-02-01",
+        "endDate": "2026-05-01",
+        "description": "Facilitated learning for a large undergraduate programming course.\n\n- Facilitated weekly office hours to mentor 300+ students, explaining complex programming concepts (OOP, data structures, memory management) and guiding code debugging in C++.\n- Delivered interactive recitation lectures to classes of 25 students, successfully stepping in for Graduate Teaching Assistants to explain algorithmic concepts.",
+        "technologies": ["C++", "Teaching", "OOP", "Data Structures", "Algorithms", "Mentorship"]
     },
     {
         "id": 1,
