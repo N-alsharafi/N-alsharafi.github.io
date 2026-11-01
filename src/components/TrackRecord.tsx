@@ -1,15 +1,16 @@
 import Prose from "@/components/Prose";
 import Scene from "@/components/Scene";
 import workData from "@/data/work.json";
-import { byStartDesc, formatRange } from "@/lib/format";
+import { byStartDesc, formatRange, pad } from "@/lib/format";
 import { seq } from "@/lib/stage";
 import type { WorkExperience } from "@/types";
 
 const roles = [...(workData as WorkExperience[])].sort(byStartDesc);
 
 /**
- * Act 02. The roles are a deck: each card pushes the previous one up and out of
- * the frame, so the record is read one position at a time, newest first.
+ * Act 02. Seven positions are too many to stand in one frame, so the act keeps a
+ * standing index on the left — every role readable at once — and deals the cards
+ * through on the right, each one pushing the previous out.
  */
 export default function TrackRecord() {
   return (
@@ -19,42 +20,54 @@ export default function TrackRecord() {
       num="02"
       title="Professional Experience"
       meta={`${roles.length} roles`}
-      len="600vh"
+      len="620vh"
     >
-      <div className="track__axis" aria-hidden="true">
-        <span className="track__axis-fill" />
-      </div>
+      <div className="spread">
+        <ol className="indexlist">
+          {roles.map((role, index) => (
+            <li key={role.id} data-step data-at={seq(index, roles.length, 0.03)} data-fade="0.03">
+              <span className="lit__num num">{pad(index + 1)}</span>
+              <span>
+                <span className="lit__label">{role.position}</span>
+                <span className="lit__meta">
+                  {role.company} · {formatRange(role.startDate, role.endDate)}
+                </span>
+              </span>
+            </li>
+          ))}
+        </ol>
 
-      <ol className="track">
-        {roles.map((role, index) => (
-          <li
-            className="track__item"
-            key={role.id}
-            data-step
-            data-at={seq(index, roles.length, 0.035)}
-            data-fade="0.035"
-            data-fx="push"
-          >
-            <p className="track__when">
-              <span className="num">{formatRange(role.startDate, role.endDate)}</span>
-              <span className="track__place">{role.location}</span>
-            </p>
+        <div className="spread__main">
+          {roles.map((role, index) => (
+            <article
+              className="track__item"
+              key={role.id}
+              data-step
+              data-at={seq(index, roles.length, 0.03)}
+              data-fade="0.035"
+              data-fx="push"
+            >
+              <p className="track__when">
+                <span className="num">{formatRange(role.startDate, role.endDate)}</span>
+                <span className="track__place">{role.location}</span>
+              </p>
 
-            <div className="track__body">
-              <h3 className="track__role">{role.position}</h3>
-              <p className="track__org">{role.company}</p>
-              <div className="track__what">
-                <Prose text={role.description} />
-                <ul className="tags">
-                  {role.technologies.map((tech) => (
-                    <li key={tech}>{tech}</li>
-                  ))}
-                </ul>
+              <div>
+                <h3 className="track__role">{role.position}</h3>
+                <p className="track__org">{role.company}</p>
+                <div className="track__what">
+                  <Prose text={role.description} />
+                  <ul className="tags">
+                    {role.technologies.map((tech) => (
+                      <li key={tech}>{tech}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-          </li>
-        ))}
-      </ol>
+            </article>
+          ))}
+        </div>
+      </div>
     </Scene>
   );
 }

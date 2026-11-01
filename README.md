@@ -53,8 +53,16 @@ starts early so an act never opens on an empty frame.
 Effects are CSS only, composed from those numbers with `data-fx` tokens — `rise`,
 `left`, `right`, `push`, `zoom`, `wipe`, `cut`, `char`, `cascade` — plus per-act
 mechanics: the contact sheet's rows position themselves from `--j` against a fixed
-light line, the film counter rolls its digits the same way, and the featured act
-inverts the palette and wipes each chapter in like a shutter.
+light line, the film counter rolls its digits the same way, the featured act
+inverts the palette and wipes each chapter in like a shutter, and each chapter
+carries a plate drawn from the project's own tag glyphs.
+
+Two composition rules keep a pinned frame from reading as a fragment floating in
+it. Where a run is short (practice, missions) the items *stand in the frame* and
+the scroll only moves the light down the list, with an opacity floor so nothing is
+hidden; where it is long (experience) a standing index on the left points at the
+item on the right. Anything that leaves a frame does so only after something else
+has replaced it — the masthead's name and portrait hold for the whole act.
 
 Two details worth keeping in mind when editing:
 

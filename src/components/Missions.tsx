@@ -24,23 +24,24 @@ export default function Missions() {
             className="mission"
             key={mission.id}
             data-step
-            data-at={seq(index, missions.length)}
-            data-fade="0.02"
-            data-fx="left"
+            data-at={seq(index, missions.length, 0.05)}
+            data-fade="0.05"
           >
             <p className="mission__num num">
               {pad(index + 1)} / {pad(missions.length)}
             </p>
-            <h3 className="mission__title">{mission.title}</h3>
-            {mission.date ? <p className="mission__date num">{mission.date}</p> : null}
-            {mission.description ? <Prose text={mission.description} /> : null}
-            {mission.link ? (
-              <p className="out-links">
-                <a className="link link--out" href={mission.link} target="_blank" rel="noopener noreferrer">
-                  Learn More
-                </a>
-              </p>
-            ) : null}
+            <div>
+              <h3 className="mission__title">{mission.title}</h3>
+              {mission.date ? <p className="mission__date num">{mission.date}</p> : null}
+              {mission.description ? <Prose text={mission.description} /> : null}
+              {mission.link ? (
+                <p className="out-links">
+                  <a className="link link--out" href={mission.link} target="_blank" rel="noopener noreferrer">
+                    Learn More
+                  </a>
+                </p>
+              ) : null}
+            </div>
           </article>
         ))}
       </div>

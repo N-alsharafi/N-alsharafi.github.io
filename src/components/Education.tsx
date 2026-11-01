@@ -28,25 +28,25 @@ export default function Education() {
           <span className="edu__place">{education.location}</span>
         </p>
 
-        <h3 className="edu__degree" data-step data-at="0.05,1.05" data-fade="0.11" data-fx="wipe">
+        <h3 className="edu__degree" data-step data-at="-,1.05" data-fade="0.11" data-fx="wipe">
           {education.degree}
         </h3>
 
-        <p className="edu__school" data-step data-at="0.15-" data-fx="rise">
+        <p className="edu__school" data-step data-at="0.06-" data-fx="rise">
           {education.school}
         </p>
 
-        <p className="edu__faculty" data-step data-at="0.2-" data-fx="rise">
+        <p className="edu__faculty" data-step data-at="0.1-" data-fx="rise">
           {education.faculty}
         </p>
 
-        <dl className="edu__facts" data-step data-at="0.3-" data-fx="rise">
+        <dl className="edu__facts" data-step data-at="0.2-" data-fx="rise">
           <div className="edu__fact">
             <dt className="edu__key">GPA</dt>
             <dd
               className="edu__val num"
               data-step
-              data-at="0.34-"
+              data-at="0.24-"
               data-fade="0.07"
               data-fx="cascade"
               style={{ "--stagger": "0.07" } as CSSProperties}
@@ -61,20 +61,20 @@ export default function Education() {
 
           <div className="edu__fact">
             <dt className="edu__key">Rank</dt>
-            <dd className="edu__val edu__val--line num" data-step data-at="0.4-" data-fx="rise">
+            <dd className="edu__val edu__val--line num" data-step data-at="0.28-" data-fx="rise">
               {education.rank}
             </dd>
           </div>
         </dl>
 
         <div className="edu__courses">
-          <p className="label edu__courses-label" data-step data-at="0.44-" data-fx="rise">
+          <p className="label edu__courses-label" data-step data-at="0.32-" data-fx="rise">
             Notable coursework
           </p>
           <ul
             className="tags"
             data-step
-            data-at="0.5-"
+            data-at="0.36-"
             data-fade="0.1"
             data-fx="cascade"
             style={{ "--stagger": String(0.5 / Math.max(1, education.coursework.length)) } as CSSProperties}

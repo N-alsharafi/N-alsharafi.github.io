@@ -569,16 +569,72 @@ button {
   display: block;
 }
 
+/* --- shared spread ------------------------------------------------------- */
+/* Acts that hold a document in one frame share one idea: the frame is composed
+   rather than a fragment floating in it. Where a run of items is short enough
+   (practice, missions) the items stand in the frame and the scroll only moves
+   the light; where it is long (experience) a standing index on the left points
+   at the item on the right. The index never leaves, so a frame is never half
+   empty and every title stays readable at once. */
+
+.spread {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.spread__main {
+  position: relative;
+}
+
+.indexlist {
+  display: grid;
+  align-content: start;
+  border-top: 1px solid hsl(var(--rule));
+}
+
+.indexlist li {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: baseline;
+  padding-block: 0.55rem;
+  border-bottom: 1px solid hsl(var(--rule));
+  --d: calc(var(--in, 1) * (1 - var(--out, 0)));
+  opacity: calc(0.5 + 0.5 * var(--d));
+  color: color-mix(in oklab, hsl(var(--accent)) calc(var(--d) * 100%), hsl(var(--muted)));
+}
+
+.lit__num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+}
+
+.lit__label {
+  display: block;
+  font-size: 0.95rem;
+  line-height: 1.25;
+}
+
+.lit__meta {
+  display: block;
+  margin-top: 0.15rem;
+  color: hsl(var(--muted));
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 /* --- 00 · index ---------------------------------------------------------- */
 
 .masthead__name {
-  font-size: clamp(2.75rem, 9vw, 7.5rem);
-  line-height: 0.92;
+  font-size: clamp(2.6rem, 7.4vw, 6.4rem);
+  line-height: 0.94;
   letter-spacing: -0.035em;
 }
 
 .roster {
-  margin-top: 0.9rem;
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
   letter-spacing: 0.16em;
@@ -595,56 +651,68 @@ button {
   color: hsl(var(--accent));
 }
 
-.masthead__plate {
-  max-width: 20rem;
-  margin-top: 1.5rem;
-}
-
-.masthead__plate img {
-  border: 1px solid hsl(var(--rule));
-}
-
 .masthead__intro {
-  margin-top: 2rem;
-  max-width: 44rem;
+  max-width: 42rem;
 }
 
 .masthead__intro .label {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.7rem;
 }
 
 .masthead__links {
   display: flex;
   gap: 1.25rem;
-  margin-top: 1.75rem;
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-.is-staged .act--index > * {
+.masthead__plate {
+  max-width: 20rem;
+}
+
+.masthead__plate img {
+  border: 1px solid hsl(var(--rule));
+}
+
+.index__roles {
+  position: relative;
+  min-height: 1.6em;
+  margin-top: 0.9rem;
+}
+
+.is-staged .act--index .spread {
   position: absolute;
+  inset: 0;
+  grid-template-columns: minmax(0, 1fr) clamp(13rem, 27%, 23rem);
+  gap: clamp(1.25rem, 3vw, 3rem);
 }
 
-.is-staged .index__overline {
-  top: 0;
-  left: 0;
+.is-staged .act--index .spread__main {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
-.is-staged .index__name {
-  top: clamp(2.5rem, 9vh, 5rem);
-  left: 0;
-  max-width: 50rem;
+.is-staged .index__text {
+  margin-top: auto;
+}
+
+.is-staged .index__roles {
+  min-height: 3.6em;
 }
 
 .is-staged .index__slot {
   position: absolute;
-  top: clamp(9rem, 27vh, 15rem);
-  left: 0;
-  height: 1.6em;
-  max-width: min(100%, 30rem);
+  inset: 0;
   overflow: clip;
+}
+
+.is-staged .index__slot--all {
+  inset: 0 0 auto;
+  overflow: visible;
+  line-height: 2;
 }
 
 .is-staged .index__slot li {
@@ -672,36 +740,29 @@ button {
   height: auto;
 }
 
-.is-staged .index__slot--all {
-  height: auto;
-  max-width: 34rem;
-  line-height: 2;
-}
-
 .is-staged .index__plate {
-  top: 0;
-  right: 0;
-  width: clamp(13rem, 22vw, 21rem);
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  overflow: clip;
 }
 
-.is-staged .index__text {
-  bottom: 0;
-  left: 0;
-  max-width: min(46rem, 58%);
+.is-staged .index__plate img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
 }
 
 .is-staged .index__links {
-  right: 0;
-  bottom: 0;
-  justify-content: flex-end;
+  margin-top: 1.2rem;
 }
 
 .is-staged .index__hint {
-  bottom: 0;
-  left: 0;
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  margin-top: 0.9rem;
   color: hsl(var(--muted));
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
@@ -716,68 +777,98 @@ button {
   background: hsl(var(--rule));
 }
 
-/* --- 01 · practice ------------------------------------------------------- */
+/* --- 01 · practice, 06 · missions ---------------------------------------- */
+/* short runs stand in the frame: the scroll moves the light down the list, and
+   nothing ever leaves — the frame is the content */
 
-.practice__item {
+.practice__item,
+.mission {
   display: grid;
-  gap: 0.5rem;
-  padding-block: 1.75rem;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 0.3rem 1.25rem;
+  align-items: baseline;
+  padding-block: clamp(0.9rem, 2vh, 1.6rem);
   border-top: 1px solid hsl(var(--rule));
 }
 
-.practice__num {
+.practice__num,
+.mission__num {
   color: hsl(var(--accent));
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
   letter-spacing: 0.14em;
 }
 
-.practice__title {
+.practice__title,
+.mission__title {
   font-size: clamp(1.35rem, 2.6vw, 2rem);
 }
 
-.practice__body {
-  margin: 0;
-  color: hsl(var(--ink));
-  line-height: 1.5;
+.practice__body,
+.mission .prose {
+  margin: 0.35rem 0 0;
+  color: hsl(var(--muted));
+  max-width: 62ch;
 }
 
-.is-staged .act--practice > .practice__item {
+.mission__date {
+  margin: 0.2rem 0 0;
+  color: hsl(var(--muted));
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.is-staged .act--practice .practice,
+.is-staged .act--missions .missions {
   position: absolute;
   inset: 0;
-  display: block;
+  display: grid;
+  align-content: center;
+  gap: 0;
+}
+
+.is-staged .act--missions .mission {
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+}
+
+.is-staged .practice__item,
+.is-staged .act--missions .mission {
+  --d: calc(var(--in, 1) * (1 - var(--out, 0)));
+  position: relative;
   border: 0;
-  padding: 0;
+  padding-block: clamp(0.85rem, 2vh, 1.5rem);
+  border-top: 1px solid hsl(var(--rule));
+  opacity: calc(0.42 + 0.58 * var(--d));
+  will-change: opacity;
 }
 
-.is-staged .practice__num {
+.is-staged .practice__item::before,
+.is-staged .act--missions .mission::before {
+  content: "";
   position: absolute;
-  top: -2vh;
-  right: clamp(0rem, 1vw, 1rem);
-  font-family: var(--font-serif);
-  font-size: clamp(7rem, 24vw, 19rem);
-  line-height: 0.8;
-  letter-spacing: -0.05em;
-  opacity: 0.05;
-  transform: translate3d(0, calc((var(--sp, 0) - 0.5) * -10vh), 0);
-}
-
-.is-staged .practice__title {
-  position: absolute;
-  top: 26%;
+  top: -1px;
   left: 0;
-  max-width: 24ch;
-  font-size: clamp(2.1rem, 5.4vw, 4.2rem);
-  line-height: 1.02;
+  width: 5.5rem;
+  height: 1px;
+  background: hsl(var(--accent));
+  opacity: var(--d);
 }
 
-.is-staged .practice__body {
-  position: absolute;
-  top: 52%;
-  left: 0;
-  max-width: 46ch;
-  color: hsl(var(--muted));
-  font-size: clamp(1rem, 1.4vw, 1.15rem);
+.is-staged .practice__title,
+.is-staged .act--missions .mission__title {
+  font-size: clamp(1.5rem, 3.1vw, 2.5rem);
+  color: color-mix(in oklab, hsl(var(--accent)) calc(var(--d) * 100%), hsl(var(--ink)));
+}
+
+.is-staged .practice__body,
+.is-staged .act--missions .mission .prose {
+  max-width: 56ch;
+}
+
+.is-staged .act--missions .mission .out-links {
+  margin-top: 0.6rem;
 }
 
 /* --- 02 · experience ----------------------------------------------------- */
@@ -800,15 +891,6 @@ button {
   text-transform: uppercase;
 }
 
-.is-staged .track__place::before {
-  content: none;
-}
-
-.track__place::before {
-  content: "· ";
-  color: hsl(var(--accent));
-}
-
 .track__role {
   font-size: clamp(1.35rem, 2.6vw, 2rem);
 }
@@ -818,42 +900,30 @@ button {
   color: hsl(var(--muted));
 }
 
-.is-staged .act--track > .track__item {
+.is-staged .act--track .spread {
   position: absolute;
   inset: 0;
+  grid-template-columns: clamp(13rem, 24%, 19rem) minmax(0, 1fr);
+  gap: clamp(1.5rem, 3.5vw, 3.5rem);
+}
+
+.is-staged .act--track .spread__main {
+  position: relative;
+  min-height: 0;
+}
+
+.is-staged .act--track .track__item {
+  position: absolute;
+  inset: 0;
+  grid-template-columns: 11rem minmax(0, 1fr);
   align-content: center;
   border: 0;
   padding-block: 0;
   will-change: transform, opacity;
 }
 
-.is-staged .track__axis {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -1.75rem;
-  width: 1px;
-  display: block;
-  background: hsl(var(--rule));
-}
-
-.track__axis,
-.track__axis-fill {
-  display: none;
-}
-
-.is-staged .track__axis-fill {
-  display: block;
-  position: absolute;
-  inset: 0 0 auto;
-  height: 100%;
-  background: hsl(var(--accent));
-  transform: scaleY(var(--sp, 0));
-  transform-origin: 50% 0;
-}
-
-.is-staged .track__item .prose {
-  max-width: 52ch;
+.is-staged .act--track .track__item .prose {
+  max-width: 54ch;
 }
 
 /* --- 03 · education ------------------------------------------------------ */
@@ -1107,9 +1177,6 @@ html.is-staged .act--movie {
   padding-block: 1.5rem 0;
 }
 
-.chapter__art {
-  display: none;
-}
 
 html.is-staged .chapter {
   position: absolute;
@@ -1119,20 +1186,58 @@ html.is-staged .chapter {
   will-change: clip-path, opacity;
 }
 
-html.is-staged .chapter__art {
-  display: block;
+
+/* the chapter's figure: a plate drawn from the project's own tag glyphs */
+.chapter__plate {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  color: hsl(var(--muted));
+}
+
+.chapter__glyph svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+html.is-staged .chapter__plate {
+  display: grid;
   position: absolute;
-  top: 4%;
-  right: -4%;
-  width: min(46vw, 34rem);
+  top: 7%;
+  right: 0;
+  width: min(30vw, 21rem);
+  aspect-ratio: 4 / 5;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: center;
+  place-items: center;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 1.5rem;
+  border: 1px solid hsl(var(--ink) / 0.16);
+  color: hsl(var(--ink));
+  will-change: opacity, transform;
+}
+
+html.is-staged .chapter__glyph {
+  display: grid;
+  place-items: center;
+  opacity: 0.4;
+}
+
+html.is-staged .chapter__glyph svg {
+  width: 100%;
   height: auto;
-  max-height: 88%;
-  object-fit: contain;
-  object-position: right top;
-  filter: grayscale(1) invert(1) contrast(0.85);
-  opacity: 0.17;
-  pointer-events: none;
-  transform: translate3d(0, calc((var(--sp, 0) - 0.5) * -6vh), 0) scale(calc(0.94 + var(--sp, 0) * 0.12));
+  max-width: 4rem;
+}
+
+html.is-staged .chapter__glyph:first-child {
+  grid-column: span 2;
+  opacity: 0.9;
+}
+
+html.is-staged .chapter__glyph:first-child svg {
+  max-width: 7rem;
 }
 
 html.is-staged .chapter__num {
@@ -1181,8 +1286,8 @@ html.is-staged .chapter .prose {
   position: absolute;
   bottom: 2.5rem;
   left: 0;
-  max-width: min(36rem, 48%);
-  max-height: 46vh;
+  max-width: min(42rem, 54%);
+  max-height: 52vh;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: thin;
@@ -1438,66 +1543,15 @@ html.is-staged .chapter__links {
   color: hsl(var(--muted));
 }
 
-/* --- 06 · side missions -------------------------------------------------- */
-
-.mission {
-  padding-block: 1.75rem;
-  border-top: 1px solid hsl(var(--rule));
-}
-
-.mission__num {
-  margin: 0;
-  color: hsl(var(--muted));
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.mission__title {
-  margin-top: 0.4rem;
-  font-size: clamp(1.5rem, 3.4vw, 2.5rem);
-}
-
-.mission__date {
-  margin: 0.3rem 0 0.9rem;
-  color: hsl(var(--muted));
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.missions {
-  display: grid;
-  gap: 0;
-}
-
-.is-staged .act--missions > .missions > .mission {
-  position: absolute;
-  inset: 0;
-  align-content: center;
-  display: grid;
-  border: 0;
-  padding: 0;
-}
-
-.is-staged .mission .prose {
-  max-width: 46rem;
-}
-
-.is-staged .mission__title {
-  max-width: 20ch;
-}
-
 /* --- 07 · contact -------------------------------------------------------- */
 
 .colophon__mail {
   display: inline-block;
-  font-size: clamp(1.35rem, 4.4vw, 3rem);
-  line-height: 1.1;
+  font-size: clamp(1.6rem, 6vw, 4.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
   border-bottom: 1px solid hsl(var(--rule));
-  padding-bottom: 0.2rem;
+  padding-bottom: 0.15rem;
 }
 
 .colophon__mail:hover,
@@ -1506,18 +1560,19 @@ html.is-staged .chapter__links {
   color: hsl(var(--accent));
 }
 
-.colophon__row {
+.colophon__list {
   display: grid;
-  grid-template-columns: 7rem minmax(0, 1fr);
-  gap: 1rem;
-  padding-block: 0.45rem;
   border-top: 1px solid hsl(var(--rule));
 }
 
-.colophon__list {
-  margin-top: 1.75rem;
-  max-width: 34rem;
-  font-size: 0.95rem;
+.colophon__row {
+  display: grid;
+  gap: 0.3rem;
+  align-content: start;
+  padding-block: 0.85rem;
+  border-bottom: 1px solid hsl(var(--rule));
+  --d: calc(var(--in, 1) * (1 - var(--out, 0)));
+  opacity: calc(0.4 + 0.6 * var(--d));
 }
 
 .colophon__key {
@@ -1528,36 +1583,42 @@ html.is-staged .chapter__links {
   text-transform: uppercase;
 }
 
+.colophon__val {
+  font-size: 0.95rem;
+}
+
 .colophon__base {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem 1.5rem;
   justify-content: space-between;
-  margin-top: 2rem;
   color: hsl(var(--muted));
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
   letter-spacing: 0.06em;
 }
 
-.is-staged .act--contact > .colophon__mail {
+.is-staged .act--contact .spread {
   position: absolute;
-  top: 18%;
-  left: 0;
+  inset: 0;
+  grid-template-rows: auto 1fr auto;
+  gap: clamp(1.5rem, 4vh, 2.5rem);
 }
 
-.is-staged .act--contact > .colophon__list {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 0;
+.is-staged .act--contact .colophon__mail {
+  justify-self: start;
+  align-self: end;
 }
 
-.is-staged .act--contact > .colophon__base {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: 0;
+.is-staged .act--contact .colophon__list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-content: center;
+  width: 100%;
+  max-width: 60rem;
+}
+
+.is-staged .act--contact .colophon__base {
+  align-self: end;
 }
 
 /* --- small screens ------------------------------------------------------- */
@@ -1567,36 +1628,59 @@ html.is-staged .chapter__links {
     padding-block: clamp(3.2rem, 6vh, 4rem) 1.25rem;
   }
 
-  .is-staged .index__name {
-    top: clamp(1.6rem, 6vh, 3rem);
-    max-width: 100%;
-  }
-
-  .is-staged .index__slot {
-    top: clamp(6.5rem, 19vh, 9rem);
-    max-width: 100%;
+  .is-staged .index__roles {
+    min-height: 4.2em;
   }
 
   .is-staged .index__plate {
-    top: 32%;
-    right: 0;
-    width: 8.5rem;
+    display: none;
   }
 
-  .is-staged .index__text {
-    bottom: 0;
+  /* every staged spread becomes a single column */
+  .is-staged .act--index .spread,
+  .is-staged .act--track .spread {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .is-staged .act--track .indexlist {
+    align-content: start;
+  }
+
+  /* the index takes the top of the frame, the dealt card gets the rest and
+     scrolls inside its own box if a write-up is long */
+  .is-staged .act--track .spread {
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .is-staged .act--track .indexlist li {
+    padding-block: 0.3rem;
+  }
+
+  .is-staged .act--track .lit__label {
+    font-size: 0.85rem;
+  }
+
+  .is-staged .act--track .spread__main {
+    min-height: 0;
+    overflow: clip;
+  }
+
+  .is-staged .act--track .track__item {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    padding-block: 0.25rem;
+  }
+
+  .is-staged .act--track .track__item .prose {
     max-width: 100%;
   }
 
-  .is-staged .index__links {
-    bottom: 0;
-    left: 0;
-    right: auto;
-    justify-content: flex-start;
-  }
-
-  .is-staged .index__hint {
-    display: none;
+  .is-staged .act--contact .colophon__list {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   /* on a phone the chapter stacks instead of composing in layers */
@@ -1628,17 +1712,11 @@ html.is-staged .chapter__links {
     justify-content: flex-start;
   }
 
-  html.is-staged .chapter__num {
+  html.is-staged .chapter__num,
+  html.is-staged .chapter__plate {
     display: none;
   }
 
-  html.is-staged .chapter__art {
-    top: auto;
-    bottom: -6%;
-    right: -18%;
-    width: 78vw;
-    opacity: 0.12;
-  }
 
   .is-staged .act--archive .panel {
     top: 0;
@@ -1694,10 +1772,7 @@ html.is-staged .chapter__links {
   padding-block: clamp(3rem, 6vw, 4.5rem);
 }
 
-/* acts whose items position themselves inside one box */
-.is-staged .act--practice .practice,
-.is-staged .act--track .track,
-.is-staged .act--missions .missions,
+/* the movie is the one act that does not use a spread */
 .is-staged .movie {
   position: absolute;
   inset: 0;
