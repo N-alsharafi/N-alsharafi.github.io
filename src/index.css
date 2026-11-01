@@ -350,13 +350,49 @@ button {
 }
 
 .section__head {
+  position: sticky;
+  top: 3.25rem;
+  z-index: 5;
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
   gap: 0.5rem 1.5rem;
-  padding-top: 0.9rem;
+  padding-block: 0.85rem 0.7rem;
+  background: hsl(var(--paper));
   border-top: 1px solid hsl(var(--ink));
+}
+
+.section__head > * {
+  transform: scale(calc(1 - 0.2 * var(--p, 0)));
+  transform-origin: left top;
+  will-change: transform;
+}
+
+.section__meta {
+  transform-origin: right top;
+}
+
+/* reading progress for the section currently pinned here */
+.section__head::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: hsl(var(--rule));
+}
+
+.section__head::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  width: calc(var(--p, 0) * 100%);
+  height: 1px;
+  background: hsl(var(--accent));
 }
 
 .section__title {
@@ -682,7 +718,7 @@ button {
 }
 
 .work__counter {
-  margin: 0 0 1.5rem;
+  margin: 0;
   color: hsl(var(--muted));
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
@@ -726,9 +762,15 @@ button {
 }
 
 .work__step {
+  position: relative;
   padding-block: clamp(2rem, 5vh, 3rem);
   border-top: 1px solid hsl(var(--rule));
   scroll-margin-top: 5rem;
+}
+
+.work__step-body {
+  position: relative;
+  z-index: 1;
 }
 
 .work__step-title {
@@ -846,7 +888,7 @@ button {
 
 .archive__head {
   display: grid;
-  grid-template-columns: 3.5rem 1fr auto;
+  grid-template-columns: 1.25rem 3.5rem 1fr auto;
   align-items: baseline;
   gap: 0.5rem 1rem;
   width: 100%;
@@ -895,7 +937,19 @@ button {
 }
 
 .archive__panel {
-  padding: 0 0 1.75rem 4.5rem;
+  padding: 0 0 1.75rem 6.75rem;
+}
+
+.archive__glyph {
+  display: grid;
+  place-items: center;
+  color: hsl(var(--muted));
+}
+
+.archive__glyph svg {
+  display: block;
+  width: 1rem;
+  height: 1rem;
 }
 
 .archive__span {
@@ -950,12 +1004,12 @@ button {
 /* --- colophon ------------------------------------------------------------ */
 
 .colophon {
+  position: relative;
   min-height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-block: var(--section-y);
-  border-top: 1px solid hsl(var(--ink));
   scroll-margin-top: 4rem;
 }
 
@@ -1021,6 +1075,103 @@ button {
   color: hsl(var(--accent));
 }
 
+
+/* --- scroll stage -------------------------------------------------------- */
+
+.section {
+  position: relative;
+}
+
+/* oversized section numeral drifting behind the content */
+.section__ghost {
+  position: absolute;
+  top: -2.5rem;
+  right: clamp(0rem, 2vw, 2rem);
+  z-index: -1;
+  color: hsl(var(--ink));
+  font-size: clamp(6rem, 17vw, 15rem);
+  line-height: 0.78;
+  letter-spacing: -0.05em;
+  opacity: 0.05;
+  pointer-events: none;
+  user-select: none;
+  transform: translate3d(0, calc((var(--p, 0) - 0.5) * -120px), 0);
+  will-change: transform;
+}
+
+.masthead__lede {
+  transform: translate3d(0, calc(var(--sy, 0) * -0.14px), 0);
+}
+
+.masthead__plate {
+  transform: translate3d(0, calc(var(--sy, 0) * -0.05px), 0);
+}
+
+.masthead__foot {
+  opacity: clamp(0, calc(1 - var(--sy, 0) / 260), 1);
+}
+
+/* tag glyphs flying behind a project step */
+.drift {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.drift__item {
+  position: absolute;
+  right: calc(var(--x, 0) * 1%);
+  top: calc(var(--y, 0) * 1%);
+  color: hsl(var(--accent));
+  opacity: var(--o, 0.1);
+  transform: translate3d(0, calc(var(--dy, 120) * var(--p, 0) * -1px), 0)
+    rotate(calc((var(--r0, 0) + var(--dr, 0) * var(--p, 0)) * 1deg));
+  will-change: transform;
+}
+
+.drift__item svg {
+  display: block;
+  width: calc(var(--s, 32) * 1px);
+  height: calc(var(--s, 32) * 1px);
+}
+
+/* the active project's glyph, pinned with the index */
+.work__aside-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.work__sigil {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid hsl(var(--rule));
+  color: hsl(var(--accent));
+  animation: sigil-in 0.45s var(--ease);
+}
+
+.work__sigil svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+@keyframes sigil-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* --- wide ---------------------------------------------------------------- */
 
 @media (min-width: 40rem) {
@@ -1030,7 +1181,7 @@ button {
   }
 
   .archive__head {
-    grid-template-columns: 3.5rem minmax(0, 1fr) minmax(0, 18rem) 1rem;
+    grid-template-columns: 1.25rem 3.5rem minmax(0, 1fr) minmax(0, 18rem) 1rem;
   }
 
   .archive__tags {
@@ -1106,6 +1257,12 @@ button {
   }
 }
 
+@media (max-width: 79.99rem) {
+  .drift {
+    display: none;
+  }
+}
+
 @media (min-width: 82rem) {
   .topbar__nav {
     gap: 1.5rem;
@@ -1121,6 +1278,30 @@ button {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .section__head > *,
+  .section__ghost,
+  .drift__item,
+  .masthead__lede,
+  .masthead__plate {
+    transform: none;
+  }
+
+  .drift {
+    display: none;
+  }
+
+  .section__head::before {
+    width: 0;
+  }
+
+  .masthead__foot {
+    opacity: 1;
+  }
+
+  .work__sigil {
+    animation: none;
   }
 
   [data-reveal] {

@@ -11,6 +11,7 @@ import SelectedWork from "@/components/SelectedWork";
 import TrackRecord from "@/components/TrackRecord";
 import TopBar from "@/components/TopBar";
 import { SECTIONS } from "@/lib/sections";
+import { trackProgress } from "@/lib/scroll";
 import { useTheme } from "@/lib/theme";
 
 export default function App() {
@@ -34,6 +35,11 @@ export default function App() {
     });
 
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const targets = Array.from(document.querySelectorAll<HTMLElement>("[data-progress]"));
+    return trackProgress(targets);
   }, []);
 
   return (

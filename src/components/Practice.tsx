@@ -10,7 +10,7 @@ export default function Practice() {
   const ref = useRevealGroup<HTMLElement>();
 
   return (
-    <section className="section" id="practice" ref={ref}>
+    <section className="section" id="practice" ref={ref} data-progress>
       <div className="shell">
         <SectionHead num="01" title="What I Do" />
         <ol className="practice">

@@ -10,7 +10,7 @@ export default function Masthead() {
   return (
     <section className="masthead" id="masthead" ref={ref}>
       <div className="shell masthead__grid">
-        <div>
+        <div className="masthead__lede">
           <p className="label" data-reveal>
             {site.overline}
           </p>

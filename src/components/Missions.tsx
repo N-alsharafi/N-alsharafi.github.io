@@ -10,7 +10,7 @@ export default function Missions() {
   const ref = useRevealGroup<HTMLElement>();
 
   return (
-    <section className="section" id="missions" ref={ref}>
+    <section className="section" id="missions" ref={ref} data-progress>
       <div className="shell">
         <SectionHead num="06" title="Side Missions" />
 

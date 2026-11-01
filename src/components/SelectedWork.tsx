@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
+import DriftField from "@/components/DriftField";
+import Glyph from "@/components/Glyph";
+import { glyphForTag } from "@/lib/glyphs";
 import Prose from "@/components/Prose";
 import SectionHead from "@/components/SectionHead";
 import projectsData from "@/data/projects.json";
@@ -14,6 +17,7 @@ export default function SelectedWork() {
   const groupRef = useRevealGroup<HTMLElement>();
   const stepsRef = useRef<(HTMLLIElement | null)[]>([]);
   const [current, setCurrent] = useState(0);
+  const active = selected[current] ?? selected[0];
 
   useEffect(
     () =>
@@ -29,15 +33,20 @@ export default function SelectedWork() {
   );
 
   return (
-    <section className="section" id="work" ref={groupRef}>
+    <section className="section" id="work" ref={groupRef} data-progress>
       <div className="shell">
         <SectionHead num="04" title="Featured Projects" meta={`${selected.length} selected`} />
 
         <div className="work__grid">
           <aside className="work__aside">
-            <p className="work__counter num">
-              <b>{pad(current + 1)}</b> / {pad(selected.length)}
-            </p>
+            <div className="work__aside-head">
+              <p className="work__counter num">
+                <b>{pad(current + 1)}</b> / {pad(selected.length)}
+              </p>
+              <span className="work__sigil" key={active.id} aria-hidden="true">
+                <Glyph name={glyphForTag(active.tags[0] ?? "")} />
+              </span>
+            </div>
             <ol>
               {selected.map((project, index) => (
                 <li className="work__index-item" key={project.id}>
@@ -61,10 +70,13 @@ export default function SelectedWork() {
                 id={`project-${project.id}`}
                 key={project.id}
                 data-reveal
+                data-progress
                 ref={(node) => {
                   stepsRef.current[index] = node;
                 }}
               >
+                <DriftField seed={project.title} tags={project.tags} />
+                <div className="work__step-body">
                 <h3 className="work__step-title">{project.title}</h3>
                 <p className="work__meta">
                   <span className="num">{formatRange(project.startDate, project.endDate)}</span>
@@ -91,6 +103,7 @@ export default function SelectedWork() {
                     ) : null}
                   </p>
                 ) : null}
+                </div>
               </li>
             ))}
           </ol>

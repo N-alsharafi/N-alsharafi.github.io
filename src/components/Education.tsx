@@ -10,7 +10,7 @@ export default function Education() {
   const ref = useRevealGroup<HTMLElement>();
 
   return (
-    <section className="section" id="education" ref={ref}>
+    <section className="section" id="education" ref={ref} data-progress>
       <div className="shell">
         <SectionHead num="03" title="Education" />
 

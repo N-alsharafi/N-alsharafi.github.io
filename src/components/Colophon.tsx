@@ -20,7 +20,7 @@ export default function Colophon() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="colophon" id="contact" ref={ref}>
+    <footer className="colophon" id="contact" ref={ref} data-progress>
       <div className="shell">
         <SectionHead num="07" title="Get in Touch" />
 

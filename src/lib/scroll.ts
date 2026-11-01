@@ -24,6 +24,7 @@ function measure(): ScrollState {
 function flush() {
   queued = false;
   const state = measure();
+  paintStage(state);
   subscribers.forEach((subscriber) => subscriber(state));
 }
 
@@ -41,6 +42,7 @@ function listen() {
   window.addEventListener("scroll", schedule, { passive: true });
   window.addEventListener("resize", schedule);
   document.addEventListener("load", schedule);
+  schedule();
 }
 
 /**
@@ -65,4 +67,31 @@ export function elementProgress(rect: DOMRect, vh: number, focus = 0.55): number
 /** Writes progress to a CSS custom property instead of React state. */
 export function paintProgress(element: HTMLElement, value: number) {
   element.style.setProperty("--progress", value.toFixed(4));
+}
+
+/* --- scroll-linked stage ------------------------------------------------- */
+
+const progressTargets = new Set<HTMLElement>();
+
+/** Registers elements whose `--p` (0 → 1 as they cross the viewport) is painted. */
+export function trackProgress(elements: HTMLElement[]): () => void {
+  elements.forEach((element) => progressTargets.add(element));
+  listen();
+  return () => elements.forEach((element) => progressTargets.delete(element));
+}
+
+function passThrough(element: HTMLElement, vh: number): number {
+  const rect = element.getBoundingClientRect();
+  return Math.min(1, Math.max(0, (vh - rect.top) / (rect.height + vh)));
+}
+
+function paintStage(state: ScrollState) {
+  if (progressTargets.size === 0) return;
+
+  // one read pass, then one write pass — no interleaved layout thrash
+  const reads: [HTMLElement, number][] = [];
+  progressTargets.forEach((element) => reads.push([element, passThrough(element, state.vh)]));
+  reads.forEach(([element, value]) => element.style.setProperty("--p", value.toFixed(4)));
+
+  document.documentElement.style.setProperty("--sy", String(Math.round(state.y)));
 }

@@ -27,7 +27,7 @@ export default function TrackRecord() {
   );
 
   return (
-    <section className="section" id="track-record" ref={groupRef}>
+    <section className="section" id="track-record" ref={groupRef} data-progress>
       <div className="shell">
         <SectionHead num="02" title="Professional Experience" meta={`${roles.length} roles`} />
 

@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import Glyph from "@/components/Glyph";
+import { glyphForTag } from "@/lib/glyphs";
 import Prose from "@/components/Prose";
 import SectionHead from "@/components/SectionHead";
 import projectsData from "@/data/projects.json";
@@ -33,7 +35,7 @@ export default function Archive() {
     );
 
   return (
-    <section className="section" id="archive" ref={ref}>
+    <section className="section" id="archive" ref={ref} data-progress>
       <div className="shell">
         <SectionHead
           num="05"
@@ -80,6 +82,9 @@ export default function Archive() {
                   aria-controls={`archive-${project.id}`}
                   onClick={() => toggleRow(project.id)}
                 >
+                  <span className="archive__glyph" aria-hidden="true">
+                    <Glyph name={glyphForTag(project.tags[0] ?? "")} />
+                  </span>
                   <span className="archive__year num">{year}</span>
                   <span className="archive__title">
                     {project.title}
