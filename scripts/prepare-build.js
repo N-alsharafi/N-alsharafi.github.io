@@ -75,10 +75,10 @@ if (!fs.existsSync('public/images/PFP.jpeg')) {
 }
 
 // Check for resume file
-if (!fs.existsSync('public/Nuh-Al-Sharafi-CV-Jun-23-26-Professional.pdf') && fs.existsSync('sources/Nuh-Al-Sharafi-CV-Jun-23-26-Professional.pdf')) {
+if (!fs.existsSync('public/Nuh-Al-Sharafi-CV-Oct-21-26-Professional.pdf') && fs.existsSync('sources/Nuh-Al-Sharafi-CV-Oct-21-26-Professional.pdf')) {
   console.log('⚠️ Resume not found in public directory. Copying from sources...');
   try {
-    fs.copyFileSync('sources/Nuh-Al-Sharafi-CV-Jun-23-26-Professional.pdf', 'public/Nuh-Al-Sharafi-CV-Jun-23-26-Professional.pdf');
+    fs.copyFileSync('sources/Nuh-Al-Sharafi-CV-Oct-21-26-Professional.pdf', 'public/Nuh-Al-Sharafi-CV-Oct-21-26-Professional.pdf');
     console.log('✅ Copied resume to public directory');
   } catch (error) {
     console.error('❌ Failed to copy resume:', error.message);
@@ -97,11 +97,6 @@ if (!fs.existsSync(nojekyllPath)) {
   console.log('✅ Created .nojekyll file');
 }
 
-// Create redirects file for SPA routing
-const redirectsPath = path.join('public', '_redirects');
-if (!fs.existsSync(redirectsPath)) {
-  fs.writeFileSync(redirectsPath, '/*    /index.html   200');
-  console.log('✅ Created _redirects file for SPA routing');
-}
+// The site is a single page, so no SPA rewrite rules are needed.
 
 console.log('✅ Build preparation complete'); 

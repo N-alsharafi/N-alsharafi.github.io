@@ -1,39 +1,58 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Index from "./pages/Index";
-import Experience from "./pages/Experience";
-import Contact from "./pages/Contact";
-import NotFound from "./pages/NotFound";
+import Archive from "@/components/Archive";
+import Colophon from "@/components/Colophon";
+import Education from "@/components/Education";
+import Masthead from "@/components/Masthead";
+import Missions from "@/components/Missions";
+import Practice from "@/components/Practice";
+import Rail from "@/components/Rail";
+import SelectedWork from "@/components/SelectedWork";
+import TrackRecord from "@/components/TrackRecord";
+import TopBar from "@/components/TopBar";
+import { SECTIONS } from "@/lib/sections";
+import { useTheme } from "@/lib/theme";
 
-const queryClient = new QueryClient();
+export default function App() {
+  const { theme, toggle } = useTheme();
+  const [active, setActive] = useState(SECTIONS[0].id);
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <HashRouter>
-        <div className="flex flex-col min-h-screen">
-          <Navbar />
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/experience" element={<Experience />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </HashRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const hit = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+        if (hit) setActive(hit.target.id);
+      },
+      { rootMargin: "-45% 0px -45% 0px" },
+    );
 
-export default App;
+    SECTIONS.forEach((section) => {
+      const element = document.getElementById(section.id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <>
+      <a className="skip" href="#practice">
+        Skip to content
+      </a>
+      <TopBar sections={SECTIONS} active={active} theme={theme} onToggleTheme={toggle} />
+      <Rail sections={SECTIONS} active={active} />
+      <main>
+        <Masthead />
+        <Practice />
+        <TrackRecord />
+        <Education />
+        <SelectedWork />
+        <Archive />
+        <Missions />
+      </main>
+      <Colophon />
+    </>
+  );
+}

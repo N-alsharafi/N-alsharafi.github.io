@@ -1,0 +1,29 @@
+{
+  "school": "Sabanci University",
+  "location": "Istanbul, Turkey",
+  "startDate": "2022-10-01",
+  "endDate": "2026-06-30",
+  "degree": "B.Sc. Computer Science and Engineering",
+  "faculty": "Faculty of Engineering and Natural Sciences",
+  "gpa": "3.86/4",
+  "rank": "23/402 in CS (Major), 28/654 in FENS (Faculty)",
+  "coursework": [
+    "Data Structures",
+    "Algorithms",
+    "Computer Networks",
+    "Database Systems",
+    "Software Engineering",
+    "Mobile Application Development",
+    "Introduction to Data Science",
+    "Data Analysis and Optimization",
+    "Statistical Modelling",
+    "Machine Learning",
+    "Deep Learning",
+    "Artificial Intelligence",
+    "Natural Language Processing",
+    "LLMs: Foundations and Practice",
+    "Network Science",
+    "AI Ethics",
+    "Automated Debugging"
+  ]
+}

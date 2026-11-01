@@ -1,42 +1,34 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  base: "./", // GitHub Pages compatible // Relative path for GitHub Pages
+export default defineConfig({
+  base: "./", // GitHub Pages serves the site from a subpath-agnostic root
   server: {
     host: "::",
     port: 8080,
   },
   build: {
-    assetsInlineLimit: 0, // Prevent asset inlining
-    outDir: 'dist',
+    outDir: "dist",
     emptyOutDir: true,
+    assetsInlineLimit: 0,
     rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, "index.html"),
+      },
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
+          vendor: ["react", "react-dom"],
         },
       },
-      input: {
-        main: path.resolve(__dirname, 'index.html')
-      }
     },
   },
-  optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom'],
-  },
-  plugins: [
-    react(),
-    mode === 'development' &&
-    componentTagger(),
-  ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
-}));
+  plugins: [react()],
+});

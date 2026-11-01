@@ -1,0 +1,45 @@
+{
+  "name": "Nuh Al-Sharafi",
+  "overline": "Computer Science and Engineering — Sabanci University · Istanbul, Turkey",
+  "roles": [
+    "Forward Deployed Engineer",
+    "NLP/ML Engineer",
+    "Deep Learning",
+    "Fullstack Developer",
+    "DevOps Specialist",
+    "Data Scientist",
+    "AI Researcher"
+  ],
+  "intro": {
+    "label": "Hello World! 👋",
+    "paragraphs": [
+      "Computer Science and Engineering graduate from Sabanci University (GPA 3.86/4), working at the intersection of software engineering and applied AI. Currently a Fullstack Developer at KIM Vakfi in Istanbul.",
+      "Feel free to visit my LinkedIn profile or view my resume. You can also check out my GitHub profile to see what I've been working on."
+    ]
+  },
+  "links": {
+    "linkedin": "https://www.linkedin.com/in/nuh-al-sharafi-9762ab222/",
+    "linkedinLabel": "linkedin.com/in/nuh-al-sharafi-9762ab222",
+    "github": "https://github.com/N-alsharafi/",
+    "githubLabel": "github.com/N-alsharafi",
+    "resume": "./Nuh-Al-Sharafi-CV-Oct-21-26-Professional.pdf",
+    "resumeLabel": "Nuh-Al-Sharafi-CV-Oct-21-26-Professional.pdf",
+    "emailUser": "nuh.alsharafi",
+    "emailDomain": "gmail.com"
+  },
+  "practice": [
+    {
+      "title": "Software Development",
+      "body": "Building applications with a focus on clean, maintainable code using modern technologies and best practices."
+    },
+    {
+      "title": "Machine Learning & NLP",
+      "body": "Developing machine learning solutions with emphasis on natural language processing, transformers, and deep learning models."
+    },
+    {
+      "title": "Academic Research",
+      "body": "Conducting research in computer science, data analysis, and applying computational methods to solve real-world problems."
+    }
+  ],
+  "colophon": "React, TypeScript, hand-written CSS. Content served from five JSON files."
+}

@@ -7,10 +7,31 @@
     "date": "Present"
   },
   {
-    "id": 2,
-    "title": "Nuqat - Spaced Repetition App",
-    "description": "Built a local-first Progressive Web App (PWA) leveraging Dexie.js (IndexedDB) for secure, schema-driven, offline-capable data persistence and client-side state management.\n\nIntegrated the FSRS (Free Spaced Repetition Scheduler) algorithm, designing a custom mathematical grading rubric that converts real-time qualitative inputs into quantitative data points to dynamically project optimal memory stability.\n\nArchitected structured data schemas to map hierarchical metadata into atomic, trackable flashcard nodes, while ensuring great user experience through user-feedback.",
+    "id": 3,
+    "title": "Sabanci University Education Conference",
+    "description": "Invited speaker at Sabanci University's internal education conference.",
     "link": "",
-    "date": "March 2026 - Present"
+    "date": "2023"
+  },
+  {
+    "id": 4,
+    "title": "suchedule",
+    "description": "Rescued and redeployed a deprecated project, fixing and maintaining it.",
+    "link": "n-alsharafi.github.io/suchedule",
+    "date": "2024"
+  },
+  {
+    "id": 5,
+    "title": "namazvakitleri",
+    "description": "A calendar extension that sets and manages prayer-time events.",
+    "link": "",
+    "date": "2025"
+  },
+  {
+    "id": 2,
+    "title": "Olympic lifting",
+    "description": "To carry heavy responsbility you must be able to lift heavy weights.",
+    "link": "",
+    "date": ""
   }
 ]

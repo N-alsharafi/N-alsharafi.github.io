@@ -27,3 +27,9 @@ test-deploy.sh
 debug-build.sh
 *.sh
 *.bak
+
+# Local CV source (kept in ~/career-ops, never publish)
+cv.md
+
+# TypeScript incremental build info
+*.tsbuildinfo

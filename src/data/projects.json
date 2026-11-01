@@ -3,231 +3,373 @@
         "id": 19,
         "title": "Turkish Adaptive Learning Platform",
         "description": "An adaptive NLP-driven platform for Turkish language learning (2-person team, April 2026 - June 2026).\n\n- Engineered an adaptive NLP recommendation pipeline utilizing multilingual Bi-Encoders and a FAISS vector database to perform high-dimensional semantic search over Turkish language databases.\n- Designed a custom multi-objective ranking algorithm using Maximum Marginal Relevance (MMR) and weighted features to solve complex data constraints.\n- Developed an LLM-powered tutor interface utilizing the OpenRouter API for generative language coaching, backed by a simulated benchmarking framework evaluating 720 pipeline configurations to systematically optimize retrieval accuracy.",
-        "tags": ["NLP", "FAISS", "Bi-Encoders", "MMR", "LLM", "OpenRouter", "Python"],
+        "tags": [
+            "NLP",
+            "FAISS",
+            "Bi-Encoders",
+            "MMR",
+            "LLM",
+            "OpenRouter",
+            "Python"
+        ],
         "image": "/assets/adaptive-learning.svg",
         "github": "",
         "demo": "",
         "featured": true,
-        "date": "2026-04-01"
+        "startDate": "2026-04-01",
+        "endDate": "2026-06-30"
     },
     {
         "id": 20,
         "title": "CS460: AI vs. Human Code Analysis",
         "description": "Empirical study comparing defect profiles of LLM-generated and human-written code (2-person team, May 2026 - June 2026).\n\n- Developed and tested a central software reliability hypothesis addressing a critical academic gap: whether traditional, human-oriented test suites are sufficient for evaluating the distinct behavioral defect profiles of LLM-generated code.\n- Designed a taxonomy-guided dynamic testing pipeline to empirically evaluate execution characteristics, orchestrating custom automation frameworks to isolate and analyze runtime errors across 100 paired human-AI code samples.\n- Synthesized key empirical findings to prove that legacy test suites require strategic adaptation for AI-generated code, proposing methodologies to expand test case generation to capture functional edge cases, or dynamically prioritize specific tests to reduce execution computational overhead in large-scale test suites.",
-        "tags": ["Software Testing", "LLM", "Code Analysis", "Empirical Research", "Automation"],
+        "tags": [
+            "Software Testing",
+            "LLM",
+            "Code Analysis",
+            "Empirical Research",
+            "Automation"
+        ],
         "image": "/assets/ai-code-analysis.svg",
         "github": "",
         "demo": "",
         "featured": true,
-        "date": "2026-05-01"
+        "startDate": "2026-05-01",
+        "endDate": "2026-06-30"
     },
     {
         "id": 14,
         "title": "ENS491/2: Systematic Mapping Studies with LLMs",
         "description": "Created a Web App that guides users through creating a Systematic Mapping Study using AI (4-person team, February 2025 - January 2026).\n\n- Development of the tool was guided by how actual Systematic mapping studies are done.\n- Created a Web App that takes the user along the process of creating a Systematic Mapping Study using AI with comprehensive state management.\n- Developed a multi-agent MCP system enabling iterative query improvement, paper retrieval and filtering, topic analysis and graphing then report generation.\n- User is able to jump in at any step and guide the Agent's behavior or manually edit the carry out the step.",
-        "tags": ["AI", "LLM", "Multi-agent Systems", "Web Development", "Research Tools", "MCP"],
+        "tags": [
+            "AI",
+            "LLM",
+            "Multi-agent Systems",
+            "Web Development",
+            "Research Tools",
+            "MCP"
+        ],
         "image": "/assets/research-llm.svg",
         "github": "",
         "demo": "",
         "featured": true,
-        "date": "2026-01-01"
+        "startDate": "2025-02-01",
+        "endDate": "2026-01-31"
     },
     {
         "id": 16,
         "title": "CS445: SemEval 2026 - Multilingual Text Classification",
         "description": "Participated in SemEval 2026 Arabic text classification: Polarization Detection (4-person team, November 2025 - January 2026).\n\n- Achieved P4 (Dev set) on binary classification using k-fold ensemble (10 models) with empirically tested preprocessing and MARBERT_v2.\n- Attained P5 (Dev set) on multiclass classification through MARBERT_v2 fine-tuning with snapshot ensembling and asymmetric loss optimization.\n- Evaluated morphological features and Arabic-native LLMs against our chosen approaches.",
-        "tags": ["NLP", "Machine Learning", "Arabic", "Text Classification", "BERT", "Deep Learning"],
+        "tags": [
+            "NLP",
+            "Machine Learning",
+            "Arabic",
+            "Text Classification",
+            "BERT",
+            "Deep Learning"
+        ],
         "image": "/assets/text-classification.svg",
         "github": "",
         "demo": "",
         "featured": true,
-        "date": "2026-01-01"
+        "startDate": "2025-11-01",
+        "endDate": "2026-01-31"
     },
     {
         "id": 17,
         "title": "CS415: Toxic Comment Identification",
         "description": "Led multi-label toxic comment classification project (4-person team, October 2025 - December 2025).\n\n- Compared 5 deep learning architectures (BERT, DeBERTa, Mamba SSM, xLSTM, custom Transformer) across 6 toxicity categories on 159k samples.\n- Fine-tuned BERT-base and DeBERTa-v3 achieving 0.9815 AUC.\n- Trained a custom transformer achieving 0.8813 AUC.",
-        "tags": ["NLP", "Deep Learning", "BERT", "Transformers", "Multi-label Classification", "PyTorch"],
+        "tags": [
+            "NLP",
+            "Deep Learning",
+            "BERT",
+            "Transformers",
+            "Multi-label Classification",
+            "PyTorch"
+        ],
         "image": "/assets/toxic-detection.svg",
         "github": "",
         "demo": "",
         "featured": false,
-        "date": "2025-12-01"
+        "startDate": "2025-10-01",
+        "endDate": "2025-12-31"
     },
     {
         "id": 11,
         "title": "CS408: Drone Data Collection System",
         "description": "Built a sensor-drone-server simulation to exercise network programming (3-person team).\n\n- Implemented GUI dashboards, multi-threading, and socket programming.\n- Features statistical anomaly detection and real-time alerts.\n- Developed a comprehensive system simulating IoT data collection and processing.",
-        "tags": ["Network Programming", "Multi-threading", "Socket Programming", "Real-time", "Anomaly Detection"],
+        "tags": [
+            "Network Programming",
+            "Multi-threading",
+            "Socket Programming",
+            "Real-time",
+            "Anomaly Detection"
+        ],
         "image": "/assets/drone-network.svg",
         "github": "",
         "demo": "",
         "featured": false,
-        "date": "2025-06-01"
+        "startDate": "2025-02-01",
+        "endDate": "2025-06-30"
     },
     {
         "id": 13,
         "title": "CS414: GitHub Developer Centrality and Language Diversity",
         "description": "Analyzed a 50GB graph containing 10 million GitHub users and their repositories (3-person team).\n\n- Carried out community detection powered with cuGraph, Nvidia RAPIDs on Saturn Cloud.\n- Discovered that central users in programming language communities usually only know that language.\n- Handled large-scale graph data processing and analysis.",
-        "tags": ["Big Data", "Graph Analysis", "cuGraph", "Community Detection", "Data Science"],
+        "tags": [
+            "Big Data",
+            "Graph Analysis",
+            "cuGraph",
+            "Community Detection",
+            "Data Science"
+        ],
         "image": "/assets/github-network.svg",
         "github": "",
         "demo": "",
         "featured": true,
-        "date": "2025-06-01"
+        "startDate": "2025-02-01",
+        "endDate": "2025-06-30"
     },
     {
         "id": 18,
         "title": "Nuqat: Spaced Repetition App",
         "description": "A local-first Progressive Web App for spaced repetition memorization (March 2026 - Present).\n\n- Engineered a local-first Progressive Web App (PWA) leveraging Dexie.js (IndexedDB) for secure, schema-driven, offline-capable data persistence and client-side state management.\n- Integrated the FSRS (Free Spaced Repetition Scheduler) algorithm, designing a custom mathematical grading rubric that converts real-time qualitative inputs into quantitative data points to dynamically project optimal memory stability.\n- Architected structured data schemas to map hierarchical metadata into atomic, trackable flashcard nodes, while ensuring great user experience through user-feedback.",
-        "tags": ["PWA", "Dexie.js", "IndexedDB", "FSRS", "Spaced Repetition", "TypeScript"],
+        "tags": [
+            "PWA",
+            "Dexie.js",
+            "IndexedDB",
+            "FSRS",
+            "Spaced Repetition",
+            "TypeScript"
+        ],
         "image": "/assets/spaced-repetition.svg",
         "github": "",
         "demo": "",
-        "featured": true,
-        "date": "2026-03-01"
+        "featured": false,
+        "startDate": "2026-03-01",
+        "endDate": "Present"
     },
     {
         "id": 21,
         "title": "DSA440: Ethical AI in Medical Resource Allocation",
         "description": "A study on the ethical implications of AI-driven decision-making in healthcare resource allocation (April 2026 - May 2026).\n\n- Conducted a literature review to understand the current state of AI deployment in medical resource allocation and identify key ethical concerns.\n- Designed and evaluated a prototype ethical framework addressing accountability and responsibility principles, balancing conflicting stakeholder interests in resource-constrained medical environments.\n- Synthesized findings to propose governance mechanisms that ensure transparency and human oversight in AI-assisted clinical decision-making.",
-        "tags": ["AI Ethics", "Healthcare", "Literature Review", "Responsible AI"],
+        "tags": [
+            "AI Ethics",
+            "Healthcare",
+            "Literature Review",
+            "Responsible AI"
+        ],
         "image": "/assets/ai-ethics.svg",
         "github": "",
         "demo": "",
         "featured": false,
-        "date": "2026-04-01"
+        "startDate": "2026-04-01",
+        "endDate": "2026-05-31"
     },
     {
         "id": 12,
         "title": "CS412: IMDB Review Sentiment Prediction",
         "description": "Implemented and compared three sentiment classification models on 50,000 movie reviews (5-person team).\n\n- Compared Logistic Regression with TF-IDF, LSTM, and fine-tuned BERT models.\n- Achieved 90% test accuracy and 0.90 macro F1-score using BERT.\n- Demonstrated transformer superiority over traditional ML approaches.",
-        "tags": ["Machine Learning", "NLP", "BERT", "LSTM", "Sentiment Analysis"],
+        "tags": [
+            "Machine Learning",
+            "NLP",
+            "BERT",
+            "LSTM",
+            "Sentiment Analysis"
+        ],
         "image": "/assets/sentiment-analysis.svg",
         "github": "",
         "demo": "",
         "featured": false,
-        "date": "2025-05-01"
+        "startDate": "2025-05-01",
+        "endDate": "2025-05-31"
     },
     {
         "id": 15,
         "title": "WitchCraft: Quick CV Tool with AI Enhancement",
         "description": "Quick, drag-and-drop CV creation tool (3-person team, 8-day hackathon project).\n\n- Users only write their info once in the profile.\n- Implemented AI to generate CVs tailored to specific job descriptions.\n- Designed user-friendly Profile and Home pages with a CV parsing tool.",
-        "tags": ["Web Development", "AI", "UI/UX", "Hackathon"],
+        "tags": [
+            "Web Development",
+            "AI",
+            "UI/UX",
+            "Hackathon"
+        ],
         "image": "/assets/cv-builder.svg",
         "github": "",
         "demo": "",
         "featured": false,
-        "date": "2025-03-01"
+        "startDate": "2025-03-01",
+        "endDate": "2025-03-31"
     },
     {
         "id": 1,
         "title": "CS310: Real-time Chat Application",
         "description": "Developed a real-time chat mobile app (2-person team).\n\n- Developed the backend using Java and SpringBoot.\n- Developed the frontend using React Native.\n- Implemented JWT tokens for authentication.\n- Ability to sign up, add friends, make groups, and send real-time chat messages.",
-        "tags": ["Java", "SpringBoot", "React Native", "JWT", "Real-time"],
+        "tags": [
+            "Java",
+            "SpringBoot",
+            "React Native",
+            "JWT",
+            "Real-time"
+        ],
         "image": "/assets/chat-app.svg",
         "github": "https://github.com/Team7-2401/HowudoinB",
         "demo": "",
         "featured": false,
-        "date": "2024-09-01"
+        "startDate": "2024-09-01",
+        "endDate": "2025-01-31"
     },
     {
         "id": 2,
         "title": "CS308: E-commerce Site",
         "description": "Developed an e-commerce site that sells bags for men (6-person team).\n\n- Used Scrum and Jira to manage the project (played the role of Scrum Master).\n- Used GitHub and Git to facilitate collaboration.\n- Followed a client-server architectural model.\n- Used NodeJS, ExpressJS, and ReactJS.",
-        "tags": ["NodeJS", "ExpressJS", "ReactJS", "Scrum", "Jira"],
+        "tags": [
+            "NodeJS",
+            "ExpressJS",
+            "ReactJS",
+            "Scrum",
+            "Jira"
+        ],
         "image": "/assets/ecommerce.svg",
         "github": "https://github.com/pishmish/laback",
         "demo": "",
         "featured": true,
-        "date": "2024-09-01"
+        "startDate": "2024-09-01",
+        "endDate": "2025-01-31"
     },
     {
         "id": 3,
         "title": "CS306: Database System Using SQL and Firebase",
         "description": "Implemented MySQL and Firebase into CRUD apps (4-person team).\n\n- Designed a relational database system for a computer parts shop.\n- Drew an ER-diagram and converted it to SQL.\n- Developed triggers and stored procedures.\n- Made a simple web interface to interact with the database.\n- Developed a real-time support portal for customer requests with Firebase.",
-        "tags": ["MySQL", "Firebase", "SQL", "CRUD", "Database Design"],
+        "tags": [
+            "MySQL",
+            "Firebase",
+            "SQL",
+            "CRUD",
+            "Database Design"
+        ],
         "image": "/assets/database.svg",
         "github": "",
         "demo": "",
         "featured": false,
-        "date": "2024-09-01"
+        "startDate": "2024-09-01",
+        "endDate": "2025-01-31"
     },
     {
         "id": 4,
         "title": "CS301: Analyzed and Solved the MIS Problem",
         "description": "Studied the Maximum Independent Set problem (2-person team).\n\n- Developed, implemented, and benchmarked a brute force exponential solution.\n- Researched, implemented, and benchmarked a heuristic polynomial solution.\n- Used statistical methods to ensure robust results.\n- Developed a random sample generator and a graph visualizer for testing.",
-        "tags": ["Algorithms", "Graph Theory", "Benchmarking", "Statistical Methods"],
+        "tags": [
+            "Algorithms",
+            "Graph Theory",
+            "Benchmarking",
+            "Statistical Methods"
+        ],
         "image": "/assets/graph-theory.svg",
         "github": "https://github.com/Team7-2401/MIS-Progress",
         "demo": "",
         "featured": false,
-        "date": "2024-09-01"
+        "startDate": "2024-09-01",
+        "endDate": "2025-01-31"
     },
     {
         "id": 5,
         "title": "Personal Website",
         "description": "Created a personal website using HTML, CSS, and JavaScript.\n\n- Designed and developed the website to showcase my projects, skills, and achievements.\n- Regularly update the site to reflect new projects and skills.",
-        "tags": ["HTML", "CSS", "JavaScript"],
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
         "image": "/assets/portfolio.svg",
         "github": "",
         "demo": "https://n-alsharafi.github.io",
         "featured": false,
-        "date": "2024-09-01"
+        "startDate": "2024-09-01",
+        "endDate": "Present"
     },
     {
         "id": 6,
         "title": "PURE: Extracting Merger Deal Initiation with LLMs",
         "description": "As part of the Program for Undergraduate Research, we aimed to produce a database to distill private phase deal metrics using generative AI.\n\n- Collected data via web scraping from the SEC's website.\n- Developed methods to filter data and extract relevant sections within documents.\n- Tuned Gemini's parameters and engineered prompts.\n- Passed documents to the LLM along with the prompts, then collected and validated results.\n- Assessed the performance of different prompts and configurations.",
-        "tags": ["AI", "LLM", "Web Scraping", "Data Analysis", "Prompt Engineering"],
+        "tags": [
+            "AI",
+            "LLM",
+            "Web Scraping",
+            "Data Analysis",
+            "Prompt Engineering"
+        ],
         "image": "/assets/ai-llm.svg",
         "github": "",
         "demo": "",
         "featured": false,
-        "date": "2024-07-01"
+        "startDate": "2024-07-01",
+        "endDate": "2024-08-31"
     },
     {
         "id": 7,
         "title": "CS210: Predicting Inflation Using Stock Market Fluctuations in the US",
         "description": "Aimed to study the relation between stocks in a provided stock market database and an inflation database.\n\n- Applied data science principles such as data collection, wrangling, analysis, etc.\n- Conducted hypothesis testing and regressive machine learning.\n- Analyzed the performance of different machine learning algorithms.",
-        "tags": ["Data Science", "Machine Learning", "Hypothesis Testing", "Financial Analysis"],
+        "tags": [
+            "Data Science",
+            "Machine Learning",
+            "Hypothesis Testing",
+            "Financial Analysis"
+        ],
         "image": "/assets/data-science.svg",
         "github": "https://github.com/N-alsharafi/CS-210",
         "demo": "",
         "featured": false,
-        "date": "2024-02-01"
+        "startDate": "2024-02-01",
+        "endDate": "2024-06-30"
     },
     {
         "id": 8,
         "title": "CS303: Calculator in Digital",
         "description": "Aimed to design and implement an addition calculator circuit in digital using basic logic components like encoders, decoders, multiplexers, flip flops, etc.",
-        "tags": ["Digital Logic", "Circuit Design", "Hardware"],
+        "tags": [
+            "Digital Logic",
+            "Circuit Design",
+            "Hardware"
+        ],
         "image": "/assets/digital-logic.svg",
         "github": "https://github.com/N-alsharafi/CS-303",
         "demo": "",
         "featured": false,
-        "date": "2024-02-01"
+        "startDate": "2024-02-01",
+        "endDate": "2024-06-30"
     },
     {
         "id": 9,
         "title": "SUDuyuru: Sabanci University Announcements via Mail Service",
         "description": "Aimed to make keeping up with general university announcements easier by sending the announcements via email.\n\n- Uses Docker Compose for ease of deployment.\n- Uses MongoDB to store the announcements.\n- Open source on GitHub.",
-        "tags": ["Docker", "MongoDB", "Email Service", "Web Scraping"],
+        "tags": [
+            "Docker",
+            "MongoDB",
+            "Email Service",
+            "Web Scraping"
+        ],
         "image": "/assets/email-service.svg",
         "github": "https://github.com/N-alsharafi/SUDuyuru",
         "demo": "",
         "featured": false,
-        "date": "2024-01-01"
+        "startDate": "2024-01-01",
+        "endDate": "2024-12-31"
     },
     {
         "id": 10,
         "title": "Proj201: Measuring Excitement in Sports",
         "description": "Started with the aim of coming up with a quantitative measure of excitement for UFC fights.\n\n- Engineered a solution plan.\n- Conducted data collection and wrangling.\n- Created a descriptive report of the data to help develop an equation.\n- Developed an equation to calculate excitement and made several reasonable conclusions.",
-        "tags": ["Data Analysis", "Sports Analytics", "Statistical Modeling"],
+        "tags": [
+            "Data Analysis",
+            "Sports Analytics",
+            "Statistical Modeling"
+        ],
         "image": "/assets/sports-analytics.svg",
         "github": "https://github.com/N-alsharafi/PROJ-201",
         "demo": "",
         "featured": false,
-        "date": "2023-10-01"
+        "startDate": "2023-10-01",
+        "endDate": "2024-01-31"
     }
 ]

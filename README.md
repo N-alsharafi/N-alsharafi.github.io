@@ -1,58 +1,58 @@
 # Personal Portfolio
 
-This is a personal portfolio website built with React, TypeScript, and Tailwind CSS.
+Single-page scrollytelling portfolio for Nuh Al-Sharafi. The design is
+hand-written: CSS custom properties, sticky reading rail, and a sticky project
+index that tracks the step you are on. No component library, no CSS framework.
 
 ## Getting Started
 
-### Prerequisites
-
-- Node.js (v16 or higher)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository
-```bash
-git clone https://github.com/N-alsharafi/N-alsharafi.github.io.git
-cd N-alsharafi.github.io
-```
-
-2. Install dependencies
 ```bash
 npm install
-# or
-yarn install
+npm run dev      # http://localhost:8080
 ```
 
-3. Start the development server
+## Content
+
+All copy lives in JSON — edit these and the UI follows:
+
+| File | Drives |
+|---|---|
+| `src/data/site.json` | name, roles, intro, profile links, "What I Do", colophon |
+| `src/data/work.json` | Professional Experience entries |
+| `src/data/education.json` | Education section (degree, GPA, rank, coursework) |
+| `src/data/projects.json` | Featured Projects (sticky index) and the Project Archive table |
+| `src/data/side-missions.json` | Side Missions |
+
+`featured: true` on a project puts it in the scroll narrative as well as the archive.
+Projects and roles carry `startDate`/`endDate`; `endDate: "Present"` means ongoing and
+sorts ahead of finished work. The email is stored split (`emailUser` + `emailDomain`)
+and assembled at runtime, so the address never appears literally in the bundle.
+
+Sections in order: masthead, practice, experience, education, work, archive, missions,
+contact. Their numbers and labels live in `src/lib/sections.ts`, which drives the top
+bar, the reading rail and the scroll spy.
+
+## Structure
+
+```
+src/
+  App.tsx                 section order
+  components/             one file per section, plus Prose / SectionHead
+  lib/format.ts           ISO date formatting and sort comparators
+  lib/reveal.ts           shared IntersectionObserver for the reveal animation
+  lib/scroll.ts           coalesced scroll geometry (rAF), writes CSS variables
+  lib/sections.ts         section registry used by the top bar and the rail
+  lib/theme.ts            light/dark preference, persisted in localStorage
+  index.css               tokens, layout, blocks
+```
+
+Motion is limited to one entrance animation and scroll-linked progress fills;
+everything is disabled under `prefers-reduced-motion`.
+
+## Building
+
 ```bash
-npm run dev
-# or
-yarn dev
+npm run build      # → dist/ (also copies the suchedule submodule)
+npm run typecheck
+npm run lint
 ```
-
-This will start the development server on [http://localhost:5173](http://localhost:5173).
-
-## Building for Production
-
-To build the application for production, run:
-
-```bash
-npm run build
-# or
-yarn build
-```
-
-The build output will be in the `dist` folder.
-
-## Tech Stack
-
-- **Frontend**: React 18 + TypeScript
-- **Build Tool**: Vite
-- **Styling**: Tailwind CSS + shadcn/ui (Radix UI)
-- **Routing**: React Router
-- **Data Fetching**: TanStack React Query
-- **Forms**: React Hook Form + Zod
-- **Icons**: Lucide React
-- **Charts**: Recharts
-- **Deployment**: GitHub Pages
