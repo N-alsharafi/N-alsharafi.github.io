@@ -3,43 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nuh Al-Sharafi - Portfolio</title>
-    <meta name="description" content="Portfolio of Nuh Al-Sharafi" />
+    <title>Nuh Al-Sharafi — Portfolio</title>
+    <meta
+      name="description"
+      content="Nuh Al-Sharafi — Forward Deployed Engineer and NLP/ML Engineer. Computer Science graduate from Sabanci University: selected work, professional experience and projects."
+    />
     <meta name="author" content="Nuh Al-Sharafi" />
-    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#f9f7f4" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#131211" media="(prefers-color-scheme: dark)" />
 
-    <meta property="og:title" content="Nuh Al-Sharafi" />
-    <meta property="og:description" content="" />
+    <meta property="og:title" content="Nuh Al-Sharafi — Portfolio" />
+    <meta
+      property="og:description"
+      content="Forward Deployed Engineer, NLP/ML Engineer. Selected work, professional experience and projects."
+    />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="" />
+    <meta property="og:url" content="https://n-alsharafi.github.io/" />
+    <meta property="og:image" content="https://n-alsharafi.github.io/images/PFP.jpeg" />
 
-    <meta name="twitter:card" content="" />
-    <meta name="twitter:site" content="" />
-    <meta name="twitter:image" content="" />
-    
-    <!-- SPA redirect script for GitHub Pages -->
-    <script type="text/javascript">
-      // Single-page application routing for GitHub Pages
-      (function() {
-        var redirect = sessionStorage.redirect;
-        delete sessionStorage.redirect;
-        if (redirect && redirect != location.href) {
-          history.replaceState(null, null, redirect);
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nuh Al-Sharafi — Portfolio" />
+    <meta name="twitter:description" content="Forward Deployed Engineer, NLP/ML Engineer." />
+    <meta name="twitter:image" content="https://n-alsharafi.github.io/images/PFP.jpeg" />
+
+    <script>
+      // Apply the stored theme before first paint so dark mode never flashes.
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var dark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.classList.toggle("dark", dark);
+          document.documentElement.style.colorScheme = dark ? "dark" : "light";
+        } catch (error) {
+          /* storage unavailable: fall through to the light default */
         }
       })();
+
+      // Links shared from the previous multi-page build still land somewhere useful.
+      (function () {
+        var routes = { "#/experience": "#archive", "#/contact": "#contact" };
+        var target = routes[location.hash];
+        if (target) history.replaceState(null, "", "./" + target);
+      })();
     </script>
-    <script type="module" crossorigin src="./assets/main-B2oBccGb.js"></script>
-    <link rel="modulepreload" crossorigin href="./assets/vendor-B27CqJbb.js">
-    <link rel="stylesheet" crossorigin href="./assets/main-C_8sAZGV.css">
-  <script>
-    (function() {
-      var redirect = sessionStorage.redirect;
-      delete sessionStorage.redirect;
-      if (redirect && redirect != location.href) {
-        history.replaceState(null, null, redirect);
-      }
-    })();
-  </script>
+    <script type="module" crossorigin src="./assets/main-Cc7OuIED.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/vendor-SIwY82C9.js">
+    <link rel="stylesheet" crossorigin href="./assets/main-Nu0WSDeg.css">
   </head>
 
   <body>

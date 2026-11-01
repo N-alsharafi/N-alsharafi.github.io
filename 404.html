@@ -1,16 +1,30 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Redirecting...</title>
-  <script>
-    // GitHub Pages SPA redirect
-    sessionStorage.redirect = location.href;
-    window.location.href = "./";
-  </script>
-</head>
-<body>
-  <h1>Redirecting...</h1>
-  <p>If you are not redirected automatically, <a href="./">click here</a>.</p>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting — Nuh Al-Sharafi</title>
+    <script>
+      // GitHub Pages serves this for unknown paths. Old routes map to sections.
+      (function () {
+        var routes = { "/experience": "#archive", "/contact": "#contact" };
+        var path = location.pathname.replace(/\/+$/, "");
+        location.replace("./" + (routes[path] || ""));
+      })();
+    </script>
+    <style>
+      body {
+        margin: 0;
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        background: #f9f7f4;
+        color: #17140f;
+        font: 16px/1.6 Georgia, serif;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Redirecting… <a href="./">Continue</a></p>
+  </body>
 </html>
