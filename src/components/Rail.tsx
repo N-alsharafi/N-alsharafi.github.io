@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import { paintProgress, subscribeScroll } from "@/lib/scroll";
+import { paintProgress, subscribeScroll } from "@/lib/stage";
 import type { SectionRef } from "@/lib/sections";
 
 interface Tick {
@@ -11,6 +11,7 @@ interface Tick {
 
 export default function Rail({ sections, active }: { sections: SectionRef[]; active: string }) {
   const ref = useRef<HTMLElement | null>(null);
+  const height = useRef(0);
   const [ticks, setTicks] = useState<Tick[]>([]);
 
   useEffect(() => {
@@ -28,10 +29,20 @@ export default function Rail({ sections, active }: { sections: SectionRef[]; act
 
     measure();
     window.addEventListener("resize", measure);
-    const settle = window.setTimeout(measure, 800);
+    document.fonts.ready.then(measure).catch(() => undefined);
+
+    // the staged acts are much taller than the flow layout, so the ticks have to
+    // follow the document height rather than measure once
+    const unsubscribe = subscribeScroll(() => {
+      const next = document.documentElement.scrollHeight;
+      if (Math.abs(next - height.current) < 4) return;
+      height.current = next;
+      measure();
+    });
+
     return () => {
+      unsubscribe();
       window.removeEventListener("resize", measure);
-      window.clearTimeout(settle);
     };
   }, [sections]);
 

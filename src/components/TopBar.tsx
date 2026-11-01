@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import siteData from "@/data/site.json";
-import { subscribeScroll } from "@/lib/scroll";
+import { subscribeScroll } from "@/lib/stage";
 import type { SectionRef } from "@/lib/sections";
 import type { Theme } from "@/lib/theme";
 import type { Site } from "@/types";

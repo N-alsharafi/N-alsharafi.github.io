@@ -1,68 +1,60 @@
-import { useEffect, useRef } from "react";
-
 import Prose from "@/components/Prose";
-import SectionHead from "@/components/SectionHead";
+import Scene from "@/components/Scene";
 import workData from "@/data/work.json";
 import { byStartDesc, formatRange } from "@/lib/format";
-import { useRevealGroup } from "@/lib/reveal";
-import { elementProgress, paintProgress, subscribeScroll } from "@/lib/scroll";
+import { seq } from "@/lib/stage";
 import type { WorkExperience } from "@/types";
 
 const roles = [...(workData as WorkExperience[])].sort(byStartDesc);
 
+/**
+ * Act 02. The roles are a deck: each card pushes the previous one up and out of
+ * the frame, so the record is read one position at a time, newest first.
+ */
 export default function TrackRecord() {
-  const groupRef = useRevealGroup<HTMLElement>();
-  const trackRef = useRef<HTMLDivElement | null>(null);
-  const spineRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(
-    () =>
-      subscribeScroll(({ vh }) => {
-        const track = trackRef.current;
-        const spine = spineRef.current;
-        if (!track || !spine) return;
-        paintProgress(spine, elementProgress(track.getBoundingClientRect(), vh, 0.8));
-      }),
-    [],
-  );
-
   return (
-    <section className="section" id="track-record" ref={groupRef} data-progress>
-      <div className="shell">
-        <SectionHead num="02" title="Professional Experience" meta={`${roles.length} roles`} />
-
-        <div className="track" ref={trackRef}>
-          <div className="track__spine" aria-hidden="true" ref={spineRef}>
-            <div className="track__spine-fill" />
-          </div>
-
-          <ol>
-            {roles.map((role) => (
-              <li className="track__item" key={role.id} data-reveal>
-                <div className="track__when">
-                  <span>{formatRange(role.startDate, role.endDate)}</span>
-                  <span className="track__place">{role.location}</span>
-                </div>
-
-                <span className="track__dot" aria-hidden="true" />
-
-                <div>
-                  <h3 className="track__role">{role.position}</h3>
-                  <p className="track__org">{role.company}</p>
-                  <div className="track__what">
-                    <Prose text={role.description} />
-                    <ul className="tags">
-                      {role.technologies.map((tech) => (
-                        <li key={tech}>{tech}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
+    <Scene
+      id="track-record"
+      act="track"
+      num="02"
+      title="Professional Experience"
+      meta={`${roles.length} roles`}
+      len="600vh"
+    >
+      <div className="track__axis" aria-hidden="true">
+        <span className="track__axis-fill" />
       </div>
-    </section>
+
+      <ol className="track">
+        {roles.map((role, index) => (
+          <li
+            className="track__item"
+            key={role.id}
+            data-step
+            data-at={seq(index, roles.length, 0.035)}
+            data-fade="0.035"
+            data-fx="push"
+          >
+            <p className="track__when">
+              <span className="num">{formatRange(role.startDate, role.endDate)}</span>
+              <span className="track__place">{role.location}</span>
+            </p>
+
+            <div className="track__body">
+              <h3 className="track__role">{role.position}</h3>
+              <p className="track__org">{role.company}</p>
+              <div className="track__what">
+                <Prose text={role.description} />
+                <ul className="tags">
+                  {role.technologies.map((tech) => (
+                    <li key={tech}>{tech}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </Scene>
   );
 }

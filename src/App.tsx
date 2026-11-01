@@ -8,15 +8,18 @@ import Missions from "@/components/Missions";
 import Practice from "@/components/Practice";
 import Rail from "@/components/Rail";
 import SelectedWork from "@/components/SelectedWork";
-import TrackRecord from "@/components/TrackRecord";
 import TopBar from "@/components/TopBar";
+import TrackRecord from "@/components/TrackRecord";
 import { SECTIONS } from "@/lib/sections";
-import { trackProgress } from "@/lib/scroll";
+import { initStage } from "@/lib/stage";
 import { useTheme } from "@/lib/theme";
 
 export default function App() {
   const { theme, toggle } = useTheme();
   const [active, setActive] = useState(SECTIONS[0].id);
+
+  // one rAF loop drives every staged act; see lib/stage.ts
+  useEffect(() => initStage(), []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,11 +40,6 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const targets = Array.from(document.querySelectorAll<HTMLElement>("[data-progress]"));
-    return trackProgress(targets);
-  }, []);
-
   return (
     <>
       <a className="skip" href="#practice">
@@ -49,7 +47,7 @@ export default function App() {
       </a>
       <TopBar sections={SECTIONS} active={active} theme={theme} onToggleTheme={toggle} />
       <Rail sections={SECTIONS} active={active} />
-      <main>
+      <main className="main">
         <Masthead />
         <Practice />
         <TrackRecord />
