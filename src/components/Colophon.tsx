@@ -2,7 +2,6 @@ import type { CSSProperties } from "react";
 
 import Scene from "@/components/Scene";
 import siteData from "@/data/site.json";
-import { seq } from "@/lib/stage";
 import type { Site } from "@/types";
 
 const site = siteData as Site;
@@ -47,9 +46,8 @@ export default function Colophon() {
               className="colophon__row"
               key={profile.key}
               data-step
-              data-at={seq(index, profiles.length, 0.04)}
-              data-fade="0.06"
-              data-fx="rise"
+              data-at="0.12-"
+              data-fade="0.1"
               style={{ "--ci": String(index) } as CSSProperties}
             >
               <dt className="colophon__key">{profile.key}</dt>
