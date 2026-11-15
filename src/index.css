@@ -627,6 +627,8 @@ button {
 }
 
 /* --- 00 · index ---------------------------------------------------------- */
+/* The opening frame is a finished composition, not a sequence: nothing in it is
+   staged, so it is complete on the first paint and owns no scroll of its own. */
 
 .masthead__name {
   font-size: clamp(2.6rem, 7.4vw, 6.4rem);
@@ -635,6 +637,7 @@ button {
 }
 
 .roster {
+  margin-top: 0.9rem;
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
   letter-spacing: 0.16em;
@@ -646,7 +649,7 @@ button {
   color: hsl(var(--muted));
 }
 
-.index__slot--all li + li::before {
+.roster li + li::before {
   content: " · ";
   color: hsl(var(--accent));
 }
@@ -662,6 +665,7 @@ button {
 .masthead__links {
   display: flex;
   gap: 1.25rem;
+  margin-top: 1.2rem;
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
   letter-spacing: 0.14em;
@@ -676,10 +680,23 @@ button {
   border: 1px solid hsl(var(--rule));
 }
 
-.index__roles {
-  position: relative;
-  min-height: 1.6em;
+.index__hint {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   margin-top: 0.9rem;
+  color: hsl(var(--muted));
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.index__hint::after {
+  content: "";
+  width: 3.5rem;
+  height: 1px;
+  background: hsl(var(--rule));
 }
 
 .is-staged .act--index .spread {
@@ -699,47 +716,6 @@ button {
   margin-top: auto;
 }
 
-.is-staged .index__roles {
-  min-height: 3.6em;
-}
-
-.is-staged .index__slot {
-  position: absolute;
-  inset: 0;
-  overflow: clip;
-}
-
-.is-staged .index__slot--all {
-  inset: 0 0 auto;
-  overflow: visible;
-  line-height: 2;
-}
-
-.is-staged .index__slot li {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  transform: translate3d(0, calc((1 - var(--in, 1)) * 70% - var(--out, 0) * 70%), 0);
-}
-
-.is-staged .index__slot:not(.index__slot--all) li::before {
-  content: "";
-  flex: none;
-  width: 0.4rem;
-  height: 0.4rem;
-  background: hsl(var(--accent));
-}
-
-.is-staged .index__slot--all li {
-  position: static;
-  transform: none;
-  display: inline-block;
-  width: auto;
-  height: auto;
-}
-
 .is-staged .index__plate {
   height: 100%;
   max-width: none;
@@ -754,27 +730,9 @@ button {
   object-position: 50% 20%;
 }
 
-.is-staged .index__links {
-  margin-top: 1.2rem;
-}
-
-.is-staged .index__hint {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 0.9rem;
-  color: hsl(var(--muted));
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.is-staged .index__hint::after {
-  content: "";
-  width: 3.5rem;
-  height: 1px;
-  background: hsl(var(--rule));
+/* a finished act, so its header rule is already drawn */
+.is-staged .scene--index .hud__rule {
+  transform: scaleX(1);
 }
 
 /* --- 01 · practice, 06 · missions ---------------------------------------- */
@@ -1628,9 +1586,6 @@ html.is-staged .chapter__links {
     padding-block: clamp(3.2rem, 6vh, 4rem) 1.25rem;
   }
 
-  .is-staged .index__roles {
-    min-height: 4.2em;
-  }
 
   .is-staged .index__plate {
     display: none;
@@ -1784,32 +1739,6 @@ html.is-staged .chapter__links {
   z-index: 2;
 }
 
-.name__word {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-.name__char {
-  display: inline-block;
-  opacity: clamp(0, calc((var(--in, 1) - var(--ci, 0) * var(--stagger, 0.06)) * 7), 1);
-  transform: translate3d(0, calc(clamp(0, calc(1 - (var(--in, 1) - var(--ci, 0) * var(--stagger, 0.06)) * 7), 1) * 0.34em), 0);
-  filter: blur(calc(clamp(0, calc(1 - (var(--in, 1) - var(--ci, 0) * var(--stagger, 0.06)) * 7), 1) * 6px));
-}
-
-/* the cycling slot and the scroll hint only exist while the act is pinned */
-.index__slot:not(.index__slot--all),
-.index__hint {
-  display: none;
-}
-
-.is-staged .index__slot:not(.index__slot--all) {
-  display: block;
-}
-
-.is-staged .index__hint {
-  display: flex;
-}
-
 /* the filter row sits under the record, so leave it room */
 .is-staged .act--archive .panel {
   padding-bottom: 4.5rem;
@@ -1862,52 +1791,4 @@ html.is-staged .chapter__links {
   .panel__glyph {
     animation: none;
   }
-}
-
-/* --- opening titles ------------------------------------------------------ */
-/* Pinned acts are revealed by scrolling, so the first act keeps a timed
-   entrance of its own. `backwards` fill means the animation hands each property
-   straight back to the stage the moment it ends. */
-
-@keyframes title-in {
-  from {
-    opacity: 0;
-    transform: translateY(0.8rem);
-    filter: blur(6px);
-  }
-
-  to {
-    opacity: 1;
-    transform: none;
-    filter: none;
-  }
-}
-
-.is-staged .index__overline,
-.is-staged .index__hint,
-.is-staged .index__plate,
-.is-staged .index__slot:not(.index__slot--all),
-.is-staged .name__char {
-  animation: title-in 0.85s var(--ease) backwards;
-}
-
-.is-staged .name__char {
-  animation-duration: 0.7s;
-  animation-delay: calc(0.3s + var(--ci, 0) * 55ms);
-}
-
-.is-staged .index__overline {
-  animation-delay: 0.12s;
-}
-
-.is-staged .index__plate {
-  animation-delay: 0.45s;
-}
-
-.is-staged .index__slot:not(.index__slot--all) {
-  animation-delay: 0.75s;
-}
-
-.is-staged .index__hint {
-  animation-delay: 1.05s;
 }
