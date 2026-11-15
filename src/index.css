@@ -563,12 +563,8 @@ button {
 }
 
 /* --- shared spread ------------------------------------------------------- */
-/* Acts that hold a document in one frame share one idea: the frame is composed
-   rather than a fragment floating in it. Where a run of items is short enough
-   (practice, missions) the items stand in the frame and the scroll only moves
-   the light; where it is long (experience) a standing index on the left points
-   at the item on the right. The index never leaves, so a frame is never half
-   empty and every title stays readable at once. */
+/* The index and contact acts hold a document in one frame: a text column and a
+   standing element beside it, composed rather than a fragment floating in it. */
 
 .spread {
   display: grid;
@@ -579,45 +575,10 @@ button {
   position: relative;
 }
 
-.indexlist {
-  display: grid;
-  align-content: start;
-  border-top: 1px solid hsl(var(--rule));
-}
 
-.indexlist li {
-  display: grid;
-  grid-template-columns: 2.2rem minmax(0, 1fr);
-  gap: 0.6rem;
-  align-items: baseline;
-  padding-block: 0.55rem;
-  border-bottom: 1px solid hsl(var(--rule));
-  --d: calc(var(--in, 1) * (1 - var(--out, 0)));
-  opacity: calc(0.5 + 0.5 * var(--d));
-  color: color-mix(in oklab, hsl(var(--accent)) calc(var(--d) * 100%), hsl(var(--muted)));
-}
 
-.lit__num {
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  letter-spacing: 0.1em;
-}
 
-.lit__label {
-  display: block;
-  font-size: 0.95rem;
-  line-height: 1.25;
-}
 
-.lit__meta {
-  display: block;
-  margin-top: 0.15rem;
-  color: hsl(var(--muted));
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
 
 /* --- 00 · index ---------------------------------------------------------- */
 /* The opening frame is a finished composition, not a sequence: nothing in it is
@@ -1112,17 +1073,27 @@ button {
 }
 
 /* --- 02 · experience ----------------------------------------------------- */
+/* The record runs sideways: the frame holds still, a track of role cards slides
+   under it, and the vertical scroll is the hand that moves it. The travel is one
+   measurement — track width minus rail width — so the last card lands flush with
+   the frame instead of stopping short. */
 
-.track__item {
+.track {
   display: grid;
-  gap: 0.35rem 1.5rem;
-  padding-block: 1.75rem;
+  gap: 1.5rem;
+}
+
+.role {
+  display: grid;
+  gap: 0.3rem;
+  padding-block: 1.4rem;
   border-top: 1px solid hsl(var(--rule));
 }
 
-.track__when {
-  display: grid;
-  gap: 0.2rem;
+.role__when {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   margin: 0;
   color: hsl(var(--muted));
   font-family: var(--font-mono);
@@ -1131,39 +1102,220 @@ button {
   text-transform: uppercase;
 }
 
-.track__role {
+.role__place::before {
+  content: "· ";
+  color: hsl(var(--accent));
+}
+
+.role__title {
   font-size: clamp(1.35rem, 2.6vw, 2rem);
 }
 
-.track__org {
-  margin: 0.15rem 0 0.9rem;
+.role__org {
+  margin: 0.1rem 0 0.75rem;
   color: hsl(var(--muted));
 }
 
-.is-staged .act--track .spread {
-  position: absolute;
-  inset: 0;
-  grid-template-columns: clamp(13rem, 24%, 19rem) minmax(0, 1fr);
-  gap: clamp(1.5rem, 3.5vw, 3.5rem);
+.reel__scale {
+  display: none;
 }
 
-.is-staged .act--track .spread__main {
+.is-staged .act--track .reel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  /* the column must be explicit: an auto column sizes to the whole track, which
+     made the "frame" as wide as all seven cards */
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: clamp(0.75rem, 2vh, 1.6rem);
+}
+
+.is-staged .reel__rail {
   position: relative;
   min-height: 0;
+  overflow: clip;
 }
 
-.is-staged .act--track .track__item {
-  position: absolute;
-  inset: 0;
-  grid-template-columns: 11rem minmax(0, 1fr);
+.is-staged .track {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  height: 100%;
+  /* the scroll picks the position, the transition does the glide: a scrubbed
+     track would keep the frame straddling two cards */
+  transform: translate3d(calc(var(--index, 0) * var(--step, 0px) * -1), 0, 0);
+  transition: transform 0.6s var(--ease);
+  will-change: transform;
+}
+
+.is-staged .role {
+  /* exactly one frame wide, so every step of the track lands a card flush */
+  position: relative;
+  flex: 0 0 100%;
+  grid-template-columns: clamp(9rem, 16%, 13rem) minmax(0, 1fr);
+  gap: 0 2rem;
   align-content: center;
-  border: 0;
   padding-block: 0;
-  will-change: transform, opacity;
+  border: 0;
+  opacity: 0.55;
+  transition: opacity 0.45s var(--ease);
 }
 
-.is-staged .act--track .track__item .prose {
-  max-width: 54ch;
+.is-staged .role__index {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0 0 0.9rem;
+  color: hsl(var(--accent));
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.14em;
+}
+
+.is-staged .role__ghost {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  color: hsl(var(--ink));
+  font-family: var(--font-serif);
+  font-size: clamp(6rem, 12vw, 10rem);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  opacity: 0.05;
+  pointer-events: none;
+  transform: translate3d(0, -50%, 0);
+}
+
+.is-staged .role__body {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  max-width: min(42rem, 62%);
+  min-width: 0;
+}
+
+/* the write-up inside a card lags the card a little: a sideways parallax that
+   makes the motion read as travel rather than paging */
+.is-staged .role > * {
+  transform: translate3d(clamp(-3rem, calc(var(--d, 0) * 1.4rem), 3rem), 0, 0);
+  transition: transform 0.6s var(--ease);
+}
+
+.is-staged .role.is-active {
+  opacity: 1;
+}
+
+.is-staged .role__title {
+  font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+  line-height: 1.02;
+}
+
+.is-staged .role__when {
+  grid-column: 1;
+  grid-row: 2;
+  display: grid;
+  align-content: start;
+  gap: 0.25rem;
+}
+
+.is-staged .role__place::before {
+  content: none;
+}
+
+.is-staged .role__title,
+.is-staged .role__org,
+.is-staged .role__what {
+  max-width: 46rem;
+}
+
+.is-staged .role__what .prose {
+  max-width: 46ch;
+  font-size: 0.98rem;
+}
+
+.is-staged .role__what .tags {
+  margin-top: 0.9rem;
+}
+
+/* the scale along the foot of the frame */
+.is-staged .reel__scale {
+  display: block;
+  position: relative;
+  padding-top: 0.6rem;
+  border-top: 1px solid hsl(var(--rule));
+}
+
+.is-staged .reel__fill {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: calc(var(--index, 0) / var(--n0, 1) * 100%);
+  height: 1px;
+  background: hsl(var(--accent));
+  transition: width 0.6s var(--ease);
+}
+
+.is-staged .reel__ticks {
+  display: grid;
+  grid-template-columns: repeat(var(--n, 1), minmax(0, 1fr));
+  gap: 0.5rem;
+  color: hsl(var(--muted));
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+}
+
+.is-staged .reel__ticks li {
+  position: relative;
+  padding-top: 0.15rem;
+  opacity: 0.55;
+  transition: opacity 0.35s var(--ease), color 0.35s var(--ease);
+}
+
+.is-staged .reel__ticks li::before {
+  content: "";
+  position: absolute;
+  top: -0.6rem;
+  left: 0;
+  width: 1px;
+  height: 0.45rem;
+  background: currentColor;
+}
+
+.is-staged .reel__ticks li.is-active {
+  color: hsl(var(--accent));
+  opacity: 1;
+}
+
+@media (max-width: 63.99rem) {
+  /* a phone panel stacks: meta above the write-up, and no numeral to crowd it */
+  .is-staged .act--track .role {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.4rem;
+  }
+
+  .is-staged .role__index {
+    grid-column: 1;
+    grid-row: 1;
+    margin-bottom: 0.2rem;
+  }
+
+  .is-staged .role__when {
+    grid-column: 1;
+    grid-row: 2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .is-staged .role__body {
+    grid-column: 1;
+    grid-row: 3;
+    max-width: 100%;
+  }
+
+  .is-staged .role__ghost {
+    display: none;
+  }
 }
 
 /* --- 03 · education ------------------------------------------------------ */
@@ -1874,46 +2026,8 @@ html.is-staged .chapter__links {
   }
 
   /* every staged spread becomes a single column */
-  .is-staged .act--index .spread,
-  .is-staged .act--track .spread {
+  .is-staged .act--index .spread {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .is-staged .act--track .indexlist {
-    align-content: start;
-  }
-
-  /* the index takes the top of the frame, the dealt card gets the rest and
-     scrolls inside its own box if a write-up is long */
-  .is-staged .act--track .spread {
-    grid-template-rows: auto minmax(0, 1fr);
-    gap: 1rem;
-  }
-
-  .is-staged .act--track .indexlist li {
-    padding-block: 0.3rem;
-  }
-
-  .is-staged .act--track .lit__label {
-    font-size: 0.85rem;
-  }
-
-  .is-staged .act--track .spread__main {
-    min-height: 0;
-    overflow: clip;
-  }
-
-  .is-staged .act--track .track__item {
-    grid-template-columns: minmax(0, 1fr);
-    align-content: start;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    scrollbar-width: thin;
-    padding-block: 0.25rem;
-  }
-
-  .is-staged .act--track .track__item .prose {
-    max-width: 100%;
   }
 
   .is-staged .act--contact .colophon__list {
@@ -2062,10 +2176,6 @@ html.is-staged .chapter__links {
 }
 
 @media (min-width: 64rem) {
-  .is-staged .act--track .track__item {
-    grid-template-columns: 12rem minmax(0, 1fr);
-    gap: 0 1.5rem;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
