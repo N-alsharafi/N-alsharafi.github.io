@@ -9,18 +9,12 @@ const site = siteData as Site;
  *
  * It is a finished composition rather than a sequence: everything is on screen
  * at the first paint and the act owns no scroll of its own (`--len: 0`), so the
- * page hands over to the acts after it one viewport down.
+ * page hands over to the acts after it one viewport down. The portrait sits in a
+ * matted print: a paper margin between an outer rule and the picture's own rule.
  */
 export default function Masthead() {
   return (
-    <Scene
-      id="masthead"
-      act="index"
-      num="00"
-      title="Index"
-      meta={site.overline.split("—")[1]?.trim() ?? ""}
-      len="0vh"
-    >
+    <Scene id="masthead" act="index" num="00" title="Index" len="0vh">
       <div className="spread">
         <div className="spread__main">
           <p className="label index__overline">{site.overline}</p>
@@ -58,7 +52,7 @@ export default function Masthead() {
         </div>
 
         <figure className="index__plate masthead__plate">
-          <img src="./images/PFP.jpeg" alt={`Portrait of ${site.name}`} width={720} height={720} />
+          <img src="./images/profile.jpg" alt={`Portrait of ${site.name}`} width={1200} height={1600} />
         </figure>
       </div>
     </Scene>
