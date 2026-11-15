@@ -705,7 +705,7 @@ button {
 .is-staged .act--index .spread {
   position: absolute;
   inset: 0;
-  grid-template-columns: minmax(0, 1fr) clamp(13rem, 27%, 23rem);
+  grid-template-columns: minmax(0, 1fr) clamp(13rem, 30%, 24rem);
   gap: clamp(1.25rem, 3vw, 3rem);
 }
 
@@ -725,9 +725,12 @@ button {
 }
 
 .is-staged .index__plate {
-  height: calc(100% - 0.5rem);
+  align-self: center;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
   max-width: none;
-  margin: 0.5rem 0 0;
+  margin: 0;
   padding: 0.8rem;
   border: 1px solid hsl(var(--rule));
   overflow: clip;
