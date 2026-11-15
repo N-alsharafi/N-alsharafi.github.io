@@ -879,6 +879,7 @@ button {
   position: absolute;
   inset: 0;
   grid-template-columns: clamp(10.5rem, 17%, 15rem) minmax(0, 1fr) clamp(15rem, 27%, 21rem);
+  grid-template-rows: minmax(0, 1fr);
   gap: clamp(1.25rem, 3vw, 3.5rem);
 }
 
@@ -1021,26 +1022,32 @@ button {
 
 .is-staged .plate__frame {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  place-items: center;
-  gap: 1.25rem;
-  aspect-ratio: 4 / 5;
-  padding: clamp(1rem, 2vw, 1.6rem);
+  flex: 1;
+  min-height: 0;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  padding: 0;
   border: 1px solid hsl(var(--rule));
 }
 
 .is-staged .plate__glyph {
   display: grid;
   place-items: center;
-  width: 100%;
+  min-height: 0;
+  border-top: 1px solid hsl(var(--rule));
   color: hsl(var(--ink));
   opacity: 0.82;
 }
 
+.is-staged .plate__glyph:first-child {
+  border-top: 0;
+}
+
 .is-staged .plate__glyph svg {
-  width: 100%;
+  width: min(52%, 5rem);
   height: auto;
-  max-width: 3.6rem;
+  max-height: 62%;
 }
 
 /* the drawing hand */
@@ -1056,7 +1063,7 @@ button {
 @media (max-width: 63.99rem) {
   .is-staged .act--practice .sheet {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: minmax(0, 1fr) 32%;
+    grid-template-rows: minmax(0, 1fr) 26%;
     gap: 1rem;
   }
 
@@ -1065,8 +1072,7 @@ button {
   }
 
   .is-staged .briefs .brief {
-    justify-content: flex-start;
-    padding-top: 0.25rem;
+    justify-content: center;
   }
 
   .is-staged .brief__title {
@@ -1087,14 +1093,21 @@ button {
   }
 
   .is-staged .plate__frame {
-    aspect-ratio: auto;
-    height: 100%;
-    gap: 0.75rem;
-    padding: 0.9rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: minmax(0, 1fr);
+  }
+
+  .is-staged .plate__glyph {
+    border-top: 0;
+    border-left: 1px solid hsl(var(--rule));
+  }
+
+  .is-staged .plate__glyph:first-child {
+    border-left: 0;
   }
 
   .is-staged .plate__glyph svg {
-    max-width: 2.6rem;
+    width: min(60%, 3rem);
   }
 }
 
