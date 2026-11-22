@@ -38,7 +38,6 @@ export default function Scene({
             <span>{title}</span>
           </p>
           {meta ? <p className="hud__meta">{meta}</p> : null}
-          <span className="hud__rule" aria-hidden="true" />
         </header>
         <div className={`stage__inner act act--${act} shell`}>{children}</div>
       </div>

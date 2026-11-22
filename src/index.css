@@ -483,18 +483,6 @@ button {
   text-transform: uppercase;
 }
 
-/* the act's own progress, drawn under its title */
-.hud__rule {
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: hsl(var(--accent));
-  transform: scaleX(var(--sp, 0));
-  transform-origin: 0 50%;
-}
-
 /* oversized numeral drifting behind an act */
 .ghost {
   position: absolute;
@@ -698,11 +686,6 @@ button {
   object-position: 50% 50%;
 }
 
-/* a finished act, so its header rule is already drawn */
-.is-staged .scene--index .hud__rule {
-  transform: scaleX(1);
-}
-
 /* --- 06 · side missions --------------------------------------------------- */
 /* Five entries stand in the frame; the scroll moves the light down them. Sizes
    are set so all five fit the act body with air around them: the earlier scale
@@ -827,10 +810,10 @@ button {
    for its own scenes: the frame stays, the content is chaptered, and the art is
    drawn by the scroll instead of playing as video.
 
-   The scale in the margin names all three areas at once and fills as the act is
-   read, so nothing has to be discovered by scrolling past it. Each plate is a
-   technical figure of the site's own line glyphs; every stroke carries
-   pathLength="1", so `stroke-dashoffset` is the drawing hand. */
+   The index in the margin names all three areas at once, so nothing has to be
+   discovered by scrolling past it. Each plate holds one technical figure of its
+   area (see AreaPlate); every stroke carries pathLength="1", so
+   `stroke-dashoffset` is the drawing hand. */
 
 .sheet {
   display: grid;
@@ -882,64 +865,25 @@ button {
   gap: clamp(1.25rem, 3vw, 3.5rem);
 }
 
-/* the scale */
+/* the index of areas */
 .is-staged .gauge {
   display: block;
-  position: relative;
-  padding-left: 1.5rem;
-}
-
-.is-staged .gauge__rail,
-.is-staged .gauge__fill {
-  position: absolute;
-  top: 0;
-  left: 0.32rem;
-  width: 1px;
-}
-
-.is-staged .gauge__rail {
-  bottom: 0;
-  background: hsl(var(--rule));
-}
-
-.is-staged .gauge__fill {
-  height: calc(var(--sp, 0) * 100%);
-  background: hsl(var(--accent));
-}
-
-.is-staged .gauge__fill::after {
-  content: "";
-  position: absolute;
-  bottom: -0.2rem;
-  left: -0.2rem;
-  width: 0.42rem;
-  height: 0.42rem;
-  background: hsl(var(--accent));
+  min-height: 0;
 }
 
 .is-staged .gauge__ticks {
   display: grid;
-  align-content: space-between;
+  align-content: center;
+  gap: 2rem;
   height: 100%;
 }
 
 .is-staged .gauge__ticks li {
   --d: calc(var(--in, 1) * (1 - var(--out, 0)));
-  position: relative;
   display: grid;
   gap: 0.12rem;
   opacity: calc(0.45 + 0.55 * var(--d));
   color: color-mix(in oklab, hsl(var(--accent)) calc(var(--d) * 100%), hsl(var(--muted)));
-}
-
-.is-staged .gauge__ticks li::before {
-  content: "";
-  position: absolute;
-  top: 0.5em;
-  left: -1.18rem;
-  width: 0.9rem;
-  height: 1px;
-  background: currentColor;
 }
 
 .is-staged .gauge__num {
@@ -999,7 +943,7 @@ button {
   font-size: clamp(6rem, 17vw, 13rem);
 }
 
-/* the plate */
+/* the plate: one technical figure, drawn by the scroll */
 .is-staged .plates {
   position: relative;
   display: block;
@@ -1015,44 +959,53 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.9rem;
+  gap: 0.75rem;
   margin: 0;
 }
 
 .is-staged .plate__frame {
-  display: grid;
-  flex: 1;
-  min-height: 0;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: repeat(4, minmax(0, 1fr));
-  gap: 0;
-  padding: 0;
+  width: 100%;
+  max-height: 100%;
+  aspect-ratio: 4 / 5;
+  padding: clamp(0.7rem, 2.2vh, 1.25rem);
   border: 1px solid hsl(var(--rule));
+  /* the figure stands on graph paper, ruled in the same hairline as the frame */
+  background-image:
+    linear-gradient(hsl(var(--rule) / 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--rule) / 0.4) 1px, transparent 1px);
+  background-size: 1.5rem 1.5rem;
 }
 
-.is-staged .plate__glyph {
-  display: grid;
-  place-items: center;
-  min-height: 0;
-  border-top: 1px solid hsl(var(--rule));
+.is-staged .plate__fig {
+  display: block;
+  width: 100%;
+  height: 100%;
   color: hsl(var(--ink));
-  opacity: 0.82;
 }
 
-.is-staged .plate__glyph:first-child {
-  border-top: 0;
+/* the drawing hand: --ci orders a stroke, --local is the plate's own progress */
+.is-staged .plate__fig [data-draw],
+.is-staged .plate__fig text {
+  --d: clamp(0, calc((var(--local, 1) - var(--ci, 0) * 0.055) * 4), 1);
 }
 
-.is-staged .plate__glyph svg {
-  width: min(52%, 5rem);
-  height: auto;
-  max-height: 62%;
-}
-
-/* the drawing hand */
-.is-staged .plate__glyph svg path {
+.is-staged .plate__fig [data-draw] {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
   stroke-dasharray: 1;
-  stroke-dashoffset: calc(1 - clamp(0, calc((var(--local, 1) - var(--ci, 0) * 0.1) * 3.4), 1));
+  stroke-dashoffset: calc(1 - var(--d));
+}
+
+.is-staged .plate__fig text {
+  opacity: calc(0.12 + var(--d) * 0.68);
+  fill: hsl(var(--muted));
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .is-staged .plate__tag {
@@ -1062,7 +1015,7 @@ button {
 @media (max-width: 63.99rem) {
   .is-staged .act--practice .sheet {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: minmax(0, 1fr) 26%;
+    grid-template-rows: minmax(0, 1fr) 42%;
     gap: 1rem;
   }
 
@@ -1088,25 +1041,23 @@ button {
 
   .is-staged .plates .plate {
     justify-content: flex-start;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 0.4rem;
   }
 
+  /* the frame takes the figure's own proportion instead of standing wider than
+     it, so the drawing fills the plate and the mat stays even */
   .is-staged .plate__frame {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-template-rows: minmax(0, 1fr);
+    flex: 1;
+    width: auto;
+    max-width: 100%;
+    min-height: 0;
   }
 
-  .is-staged .plate__glyph {
-    border-top: 0;
-    border-left: 1px solid hsl(var(--rule));
-  }
-
-  .is-staged .plate__glyph:first-child {
-    border-left: 0;
-  }
-
-  .is-staged .plate__glyph svg {
-    width: min(60%, 3rem);
+  /* the frame is centred here, so the caption is too, instead of hanging off
+     the shell's right edge with the frame nowhere near it */
+  .is-staged .plate__tag {
+    text-align: center;
   }
 }
 
