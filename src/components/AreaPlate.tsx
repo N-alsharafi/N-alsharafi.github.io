@@ -1,60 +1,14 @@
-import type { CSSProperties } from "react";
+import Figure from "@/components/Figure";
+import { box, circle, down, type Figure as FigureData } from "@/lib/figures";
 
 /**
- * One technical figure per area of act 01, each on a 4:5 field — the proportion
- * of the plate that holds it: hairline strokes in currentColor, mono labels, and
- * every stroke carrying pathLength="1" so CSS can write it with the scroll, the
- * same drawing hand the rest of the site uses.
- *
- * The figures are the areas' own subjects, not decoration: the software figure
- * is a layered service, the learning figure is the NLP pipeline with the
- * encoder's attention matrix, the research figure is a fitted line over its
- * observations.
+ * One technical figure per area of act 01: the software figure is a layered
+ * service, the learning figure is the NLP pipeline with the encoder's attention
+ * matrix, the research figure is a fitted line over its observations.
  */
 
-interface Stroke {
-  /** path data; a box, a circle and an ellipse are all written as a path so
-      that pathLength — and with it the draw — works the same everywhere */
-  d: string;
-  /** where this stroke falls under the drawing hand */
-  ci: number;
-}
-
-interface Label {
-  x: number;
-  y: number;
-  text: string;
-  ci: number;
-  anchor?: "start" | "middle" | "end";
-}
-
-interface Figure {
-  /** the field, framed tightly around the drawing */
-  viewBox: string;
-  /** what the figure shows, for assistive technology */
-  caption: string;
-  strokes: Stroke[];
-  labels: Label[];
-}
-
-const box = (x: number, y: number, w: number, h: number, ci: number): Stroke => ({
-  d: `M${x} ${y}h${w}v${h}h${-w}z`,
-  ci,
-});
-
-/** A shaft and its head, arriving at the top of the box below. */
-const down = (x: number, y: number, to: number, ci: number): Stroke[] => [
-  { d: `M${x} ${y}v${to - y - 8}`, ci },
-  { d: `M${x - 5} ${to - 6}l5 6 5-6`, ci: ci + 0.3 },
-];
-
-const circle = (x: number, y: number, r: number, ci: number): Stroke => ({
-  d: `M${x - r} ${y}a${r} ${r} 0 1 0 ${2 * r} 0a${r} ${r} 0 1 0 ${-2 * r} 0`,
-  ci,
-});
-
 /* 01 · software: client, service, store — the store drawn as a cylinder */
-const service: Figure = {
+const service: FigureData = {
   viewBox: "20 33 200 250",
   caption: "A layered service: interface over service over a data store",
   strokes: [
@@ -75,7 +29,7 @@ const service: Figure = {
 };
 
 /* 02 · learning: the pipeline, with the encoder holding its attention matrix */
-const attention: Figure = {
+const attention: FigureData = {
   viewBox: "12 16 216 270",
   caption: "An NLP pipeline: text, tokens, encoder holding an attention matrix, label",
   strokes: [
@@ -112,7 +66,7 @@ const OBSERVATIONS: [number, number][] = [
   [184, 96],
 ];
 
-const fit: Figure = {
+const fit: FigureData = {
   viewBox: "28 37 184 230",
   caption: "A scatter of observations with a fitted line through them",
   strokes: [
@@ -131,33 +85,8 @@ const fit: Figure = {
   ],
 };
 
-const FIGURES: Figure[] = [service, attention, fit];
+const FIGURES: FigureData[] = [service, attention, fit];
 
 export default function AreaPlate({ index }: { index: number }) {
-  const figure = FIGURES[index];
-
-  return (
-    <svg className="plate__fig" viewBox={figure.viewBox} role="img" aria-label={figure.caption}>
-      {figure.strokes.map((stroke) => (
-        <path
-          key={stroke.d}
-          d={stroke.d}
-          data-draw
-          pathLength={1}
-          style={{ "--ci": String(stroke.ci) } as CSSProperties}
-        />
-      ))}
-      {figure.labels.map((label) => (
-        <text
-          key={label.text}
-          x={label.x}
-          y={label.y}
-          textAnchor={label.anchor ?? "start"}
-          style={{ "--ci": String(label.ci) } as CSSProperties}
-        >
-          {label.text}
-        </text>
-      ))}
-    </svg>
-  );
+  return <Figure figure={FIGURES[index]} />;
 }

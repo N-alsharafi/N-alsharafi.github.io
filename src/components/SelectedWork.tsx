@@ -1,19 +1,15 @@
 import type { CSSProperties } from "react";
 
-import Glyph from "@/components/Glyph";
+import ProjectPlate from "@/components/ProjectPlate";
 import Prose from "@/components/Prose";
 import Scene from "@/components/Scene";
 import projectsData from "@/data/projects.json";
 import { byEndDateDesc, formatRange, pad } from "@/lib/format";
-import { glyphForTag } from "@/lib/glyphs";
 import { at, seq } from "@/lib/stage";
 import type { Project } from "@/types";
 
 const selected = (projectsData as Project[]).filter((project) => project.featured).sort(byEndDateDesc);
 const COUNT = selected.length;
-
-/** The plate is drawn from the project's own tags, one glyph per family. */
-const glyphsFor = (tags: string[]) => Array.from(new Set(tags.map((tag) => glyphForTag(tag))));
 
 /**
  * Act 04, the movie. One frame, six chapters: the paper turns to ink as the act
@@ -28,9 +24,9 @@ export default function SelectedWork() {
       <div className="movie">
         <div className="movie__hud">
           <p className="movie__count num">
-            <span className="roll" style={{ "--n": String(COUNT) } as CSSProperties}>
+            <span className="roll">
               {selected.map((project, index) => (
-                <span key={project.id} style={{ "--j": String(index) } as CSSProperties}>
+                <span key={project.id} data-step data-at={seq(index, COUNT, 0.05)} data-fade="0.05">
                   {pad(index + 1)}
                 </span>
               ))}
@@ -66,14 +62,10 @@ export default function SelectedWork() {
                 data-step
                 data-at={at(index, COUNT, 0.06, 1.05)}
                 data-fade="0.06"
-                data-fx="cascade"
-                style={{ "--stagger": "0.05" } as CSSProperties}
               >
-                {glyphsFor(project.tags).map((name, glyphIndex) => (
-                  <span className="chapter__glyph" key={name} style={{ "--ci": String(glyphIndex) } as CSSProperties}>
-                    <Glyph name={name} />
-                  </span>
-                ))}
+                <div className="fig-frame">
+                  <ProjectPlate project={project} />
+                </div>
               </div>
 
               <span className="chapter__num" aria-hidden="true">

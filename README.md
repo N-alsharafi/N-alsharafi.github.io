@@ -81,8 +81,10 @@ Measured over a full-page scroll at 1440×900: median frame 16.7 ms, p95 16.7 ms
 src/
   App.tsx                 act order, scroll spy, one initStage() call
   components/Scene.tsx    one act: pinned stage and header
-  components/             one file per act, plus Prose / Glyph / AreaPlate
+  components/             one file per act, plus Prose / Glyph / Figure /
+                          AreaPlate / ProjectPlate
   lib/format.ts           ISO date formatting and sort comparators
+  lib/figures.ts          the figure vocabulary both drawing acts share
   lib/glyphs.ts           hand-drawn line glyphs, one per tag family
   lib/stage.ts            the rAF loop, scene/step windows, scroll signal
   lib/sections.ts         act registry used by the top bar and the rail

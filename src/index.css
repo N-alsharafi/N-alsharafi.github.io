@@ -430,7 +430,8 @@ button {
   filter: blur(calc(clamp(0, calc(1 - (var(--in, 1) - var(--ci, 0) * var(--stagger, 0.04)) * 7), 1) * 5px));
 }
 
-/* mechanical counter: children stacked on --j, the scene's --sp turns the reel */
+/* mechanical counter: each digit is a step, so the reel turns with the same
+   windows that cut the chapters over — one digit in, one out, nothing between */
 .roll {
   position: relative;
   display: inline-block;
@@ -440,7 +441,7 @@ button {
 }
 
 .roll > span {
-  --d: calc(var(--j, 0) - var(--sp, 0) * (var(--n, 1) - 1));
+  --d: calc(1 - var(--in, 1) - var(--out, 0));
   --ad: max(var(--d), calc(-1 * var(--d)));
   position: absolute;
   inset: 0;
@@ -805,6 +806,75 @@ button {
   }
 }
 
+/* --- technical figures --------------------------------------------------- */
+/* One figure language for the acts that show art: hairline strokes in
+   currentColor on graph paper, mono labels, and a stroke order the scroll writes
+   out. `--ci` on a stroke is its place in that order, `--local` on the frame is
+   how far the act has got, and every `stroke-dashoffset` below is a calc of the
+   two — components/Figure writes the first, each act writes the second. */
+
+.fig-frame {
+  --fig-edge: hsl(var(--rule));
+  --fig-rule: hsl(var(--rule) / 0.4);
+  padding: clamp(0.7rem, 2.2vh, 1.25rem);
+  border: 1px solid var(--fig-edge);
+  background-image:
+    linear-gradient(var(--fig-rule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--fig-rule) 1px, transparent 1px);
+  background-size: 1.5rem 1.5rem;
+}
+
+.fig {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: hsl(var(--ink));
+}
+
+.fig [data-draw],
+.fig text {
+  --d: clamp(0, calc((var(--local, 1) - var(--ci, 0) * 0.04) * 5), 1);
+}
+
+.fig [data-draw] {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - var(--d));
+}
+
+.fig text {
+  opacity: calc(0.12 + var(--d) * 0.68);
+  fill: hsl(var(--muted));
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* a project with no drawing of its own gets its tags as ruled rows */
+.fig-list {
+  display: grid;
+  align-content: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fig-list li {
+  padding-block: 0.55rem;
+  border-top: 1px solid hsl(var(--rule));
+  color: hsl(var(--muted));
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 /* --- 01 · practice ------------------------------------------------------- */
 /* A long pin over a single frame, in the shape the Porsche Motorsport site uses
    for its own scenes: the frame stays, the content is chaptered, and the art is
@@ -812,8 +882,7 @@ button {
 
    The index in the margin names all three areas at once, so nothing has to be
    discovered by scrolling past it. Each plate holds one technical figure of its
-   area (see AreaPlate); every stroke carries pathLength="1", so
-   `stroke-dashoffset` is the drawing hand. */
+   area (see AreaPlate), drawn by the scroll — see the figure block in index.css. */
 
 .sheet {
   display: grid;
@@ -963,50 +1032,11 @@ button {
   margin: 0;
 }
 
-.is-staged .plate__frame {
+/* the plate holds the figure at its own 4:5, inside the column */
+.is-staged .plates .plate .fig-frame {
   width: 100%;
   max-height: 100%;
   aspect-ratio: 4 / 5;
-  padding: clamp(0.7rem, 2.2vh, 1.25rem);
-  border: 1px solid hsl(var(--rule));
-  /* the figure stands on graph paper, ruled in the same hairline as the frame */
-  background-image:
-    linear-gradient(hsl(var(--rule) / 0.4) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(var(--rule) / 0.4) 1px, transparent 1px);
-  background-size: 1.5rem 1.5rem;
-}
-
-.is-staged .plate__fig {
-  display: block;
-  width: 100%;
-  height: 100%;
-  color: hsl(var(--ink));
-}
-
-/* the drawing hand: --ci orders a stroke, --local is the plate's own progress.
-   The stagger is short because a chapter is only 0.6 of a screen of scroll */
-.is-staged .plate__fig [data-draw],
-.is-staged .plate__fig text {
-  --d: clamp(0, calc((var(--local, 1) - var(--ci, 0) * 0.04) * 5), 1);
-}
-
-.is-staged .plate__fig [data-draw] {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: calc(1 - var(--d));
-}
-
-.is-staged .plate__fig text {
-  opacity: calc(0.12 + var(--d) * 0.68);
-  fill: hsl(var(--muted));
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
 }
 
 .is-staged .plate__tag {
@@ -1048,7 +1078,7 @@ button {
 
   /* the frame takes the figure's own proportion instead of standing wider than
      it, so the drawing fills the plate and the mat stays even */
-  .is-staged .plate__frame {
+  .is-staged .plates .plate .fig-frame {
     flex: 1;
     width: auto;
     max-width: 100%;
@@ -1511,12 +1541,10 @@ html.is-staged .act--movie {
 }
 
 .movie__hud {
-  position: absolute;
-  top: 0;
-  right: 0;
   display: flex;
   align-items: center;
   gap: 1.1rem;
+  margin-bottom: 1.5rem;
   color: hsl(var(--muted));
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
@@ -1524,9 +1552,18 @@ html.is-staged .act--movie {
   text-transform: uppercase;
 }
 
+html.is-staged .movie__hud {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+}
+
 .movie__count {
   margin: 0;
-  color: hsl(var(--paper));
+  /* --paper is the veil's own colour inside this act, so the counter reads in
+     --ink, which is the light one here */
+  color: hsl(var(--ink));
 }
 
 .movie__count .roll {
@@ -1549,7 +1586,8 @@ html.is-staged .act--movie {
   background: color-mix(in oklab, hsl(var(--accent)) calc((1 - clamp(0, var(--ad), 1)) * 100%), hsl(var(--rule)));
 }
 
-.movie__frame {
+/* the chapters stack in the document; only a staged act pins them in one frame */
+html.is-staged .movie__frame {
   position: absolute;
   inset: 0;
 }
@@ -1569,57 +1607,38 @@ html.is-staged .chapter {
 }
 
 
-/* the chapter's figure: a plate drawn from the project's own tag glyphs */
+/* the chapter's plate: a schematic of what the project is made of */
 .chapter__plate {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
   margin-top: 1rem;
   color: hsl(var(--muted));
 }
 
-.chapter__glyph svg {
-  width: 1.75rem;
-  height: 1.75rem;
+.chapter__plate .fig-frame {
+  width: min(20rem, 100%);
+  aspect-ratio: 4 / 5;
+}
+
+/* this act plays on ink, so its figure rules itself in ink rather than in
+   --rule, which is a dark grey here */
+.scene--movie .fig-frame {
+  --fig-edge: hsl(var(--ink) / 0.18);
+  --fig-rule: hsl(var(--ink) / 0.07);
 }
 
 html.is-staged .chapter__plate {
-  display: grid;
   position: absolute;
   top: 7%;
   right: 0;
   width: min(30vw, 21rem);
-  aspect-ratio: 4 / 5;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-content: center;
-  place-items: center;
-  gap: 1.25rem;
   margin: 0;
-  padding: 1.5rem;
-  border: 1px solid hsl(var(--ink) / 0.16);
-  color: hsl(var(--ink));
-  will-change: opacity, transform;
+  /* the plate's own entry is the drawing hand for the figure inside it */
+  --local: var(--in, 1);
+  will-change: opacity;
 }
 
-html.is-staged .chapter__glyph {
-  display: grid;
-  place-items: center;
-  opacity: 0.4;
-}
-
-html.is-staged .chapter__glyph svg {
+html.is-staged .chapter__plate .fig-frame {
   width: 100%;
-  height: auto;
-  max-width: 4rem;
-}
-
-html.is-staged .chapter__glyph:first-child {
-  grid-column: span 2;
-  opacity: 0.9;
-}
-
-html.is-staged .chapter__glyph:first-child svg {
-  max-width: 7rem;
+  height: 100%;
 }
 
 html.is-staged .chapter__num {

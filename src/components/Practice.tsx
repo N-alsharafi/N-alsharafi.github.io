@@ -66,7 +66,7 @@ export default function Practice() {
               data-fade="0.05"
               style={{ "--i": String(index) } as CSSProperties}
             >
-              <div className="plate__frame">
+              <div className="fig-frame">
                 <AreaPlate index={index} />
               </div>
               <figcaption className="plate__tag num">Fig. {pad(index + 1)}</figcaption>
