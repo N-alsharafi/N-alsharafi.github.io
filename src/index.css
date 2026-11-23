@@ -983,10 +983,11 @@ button {
   color: hsl(var(--ink));
 }
 
-/* the drawing hand: --ci orders a stroke, --local is the plate's own progress */
+/* the drawing hand: --ci orders a stroke, --local is the plate's own progress.
+   The stagger is short because a chapter is only 0.6 of a screen of scroll */
 .is-staged .plate__fig [data-draw],
 .is-staged .plate__fig text {
-  --d: clamp(0, calc((var(--local, 1) - var(--ci, 0) * 0.055) * 4), 1);
+  --d: clamp(0, calc((var(--local, 1) - var(--ci, 0) * 0.04) * 5), 1);
 }
 
 .is-staged .plate__fig [data-draw] {

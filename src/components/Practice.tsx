@@ -11,19 +11,22 @@ const site = siteData as Site;
 const areas = site.practice;
 
 /**
- * Act 01. One long pin holding a single frame: the index in the margin names all
- * three areas at once, the write-up changes in place, and the figure beside it —
- * one technical drawing per area, see AreaPlate — is written by the scroll as
- * each chapter plays.
+ * Act 01. One pin holding a single frame: the index in the margin names all three
+ * areas at once, the write-up changes in place, and the figure beside it — one
+ * technical drawing per area, see AreaPlate — is written by the scroll as each
+ * chapter plays.
+ *
+ * The pin is short on purpose: 0.6 of a screen per area, so three chapters cost
+ * 1.8 screens of travel and not the four they used to.
  */
 export default function Practice() {
   return (
-    <Scene id="practice" act="practice" num="01" title="What I Do" len="420vh">
+    <Scene id="practice" act="practice" num="01" title="What I Do" len="180vh">
       <div className="sheet">
         <aside className="gauge">
           <ol className="gauge__ticks">
             {areas.map((entry, index) => (
-              <li key={entry.title} data-step data-at={seq(index, areas.length, 0.04)} data-fade="0.02">
+              <li key={entry.title} data-step data-at={seq(index, areas.length, 0.04)} data-fade="0.05">
                 <span className="gauge__num num">{pad(index + 1)}</span>
                 <span className="gauge__label">{entry.title}</span>
               </li>
@@ -38,7 +41,7 @@ export default function Practice() {
               key={entry.title}
               data-step
               data-at={seq(index, areas.length, 0.04)}
-              data-fade="0.02"
+              data-fade="0.05"
             >
               <span className="ghost" aria-hidden="true">
                 {pad(index + 1)}
@@ -60,7 +63,7 @@ export default function Practice() {
               key={entry.title}
               data-step
               data-at={seq(index, areas.length, 0.04)}
-              data-fade="0.02"
+              data-fade="0.05"
               style={{ "--i": String(index) } as CSSProperties}
             >
               <div className="plate__frame">
